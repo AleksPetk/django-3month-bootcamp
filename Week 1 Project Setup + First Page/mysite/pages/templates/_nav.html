@@ -1,0 +1,8 @@
+<nav>
+    <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active-link{% endif %}">Home</a>
+    <a href="{% url 'products' %}" class="{% if request.resolver_match.url_name == 'products' %}active-link{% endif %}">Products</a>
+    <a href="{% url 'contact' %}">Contact</a>
+    <a href="{% url 'cars' %}" class="{% if request.resolver_match.url_name == 'cars' %}active-link{% endif %}">Cars</a>
+    <a href="{% url 'services' %}" class="{% if request.resolver_match.url_name == 'services' %}active-link{% endif %}">Services</a>
+    <a href="{% url 'hub' %}" class="{% if request.resolver_match.url_name == 'hub' %}active-link{% endif %}">Hub</a>
+</nav>

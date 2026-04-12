@@ -1,0 +1,132 @@
+body {
+    background-color: #ffe0e0;
+    font-family: Arial;    
+}
+h1 {
+    color: darkblue;
+}
+h2 {
+    color: green;
+}
+nav {
+    border: 2px solid black;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgb(139, 55, 42), rgb(85, 160, 85), rgb(14, 92, 238));
+    text-align: center;
+    padding: 12px 20px;
+    margin: 40px;
+}
+nav a {
+    background: linear-gradient(135deg, #3115e4, #f25151);
+    border: 2px solid black;
+    border-radius: 12px;
+    color: white;
+    font-size: 20px;
+    padding: 8px 12px; 
+    cursor: pointer;
+    box-shadow: 0 6px 10px rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.2s ease;
+}
+nav a:hover {
+    background: linear-gradient(135deg, #f25151, #3115e4);
+    transform: translateY(-2px);
+}
+.active-link {
+    color:rgb(0, 0, 0);
+    background: linear-gradient(135deg, #ace96a, #87c6e8);
+    transform: translateY(-3px);
+}
+.products_ul {
+    border: 2px solid black;
+    border-radius: 12px;
+    background: linear-gradient(90deg, rgba(255, 150, 125, 0.3), rgba(0, 120, 35, 0.5));
+}
+.products_ul li {
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    text-shadow: 1px 2px 1px rgba(255, 255, 255, 0.8), 2px 4px 6px rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+}
+.products_ul li:hover{
+    transform: translateY(-2px);
+    cursor: pointer;
+    box-shadow: 0 10px 12px rgba(255, 255, 255, 0.5);
+}
+.buttons_p {
+    border: 3px grey solid;
+    border-radius: 6px;
+    background: linear-gradient(90deg, rgb(116, 255, 116), rgb(90, 90, 229));
+    margin: 40px 60px;
+    padding: 20px 30px;
+    text-align: center;
+}
+
+.buttons_p a {
+    border: 2px solid black;
+    padding: 10px 12px;
+    border-radius: 16px;
+    text-decoration: none;
+    background: linear-gradient(180deg, rgb(248, 94, 94), rgb(237, 237, 90));
+    font-size: 20px;
+    font-weight: 800;
+    color: brown;
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 2px 4px rgba(249, 246, 246, 0.5);
+    display: inline-block;
+}
+.buttons_p a:hover {
+    transform: translateY(-3px);
+}
+.products_s {
+    border: 3px solid transparent;
+    background: linear-gradient(90deg, rgba(252, 101, 101, 0.51), rgba(240, 240, 80, 0.57));
+    border-radius: 12px;
+    padding: 10px 20px;
+    margin: 10px 20px;
+    
+}
+.head_line {
+    border: 3px solid transparent;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgb(126, 126, 247), rgb(247, 88, 247));
+    margin: 10px 20px;
+    text-align: center;
+}
+.head_line h3 {
+    font-size: 26px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-shadow: 2px 4px 6px rgba(255, 255, 255, 0.8);
+}
+.cars_s,
+.hotels_s,
+.attractions_s {
+    border: 4px ridge;
+    border-radius: 12px;
+    padding: 0 15px;
+    margin: 20px 40px;
+}
+.buttons_s,
+.hub_links {
+    border: 2px solid black;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(224, 104, 104, 0.69), rgba(229, 229, 83, 0.545));
+    margin: 20px;
+    padding: 20px;
+}
+.buttons_s a,
+.hub_links a {
+    border: 2px solid black;
+    border-radius: 16px;
+    margin: 10px;
+    padding: 10px 12px;
+    background: linear-gradient(90deg, rgb(86, 215, 86), rgb(211, 6, 211));
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+}

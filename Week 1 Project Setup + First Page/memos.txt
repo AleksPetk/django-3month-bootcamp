@@ -1,0 +1,182 @@
+🧑‍🏫 Day 1 — Project Setup + First Page
+
+🎯 Plan
+	•	Install Django
+	•	Create project
+	•	Run server
+	•	Understand project structure
+	•	Create first view (function-based)
+	•	Connect URL → View → Response
+
+⸻
+
+📚 Learn
+	•	What is Django (very short)
+	•	Project vs App (important)
+	•	URL → View flow
+	•	HttpResponse
+
+⸻
+
+💻 Practice Scope
+	•	Create 2 pages:
+	•	/ → Home
+	•	/about/ → About
+
+⸻
+
+🧠 Challenges
+	•	Add /contact/ page
+	•	Change text dynamically (different responses)
+
+python3 -m venv venv
+source venv/bin/activate   # Mac
+pip install django
+django-admin startproject config
+cd config
+python manage.py runserver
+
+python manage.py startapp pages
+
+🧑‍🏫 Day 2 — Templates + HTML
+
+🎯 Plan
+	•	Connect templates (HTML)
+	•	Use render()
+	•	Create templates folder
+	•	Pass data from view → template
+
+⸻
+
+📚 Learn
+	•	Difference: HttpResponse vs render
+	•	Template basics
+	•	Variables {{ }}
+
+⸻
+
+💻 Practice Scope
+	•	Home page with HTML
+	•	Show dynamic message from view
+
+⸻
+
+🧠 Challenges
+	•	Show:
+	•	name
+	•	age
+	•	favorite food
+	•	Display list (simple loop preview)
+
+MEMO
+
+from django.shortcuts import render
+
+return render(request, "home.html", {"name": "Aleks"})
+
+🧑‍🏫 Day 3 — Template Power + Inheritance
+
+🎯 Plan
+	•	Base template (base.html)
+	•	{% block %} system
+	•	Reuse layout across pages
+
+⸻
+
+📚 Learn
+	•	Template inheritance
+	•	{% extends %}
+	•	{% block content %}
+
+⸻
+
+💻 Practice Scope
+	•	Create:
+	•	base layout (header/footer)
+	•	reuse for Home/About/Contact
+
+⸻
+
+🧠 Challenges
+	•	Add navigation menu
+	•	Highlight active page (basic logic)
+
+MEMO
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Home</h1>
+{% endblock %}
+🧑‍🏫 Day 4 — Static Files + Clean URLs
+
+🎯 Plan
+	•	Add CSS
+	•	Static files setup
+	•	Named URLs
+	•	URL organization (clean structure)
+
+⸻
+
+📚 Learn
+	•	static folder
+	•	{% load static %}
+	•	name="home"
+
+⸻
+
+💻 Practice Scope
+	•	Style pages (basic CSS)
+	•	Navigation links using {% url %}
+
+⸻
+
+🧠 Challenges
+	•	Add:
+	•	background color
+	•	styled navbar
+	•	Change page title dynamically
+
+MEMO
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+path("", views.home, name="home")
+🧪 Day 5 — Mini Project Challenge
+
+🎯 Build (ALONE)
+
+👉 Multi-page website:
+
+Pages:
+	•	Home
+	•	About
+	•	Contact
+
+Must include:
+	•	Base template
+	•	Navigation
+	•	Static CSS
+	•	Named URLs
+	•	Dynamic content
+
+⸻
+
+🚫 Rules
+	•	No help first 30–60 min
+	•	Use ONLY Week 1 knowledge
+
+⸻
+
+🧠 Bonus (if time)
+	•	Add simple “services” page
+	•	Add list of items on page
+
+⸻
+
+🔥 End of Week Result
+
+You will understand:
+	•	How Django flows (VERY important)
+	•	How pages are connected
+	•	How templates work
+	•	Basic frontend + backend connection

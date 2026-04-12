@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<section class="home_prev">
+    <h2>About Page</h2>
+    {% if is_open %}
+        <p>{{ open }}</p>
+    {% else %}
+        <p>{{ close }}</p>
+    {% endif %}
+</section>
+{% endblock %}

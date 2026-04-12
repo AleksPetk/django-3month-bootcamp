@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard: {{name}}{% endblock %}
+
+{% block header_page %}Dashboard{% endblock %}
+
+{% block content %}
+    <p>Tasks</p>
+    <ul>
+        {% for task in tasks %}
+            <li>Task: {{task}}</li>
+        {% endfor %}
+    </ul>
+    <p>Scores</p>
+    {% if score > 75 %}
+        <p>{{score}} scores - Amazing</p>
+    {% elif score > 50 %}
+        <p>{{score}} scores - Not Bad</p>
+    {% else %}
+        <p>{{score}} scores - Try Better!</p>
+    {% endif %}
+{% endblock %}

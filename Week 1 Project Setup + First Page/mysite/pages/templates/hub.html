@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Hub{% endblock %}
+
+{% block header_page %}Hub page{% endblock %}
+
+{% block content %}
+<section class="hub_links">
+    {% for link in links %}
+        <a href="{% url link.url_name %}">{{link.name}}</a>
+    {% endfor %}
+</section>
+
+{% endblock %}

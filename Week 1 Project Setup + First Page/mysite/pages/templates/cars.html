@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Cars{% endblock %}
+
+{% block header_page %}Cars Page{% endblock %}
+
+{% block content %}
+    <h2>Cars</h2>
+    <ul>
+        {% for car in cars_list %}
+            {% if forloop.first %}
+                <p>FIRST: {{car}}</p>
+            {% elif forloop.last %}
+                <p>LAST: {{car}}</p>
+            {% else %}
+                <li>{{forloop.counter}}: {{car| default:"No Car"}}</li>
+            {% endif %}
+        {% endfor %}               
+    </ul>
+    <p>All Cars: {{cars_list|length}}</p>
+    <h2>Brands</h2>
+    {% for brand in brands %}
+        <p>{{brand}}</p>
+    {% empty %}
+        <p>No brands yet.</p>
+    {% endfor %}
+{% endblock %}

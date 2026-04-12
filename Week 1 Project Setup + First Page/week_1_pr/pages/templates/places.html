@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Places{% endblock %}
+
+{% block content %}
+<section class="home_prev">
+    <h2>Places</h2>
+</section>
+<section class = "home_inf" >
+    <h3>Our Verdict</h3>
+    <ul>
+        {% for key, value in places.items  %}
+            <li><a href="{% url 'place_detail' value.name %}">{{ value.name }}</a> {{ value.country }} | Rating: {{ value.rating }} - 
+            {% if value.rating == 5 %}Excellent{% elif value.rating == 4 %}Good{% else %}Normal{% endif %} || {{value.description|slice:":10"}}...</li>
+        {% endfor %}
+        <li>To search by rating press <a href="{% url 'place_detail' rating %}">Here</a>.</li>
+    </ul>
+</section>
+{% endblock %}

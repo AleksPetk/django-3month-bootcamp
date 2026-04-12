@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Rating{% endblock %}
+
+{% block content %}
+
+<section class="home_prev">
+    <h2>Rating</h2>
+</section>
+<section class="home_inf">
+    <h3>Search via Rating</h3>
+    <ul>
+        {% for rate in rating %}
+            <li>Press <a href="{% url 'rating' rate %}">Here</a> to see all rating ( {{rate}} ) places.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

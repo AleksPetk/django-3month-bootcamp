@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{name}}{% endblock %}
+
+{% block content %}
+<section class="home_prev">
+    <h2>Welcome to {{name}}</h2>
+    <p>{{data.country}}</p>
+</section>
+<section class="home_inf">
+    <h3>{{data.description}}</h3>
+</section>
+{% endblock %}

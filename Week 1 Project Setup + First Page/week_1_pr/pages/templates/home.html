@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="home_prev">
+    <h2>Home Page</h2>
+    <p>{{ title }}</p>
+</section>
+<section class="home_inf">
+    <h3>{{ desc }}</h3>
+    <ul>
+        {% for thing in things %}
+            <li>{{ thing }} | <a href= "{% if forloop.counter == 1 %}{% url 'places' %}{% elif forloop.counter == 2 %}{% url 'contact' %}{% else %}{% url 'about' %}{% endif %}">Click</a></li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

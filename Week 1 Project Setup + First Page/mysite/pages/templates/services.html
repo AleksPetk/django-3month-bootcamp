@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Services{% endblock %}
+
+{% block header_page %}Services Page{% endblock %}
+
+{% block content %}
+<div class="head_line">
+    <h3>Services fEfE</h3>
+    <p>Services for Everything for Everyone</p>
+</div>
+<section class="products_s">
+    <div class="cars_s">
+        <h4>Cars</h4>
+        <ul>
+            {% for car in cars %}
+                <li>Amazing {{car}} car</li>
+            {% endfor %}
+        </ul>  
+    </div> 
+    <div class="hotels_s">
+        <h4>Hotels</h4>
+        <ul>
+            {% for hotel in hotels %}
+                <li>Funny {{hotel}} hotel</li>
+            {% endfor %}
+        </ul>
+    </div> 
+    <div class="attractions_s">
+        <h4>Attractions</h4>
+        <ul>
+            {% for attraction in attractions %}
+                <li>Greate Experience {{attraction}} with Us.</li>
+            {% endfor %}
+        </ul>
+
+    </div>    
+</section>
+<section class="buttons_s">
+    <a href="{% url 'users' %}">Users</a>
+</section>
+{% endblock %}

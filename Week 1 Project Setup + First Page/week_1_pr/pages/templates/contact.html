@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<section class="home_prev">
+    <h2>Contact Page</h2>
+</section>
+<section class = "home_inf" >
+    <h3>Information</h3>
+    <ul>
+        {% for key, value in info.items %}
+            <li>{{ key }}: {{value}}</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Score Board</title>
+    </head>
+    <body>
+        <h1>Schore Board Page</h1>
+        <ul>
+            {% for score in scores %}
+                {% if score > 90 %}
+                    <li>Excellent: {{score}} scores</li>
+                {% elif score > 70 %}
+                    <li>Good: {{score}} scores</li>
+                {% else %}
+                    <li>Fail: {{score}} scores</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </body>
+</html>

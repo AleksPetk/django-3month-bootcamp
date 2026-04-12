@@ -1,0 +1,9 @@
+ <header>
+    <h1>City Explorer</h1>
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
+        <a href="{% url 'places' %}" class="{% if request.resolver_match.url_name == 'places' %}active_link{% endif %}">Places</a>
+        <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active_link{% endif %}">About</a>
+        <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active_link{% endif %}">Contact</a>
+    </nav>
+ </header>

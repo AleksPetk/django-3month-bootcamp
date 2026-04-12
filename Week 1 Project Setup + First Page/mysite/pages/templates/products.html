@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Products{% endblock %}
+
+{% block header_page %}Products Page{% endblock %}
+
+{% block content %}
+    <h3>Products</h3>
+        <ul class="products_ul">
+            {% for product in products %}
+                {% if product == "Car" or product == "Laptop" %}
+                    <li>Product: {{product}} | Price: {{prices.1}}</li>
+                {% elif product == "Iphone" or product == "Tablet" %}
+                    <li>Product: {{product}} | Price: {{prices.2}}</li>
+                {% else %}
+                    <li>Product: {{product}} | Price: {{prices.0}}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    <section class="buttons_p">
+        <a href="{% url 'hello' 'Aleks' %}">Hello A</a>
+        <a href="{% url 'calc' 'multiply' 3 5 %}">Multiply</a>
+        <a href="{% url 'hello' 'Mai' %}">Hello M</a>
+        <a href="{% url 'calc' 'divide' 100 5 %}">Divide</a>
+    </section>
+{% endblock %}

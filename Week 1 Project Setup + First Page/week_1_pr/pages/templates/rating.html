@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Rating {{rating}} {% endblock %}
+
+{% block content %}
+    <section class="home_prev">
+        <h2>Rating {{rating}}</h2>
+    </section>
+    <section class="home_inf">
+        <h3>Details</h3>
+        {% for place in ranked %}
+            <p class="position_p">{{forloop.counter}}. {{place.country}}, {{place.name}} Rating: {{place.rating}}</p>
+            <p class="description_p">{{place.description}}</p>
+        {% endfor %}
+    </section>
+
+{% endblock %}
