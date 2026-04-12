@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Compare{% endblock %}
+
+{% block content %}
+<section class="home_prev">
+    <h2>Compare Places</h2>
+</section>
+<section class="home_inf">
+    <ul>
+        {% for value in data.values %}
+            <li>{{value.name}} | {{value.country}} | {{value.rating}}</li>
+        {% endfor %}
+    </ul>
+    {% for value in data.values %}
+        {% if value.rating == 5 %}
+            <h3>{{value.country}}, {{value.name}} has perfect rating</h3>
+        {% elif value.rating >= 3 %}
+            <p>{{value.country}}, {{value.name}} still not bad rating</p>
+        {% endif %}
+    {% endfor %}
+</section>
+    
+
+{% endblock %}

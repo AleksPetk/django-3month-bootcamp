@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Random Place{% endblock %}
+
+{% block content %}
+<section class="home_prev">
+    <h2>Random Place is {{random_p.name}}</h2>
+</section>
+<section class="home_inf">
+    <h3>{{random_p.name}} is the capital of {{random_p.country}}.</h3>
+    {% if random_p.rating == 5 %}
+        <p>Rating of {{random_p.name}} is {{random_p.rating}} - Excellent!</p>
+    {% elif random_p.rating >= 3 %}
+        <p>Rating of {{random_p.name}} is {{random_p.rating}} - Good.</p>
+    {% else %}
+        <p>Rating of {{random_p.name}} is {{random_p.rating}} - Bad.</p>
+    {% endif %}
+    <h4>{{random_p.description}}</h4>
+</section>
+
+{% endblock %}

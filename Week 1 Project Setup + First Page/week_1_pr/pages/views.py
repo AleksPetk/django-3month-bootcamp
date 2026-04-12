@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render
 
 
@@ -42,7 +44,9 @@ places_data = {"Tokyo":{"name":"Tokyo", "country": "Japan", "rating": 5, "descri
 def places(request):
     return render(request, "places.html", {
         "places": places_data,
-        "rating": "rating"
+        "rating": "rating",
+        "compare": "compare",
+        "random_place": "random_place"
     })
 
 def country(request, name):
@@ -54,7 +58,19 @@ def country(request, name):
     elif name == "rating":
         return render(request, "rating_main.html", {
         "rating": [1, 2, 3, 4, 5]
-    })
+        })
+    elif name == "compare":
+        return render(request, "compare.html", {
+            'data': dict(sorted(places_data.items(), key=lambda item: item[1]['rating'], reverse=True))
+        })
+    elif name == "random_place":
+        list_p = []
+        for value in places_data.values():
+            list_p.append(value)
+
+        return render(request, "random.html", {
+            "random_p": random.choice(list_p)
+        })
 
     
 def rating(request, rating):

@@ -14,6 +14,8 @@
             {% if value.rating == 5 %}Excellent{% elif value.rating == 4 %}Good{% else %}Normal{% endif %} || {{value.description|slice:":10"}}...</li>
         {% endfor %}
         <li>To search by rating press <a href="{% url 'place_detail' rating %}">Here</a>.</li>
+        <li>To compare 2 click <a href="{% url 'place_detail' compare %}">Here</a>.</li>
+        <li>To see Random place click <a href="{% url 'place_detail' random_place %}">Here</a>.</li>
     </ul>
 </section>
 {% endblock %}
