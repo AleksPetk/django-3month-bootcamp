@@ -1,0 +1,56 @@
+header {
+    border: 3px ridge;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgb(255, 106, 106), rgb(86, 86, 228));
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+body {
+    background: linear-gradient(90deg, rgba(159, 255, 159, 0.69), rgba(253, 253, 68, 0.737));
+}
+header nav {
+    border: 3px solid gray;
+    padding: 16px 10px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.432);
+}
+header nav a {
+    font-size: 26px;
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+    text-shadow: 0 2px 6px rgba(255, 255, 255, 0.4);
+    border: 2px white solid;
+    border-radius: 14px;
+    padding: 4px 6px;
+    margin: 20px 10px;
+}
+form {
+    border: 3px solid black;
+    margin: 20px;
+    padding: 10px 20px;
+    border-radius: 14px;
+
+}
+input {
+    font-size: 18px;
+    font-weight: 500;
+}
+button {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 10px;
+    border: 3px ridge;
+    border-radius: 12px;
+    background: linear-gradient(90deg, rgb(0, 0, 106), blue);
+    padding: 4px 6px;
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, rgb(27, 27, 108), rgb(59, 59, 234));
+}

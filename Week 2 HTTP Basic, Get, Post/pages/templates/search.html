@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<form method="GET">
+    <input type="text" name="search_for" placeholder="Search for..." value="{{search_for}}">
+    <button type="submit">Search</button>
+</form>
+
+{% if search_for %}
+    <h3>You searched for {{search_for}}!</h3>
+{% else %}
+    <p>You did not search for nothing.</p>
+{% endif %}
+
+{% endblock %}

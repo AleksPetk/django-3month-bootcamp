@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Hello{% endblock %}
+
+{% block content %}
+    <h2>Hello Page</h2>
+    <form method="GET">
+        <input type="text" name="name" placeholder="Enter name" required>
+        <input type="text" name="age" placeholder="Enter age" required>
+        <input type="text" name="city" placeholder="Enter city" required>
+        <input type="text" name="food" placeholder="Enter Favourite Food">
+        <button type="submit">Send</button>
+    </form>
+    <p>Hello {{name}}</p>
+    
+    {% if age >= 18 %}
+        <p>You age is {{age}} - Adult.</p>
+    {% elif age < 18 %}
+        <p>You are kid with age {{age}}.</p>
+    {% else %}
+        <p>You did't entered correct!</p>
+    {% endif %}
+
+    <p>City: {{city}}</p>
+    {% if food %}
+        <p>Your Favourite Food: {{food}}</p>
+    {% else %}
+        <p>You don't have favourite food!</p>
+    {% endif %}
+{% endblock %}
