@@ -13,12 +13,12 @@ body {
 }
 header nav {
     border: 3px solid gray;
-    padding: 16px 10px;
+    padding: 10px 6px;
     border-radius: 12px;
     background: rgba(0, 0, 0, 0.432);
 }
 header nav a {
-    font-size: 26px;
+    font-size: 20px;
     color: white;
     text-decoration: none;
     font-weight: 900;
@@ -26,7 +26,7 @@ header nav a {
     border: 2px white solid;
     border-radius: 14px;
     padding: 4px 6px;
-    margin: 20px 10px;
+    margin: 20px 0;
 }
 form {
     border: 3px solid black;
@@ -53,4 +53,8 @@ button {
 button:hover {
     transform: translateY(-2px);
     background: linear-gradient(90deg, rgb(27, 27, 108), rgb(59, 59, 234));
+}
+
+.form_post input, button {
+    font-size: 14px;
 }

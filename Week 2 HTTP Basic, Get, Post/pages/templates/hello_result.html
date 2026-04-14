@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Result{% endblock %}
+
+{% block content %}
+
+<h2>Result Page</h2>
+<h3>{{success}}</h3>
+{% for key, value in data.items %}
+    <p>{{key}}: {{value}}</p>
+{% endfor %}
+
+{% endblock %}

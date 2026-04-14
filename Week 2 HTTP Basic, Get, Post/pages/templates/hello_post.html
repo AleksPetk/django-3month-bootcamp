@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}POST{% endblock %}
+
+{% block content %}
+
+    <h2>POST Form</h2>
+    <form method="POST" class="form_post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Enter name" required>
+        <input type="text" name="age" placeholder="Enter age" required>
+        <input type="text" name="city" placeholder="Enter city" required>
+        <input type="text" name="food" placeholder="Enter food">
+        <button type="submit">Send</button>
+    </form>
+  
+{% endblock %}
