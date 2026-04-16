@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Task Menu{% endblock %}
+
+{% block content %}
+    <section class="home_int">
+        <h2>Tasks Menu</h2>
+    </section>
+    <div class="task_menu">
+        {% for task in tasks %}
+            <p>Delete: {{task}} <a href="{% url 'delete_task' task %}">delete</a></p>
+        {% endfor %}
+    </div>
+{% endblock %}

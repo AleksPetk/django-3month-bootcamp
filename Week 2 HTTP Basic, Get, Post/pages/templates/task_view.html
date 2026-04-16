@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Task {{name}}{% endblock %}
+
+{% block content %}
+    <section class="home_int">
+        <h2>Task: {{name}}</h2>
+    </section>
+    <section class="task">
+        <p>Task: {{name}}</p>
+        <p>Explanation: {{explain}}</p>
+    </section>
+
+{% endblock %}

@@ -58,3 +58,190 @@ button:hover {
 .form_post input, button {
     font-size: 14px;
 }
+.home_int {
+    border: 3px solid black;
+    border-radius: 12px;
+    margin: 20px 40px;
+    background: linear-gradient(135deg, rgb(80, 249, 80), rgb(76, 76, 255));
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+.home_int h2 {
+    color: white;
+    margin: 10px;
+    font-size: 38px;
+    font-weight: 900;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.8);
+}
+.home_int h2:hover {
+    color: aquamarine;
+    cursor: default;
+}
+.info_post {
+    display: grid;
+    place-items: center;
+    
+}
+.info_post h3 {
+    text-align: center;
+    margin: 20px 40px;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+.frame {
+    border: 3px solid black;
+    border-radius: 12px;
+    background: linear-gradient(45deg, rgb(0, 94, 255), rgb(236, 10, 206));
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
+.info_post form{
+    border: none;
+    display:grid;
+    max-width: 700px;
+    margin: 10px 20px;
+    align-items: center;
+    
+}
+.info_post form input, textarea {
+    margin-bottom: 10px;
+    font-size: 18px;
+    width: 300px;
+}
+.info_post form textarea {
+    min-height: 100px;
+    border: 3px ridge;
+    border-radius: 10px;
+    padding: 4px 6px;
+}
+.info_post form input {
+    border: 3px ridge;
+    border-radius: 10px;
+    padding: 4px 6px;
+}
+.submited_form {
+    border: 3px solid transparent;
+    border-radius: 16px;
+    background: linear-gradient(90deg, rgb(133, 133, 233), rgb(255, 113, 255));
+    color: white;
+    display: grid;
+    place-items: center;
+    max-width: auto;
+    margin: 20px 80px;
+    max-width: 700px;
+    padding: 20px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4), inset 0 4px 8px rgba(255, 255, 255, 0.4);
+}
+.submited_form p {
+    font-size: 24px;
+    margin: 10px;
+    font-weight: 700;
+    text-shadow: 0 4px 2px rgba(0, 0, 0, 0.8);
+}
+
+.task a {
+    border: 2px solid gray;
+    border-radius: 12px;
+    background-color: rgb(37, 112, 112);
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    padding: 6px 10px;
+}
+.task {
+    display: grid;
+    
+    place-items: center;
+}
+.task form {
+    display: flex;
+    place-items: center;
+    justify-content: center;
+}
+.task form button {
+    font-size: 20px;
+}
+.task_menu {
+    display: grid;
+    place-items: center;
+}
+.task_menu p {
+    border: 2px ridge;
+    border-radius: 14px;
+    padding: 8px 12px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: brown;
+    color: white;
+}
+.task_menu a {
+    text-decoration: none;
+    cursor: pointer;
+    background-color: aliceblue;
+    color: black;
+    border: 1px solid black;
+    border-radius: 12px;
+    margin: 8px 12px;
+    padding: 4px 6px;
+}
+.task_menu a:hover {
+    background-color: aquamarine;
+}
+.add_product {
+    border: 3px ridge;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgb(231, 164, 175), rgb(235, 113, 235));
+}
+.add_product form {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 80px;
+}
+.add_product button {
+    font-size: 20px;
+    padding: 8px 20px;
+    font-weight: 900;
+}
+.add_product input {
+    font-size: 18px;
+    font-weight: 500;
+    border: 2px ridge;
+    border-radius: 12px;
+    padding: 0 8px;
+}
+.all {
+    background: linear-gradient(90deg, rgb(114, 114, 114), rgb(142, 40, 40));
+    padding: 20px 40px;
+    border: 2px solid transparent;
+    margin: 20px 80px;
+    border-radius: 14px;
+}
+.all ol {
+    border: 3px solid white;
+    border-radius: 14px;
+    padding: 10px 30px;
+    display: block;
+    max-width: 300px;
+    background: rgba(105, 221, 122, 0.4);
+}
+.all li {
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(33, 22, 22);
+    text-shadow: 0 4px 2px rgba(255, 255, 255, 0.8);
+
+}
+.all a {
+    text-decoration: none;
+    text-shadow: none;
+    color: purple;
+    cursor: pointer;
+    margin-left: 30px;
+}
+.all a:hover {
+    color: green;
+}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Info {{f_name}}{% endblock %}
+
+{% block content %}
+<section class="home_int">
+    <h2>Info {{f_name}} {{l_name}}</h2>
+</section>
+<section class="submited_form">
+    <p>First Name: {{f_name}}</p>
+    <p>Last Name: {{l_name}}</p>
+    <p>Email: {{email}}</p>
+    <p>Birthday: {{date}}</p>
+    <p>Motivation: {{mot}}</p>
+</section>
+
+{% endblock %}

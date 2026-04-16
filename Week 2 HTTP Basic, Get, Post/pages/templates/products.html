@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+    <section class="home_int">
+        <h2>Products</h2>
+    </section>
+    <section class="add_product">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Add New">
+            <button type="submit">Add</button>
+        </form>
+    </section>
+    <section class="all">
+        <ol>
+            {% for product in products %}
+                {% if product.available %}
+                    <li>{{product.text}} - Available <a href="{% url 'sell_p' product.text 1 %}">Sell</a><a href="{% url 'del_product' product.text %}">Delete</a></li>
+                {% else %}
+                    <li>{{product.text}} - Sold Out <a href="{% url 'sell_p' product.text 2 %}">Buy</a><a href="{% url 'del_product' product.text %}">Delete</a></li>
+                {% endif %}
+            {% empty %}
+                <p>No products yet.</p>
+            {% endfor %}
+        </ol>
+        <p>Total products: {{products|length}}</p>
+        <section class="with_filter">
+            <div class="filters_b">
+                <a href="{% url 'products' %}">All</a>
+                <a href="{% url 'products' %}?status=done">Sold out</a>
+                <a href="{% url 'products' %}?status=pending">Available</a>
+            </div>
+            <div class="filtered">
+                {% if status == "done" %}
+                    {% for product in products %}
+                        {% if not product.available %}
+                            <p>{{product.text}}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% elif status == "pending" %}
+                    {% for product in products %}
+                        {% if product.available %}
+                            <p>{{product.text}}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {% for product in products %}
+                        <p>{{product.text}}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </section>
+    </section>
+
+
+{% endblock %}

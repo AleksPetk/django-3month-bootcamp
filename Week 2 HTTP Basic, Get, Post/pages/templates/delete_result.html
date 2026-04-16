@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Result{% endblock %}
+
+{% block content %}
+    <h2>Delete Result</h2>
+
+    {% if task %}
+        <p>Task "{{task}}" deleted.</p>
+    {% else %}
+        <p>No task selected</p>
+    {% endif %}
+
+
+{% endblock %}

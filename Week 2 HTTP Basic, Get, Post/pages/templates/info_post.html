@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Information{% endblock %}
+
+{% block content %}
+
+<section class="home_int">
+    <h2>Information</h2>
+</section>
+<section class="info_post">
+    <div class="frame">
+        <h3>Enter Information</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="f_name" placeholder="Enter first name" required>
+            <input type="text" name="l_name" placeholder="Enter last name" required>
+            <input type="email" name="email" placeholder="Enter email" required>
+            <input type="date" name="date" placeholder="Enter birthday date" required>
+            <textarea name="mot" placeholder="Enter Motivation"></textarea>
+            <button type="submit">Submit Form</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Task Enter{% endblock %} 
+
+{% block content %}
+
+    <section class="home_int">
+        <h2>Task</h2>
+    </section>
+    <section class="task">
+        <form method="POST">
+            {% csrf_token %}
+            <p>Enter Task: <input type="text" name="name" placeholder="Task" required></p>
+            <p>Explain: <input type="text" name="explain" placeholder="Short explanation"></p>
+            <button type="submit">Submit</button>
+        </form>
+        <a href="{% url 'task_menu' %}">Task Menu</a>
+    </section>
+    
+
+{% endblock %}

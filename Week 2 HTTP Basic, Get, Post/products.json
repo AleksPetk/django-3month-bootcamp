@@ -1,0 +1,26 @@
+[
+    {
+        "text": "Fanta",
+        "available": false
+    },
+    {
+        "text": "Cola",
+        "available": false
+    },
+    {
+        "text": "Chicken",
+        "available": false
+    },
+    {
+        "text": "Beef",
+        "available": true
+    },
+    {
+        "text": "Rice",
+        "available": false
+    },
+    {
+        "text": "Suchi",
+        "available": true
+    }
+]

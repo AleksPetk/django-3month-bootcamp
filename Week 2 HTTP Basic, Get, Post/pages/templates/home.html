@@ -3,5 +3,14 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
+    <section class="home_int">
+        <h2>Aleks Website</h2>
+    </section>
+    <section class="about_me">
+        <ul>
+            {% for info in my_list %}
+                <li>{{info}}</li>
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
