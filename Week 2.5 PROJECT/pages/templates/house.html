@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}House{% endblock %}
+
+{% block content %}
+
+    <section class="home_p">
+        <h2>House</h2>
+    </section>
+    <section class="targets">
+        <h3>Safety Checks</h3>
+        {% for key, value in house_m.items %}
+            {% if value.open %}
+                <h4>{{value.name}}: OPEN <a href="{% url 'open_close' key %}">Change</a></h4>
+            {% else %}
+                <h4>{{value.name}}: CLOSED <a href="{% url 'open_close' key %}">Change</a></h4>
+            {% endif %}
+        {% endfor %}
+        {% if all_closed %}
+            <p>Everything is Closed, Safety!</p>
+        {% else %}
+            <p>Something is still open!</p>
+        {% endif %}
+    </section>
+    
+
+{% endblock %}

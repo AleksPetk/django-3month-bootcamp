@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Calories{% endblock %}
+
+{% block content %}
+    <section class="home_p">
+        <h2>Calories</h2>
+    </section>
+    <div class="cal_i">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="number" name="cal" placeholder="Enter Calories" required>
+            <button type="submit">Add</button>
+        </form>
+        <div class="todays_cal">
+            <h3>Today: {{today}} | Calories: {{calories}} kcal</h3>
+        </div>
+    </div>
+
+
+{% endblock %}

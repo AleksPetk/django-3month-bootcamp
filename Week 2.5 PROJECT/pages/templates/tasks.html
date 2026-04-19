@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+    <section class="home_p">
+        <h2>Tasks</h2>
+    </section>
+    <section class="targets">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="task" placeholder="Enter task">
+            <button type="submit">Add Task</button>
+        </form>
+    </section>
+    <div class="see_t">
+        <h3>Tasks: {{tasks|length}}</h3>
+        <ol>
+            {% for task in tasks %}
+                <li>{{task}} | <a href="{% url 'remove_task' task %}">Done</a></li>
+            {% empty %}
+                <p>No tasks yet.</p>
+            {% endfor %}
+        </ol>
+    </div>
+
+
+{% endblock %}

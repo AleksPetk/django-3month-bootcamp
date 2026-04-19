@@ -1,0 +1,238 @@
+body {
+    background: linear-gradient(135deg, rgb(110, 110, 241), rgb(85, 103, 237), rgb(77, 167, 236));
+}
+header {
+    border: 5px solid rgb(54, 234, 54);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    background: linear-gradient(90deg, rgb(237, 99, 99), rgb(163, 59, 55));
+    margin: 20px 30px;
+    padding: 10px 20px;
+    box-shadow: 0 8px 12px rgba(144, 1, 1, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header a {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 10px;
+    border: 2px solid black;
+    border-radius: 14px;
+    padding: 4px 8px;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(90deg, rgb(183, 101, 115), pink);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+    transition: 0.2s ease;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2), inset 0 4px 6px rgba(255, 255, 255, 0.6);
+}
+header nav {
+    display:  flex;
+}
+header a:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, rgb(183, 101, 115), rgb(236, 33, 67));
+
+}
+header h1 {
+    font-size: 34px;
+    margin: 10px 14px;
+    color: rgb(255, 225, 0);
+    font-weight: 900;
+    text-shadow: 4px 2px 3px rgba(0, 36, 243, 0.8);
+}
+.active_link {
+    background: linear-gradient(90deg, rgb(116, 183, 101), rgb(33, 236, 101));
+}
+footer {
+    border: 5px solid rgb(54, 234, 54);
+    margin: 10px 30px;
+    padding: 4px 10px;
+    background: linear-gradient(90deg, rgb(195, 195, 2), yellow);
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    border: 5px solid rgb(54, 234, 54);
+    
+    margin: 10px 30px;
+    padding: 10px 20px;
+}
+.home_p {
+    border: 3px solid rgb(0, 229, 255);
+    border-top-left-radius: 16px ;
+    border-bottom-right-radius: 16px;
+    padding: 4px 10px;
+    background: linear-gradient(90deg, rgb(4, 147, 4), rgb(52, 119, 53));
+    max-width: 200px;
+    display: block;
+    margin: auto;
+}
+.home_p h2 {
+    font-size: 30px;
+    color: rgb(255, 230, 0);
+    text-shadow: 2px 2px 2px rgba(144, 1, 1, 0.5);
+    margin: 0 20px;
+}
+.targets {
+    border: 3px solid rgb(0, 229, 255);
+    padding: 0 60px;
+    margin-top: 20px;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+.targets h3 {
+    font-weight: 700;
+    font-size: 28px;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+
+}
+.targets li {
+    border: 2px solid gray;
+    border-radius: 14px;
+    margin: 10px 20px;
+    padding: 6px 10px;
+    max-width: 200px;
+    background: linear-gradient(90deg, rgb(109, 212, 228), rgb(235, 90, 208));
+    font-size: 20px;
+    font-weight: 500;
+    text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.8);
+
+}
+.targets form {
+    margin: 10px 20px;
+}
+.targets input {
+    font-size: 20px;
+    border: 3px ridge;
+    border-radius: 12px;
+    padding: 4px 8px;
+}
+.targets button {
+    font-size: 24px;
+    border: 3px ridge;
+    border-radius: 14px;
+    padding: 4px 8px;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(90deg, red, rgb(255, 147, 47));
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+    margin-left: 20px;
+}
+.targets button:hover {
+    transform: translateY(-2px);
+}
+.see_t {
+    border: 3px solid white;
+    border-radius: 12px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(90deg, yellow, green);
+}
+.see_t h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 10px;
+}
+.see_t ol {
+    border: 3px ridge;
+    border-radius: 14px;
+    background-color: gray;
+    padding: 0 40px;
+}
+.see_t li {
+    font-weight: 500;
+    font-size: 18px;
+    color: white;
+    margin: 20px 0;
+}
+.see_t a {
+    text-decoration: none;
+    font-size: 18px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 4px 6px;
+    margin-left: 20px;
+    color: white;
+    background: linear-gradient(90deg, red, blue);
+}
+.see_t a:hover {
+    background: linear-gradient(90deg, blue, red);
+}
+.cal_i {
+    border: 3px solid transparent;
+    border-radius: 16px;
+    background: linear-gradient(90deg, rgb(255, 166, 0), orange);
+    margin: 20px 40px;
+    padding: 10px 20px;
+}
+.cal_i input {
+    font-size: 18px;
+    font-weight: 500;
+    border: 3px ridge;
+    border-radius: 12px;
+    padding: 2px 10px;
+    margin-right: 20px;
+}
+.cal_i button {
+    font-size: 18px;
+    font-weight: 700;
+    border: 3px ridge;
+    border-radius: 12px;
+    background: linear-gradient(90deg, red, blue);
+    color: white;
+    padding: 2px 10px;
+}
+.cal_i button:hover {
+    background: linear-gradient(90deg, blue, red);
+}
+.todays_cal {
+    border: 5px solid white;
+    border-radius: 24px;
+    margin: 20px 40px;
+    padding: 0 16px;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 3px 1px rgba(0, 0, 0, 0.8);
+
+}
+.targets h4 {
+    border: 2px solid black;
+    border-radius: 12px;
+    margin: 10px 20px;
+    padding: 4px 8px;
+    font-size: 20px;
+    background: linear-gradient(90deg, yellow, pink);
+    text-align: left;
+    text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.8);
+}
+.targets a {
+    text-decoration: none;
+    border: 2px solid transparent;
+    background: linear-gradient(90deg, red, blue);
+    color: white;
+    border-radius: 14px;
+    text-shadow: none;
+    padding: 0 4px;
+}
+.targets a:hover {
+    background: linear-gradient(90deg, blue, red);
+}
+.targets p {
+    font-size: 22px;
+    text-align:  center;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    text-decoration: underline black;
+}

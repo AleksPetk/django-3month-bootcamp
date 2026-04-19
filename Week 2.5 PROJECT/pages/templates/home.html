@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="home_p">
+    <h2>Home Page</h2>
+</section>
+<section class="targets">
+    <h3>Targets</h3>
+    <ul>
+        {% for target in targets %}
+            <li>{{target}}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

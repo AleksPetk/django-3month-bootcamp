@@ -1,0 +1,9 @@
+<header>
+    <h1>Test Website</h1>
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
+        <a href="{% url 'tasks' %}" class="{% if request.resolver_match.url_name == 'tasks' %}active_link{% endif %}">Tasks</a>
+        <a href="{% url 'calories' %}" class="{% if request.resolver_match.url_name == 'calories' %}active_link{% endif %}">Calories</a>
+        <a href="{% url 'house' %}" class="{% if request.resolver_match.url_name == 'house' %}active_link{% endif %}">House</a>
+    </nav>
+</header>
