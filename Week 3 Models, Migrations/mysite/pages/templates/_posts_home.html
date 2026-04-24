@@ -1,0 +1,9 @@
+<section class="books_home">
+    <h3>Posts</h3>
+    <ol>
+        {% for post in posts %}
+            <li>Post - {{post.title}}</li>
+        {% endfor %}
+    </ol>
+    <p>View All Posts <a href="{% url 'posts' %}">Here</a></p>
+</section>

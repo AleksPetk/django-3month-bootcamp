@@ -4,5 +4,10 @@
 
 {% block content %}
 <h2>Home Page</h2>
-{% include "_books_home.html" %}
+<section class="links_p">
+    {% include "_books_home.html" %}
+    {% include "_posts_home.html" %}
+</section>
+
+
 {% endblock %}

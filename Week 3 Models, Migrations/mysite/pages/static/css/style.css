@@ -142,3 +142,48 @@ li a:hover {
     background-color: aquamarine;
 
 }
+article {
+    border: 3px ridge;
+    border-radius: 14px;
+    margin: 20px 40px;
+    padding: 10px 20px;
+    background: radial-gradient(circle at top, rgba(151, 48, 48, 0.453), rgba(13, 13, 150, 0.752)), 
+                radial-gradient(circle at bottom, rgba(19, 139, 19, 0.549), rgba(174, 174, 5, 0.655));
+    transition: 0.2s ease;
+}
+article:hover {
+    transform: translateY(-2px);
+}
+article h3 {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    font-weight: 800;
+}
+article h3 a {
+    color: white;
+    text-decoration: none;
+    text-shadow: 2px 2px 1px black;
+}
+article h3 a:hover {
+    color: black;
+    text-shadow: 2px 2px 1px white;
+}
+article p {
+    border: 3px solid transparent;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.228);
+    margin: 6px 20px;
+    padding: 4px 8px;
+    color: white;
+}
+article small {
+    color: gray;
+}
+article p a {
+    color: gray;
+}
+article p a:hover {
+    color: aqua;
+}

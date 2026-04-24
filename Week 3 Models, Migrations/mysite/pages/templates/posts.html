@@ -5,20 +5,26 @@
 {% block content %}
 
 <h2>All Posts</h2>
+
 <form method="GET">
-    <input type="text" name="q" placeholder="Search title">
+    <input type="text" name="q" placeholder="Search title" value="{{query}}">
     <button type="submit">Search</button>
 </form>
-<ul>
-    {% for post in posts %}
-        <li>
+<p>Results: {{count}}</p>
+
+
+{% for post in posts %}
+    <article>
+        <h3>
             <a href="{% url 'post_details' post.id %}">
                 {{post.title}}
             </a>
-        </li>
-        {% empty %}
-            <li>No posts yet.</li>
-        {% endfor %}
-</ul>
+        </h3>
+        <p>{{post.content|truncatewords:20}}</p>
+        <small>{{post.created_at}}</small>
+    </article>
+{% empty %}
+    <p>No posts yet.</p>
+{% endfor %}
 
 {% endblock %}

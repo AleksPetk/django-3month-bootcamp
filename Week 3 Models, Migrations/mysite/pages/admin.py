@@ -11,6 +11,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ("published",)
     ordering = ("-id",)
     list_editable = ("published",)
+    list_display_links = ("title",)
 
 
 class CarAdmin(admin.ModelAdmin):
