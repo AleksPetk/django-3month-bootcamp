@@ -1,0 +1,144 @@
+body {
+    background: linear-gradient(90deg, rgba(241, 76, 76, 0.555), rgba(79, 79, 242, 0.635), rgba(103, 255, 103, 0.609));
+}
+header {
+    border: 3px solid black;
+    border-radius: 14px;
+    margin: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    background: linear-gradient(90deg, rgb(112, 112, 112), rgb(219, 218, 218));
+}
+h1 {
+    font-size: 34px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+}
+nav a {
+    border: 2px solid black;
+    border-radius: 12px;
+    background: linear-gradient(135deg, red, blue);
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 2px 4px;
+    margin: 0 10px;
+}
+.active_link {
+    background: linear-gradient(90deg, green, rgb(208, 0, 255));
+}
+
+main {
+    border: 2px solid transparent;
+    border-radius: 14px;
+    margin: 10px 20px;
+    background: linear-gradient(90deg, rgb(174, 171, 171), white, rgb(35, 34, 34));
+    padding: 10px 20px;
+}
+main h2 {
+    border: 2px solid white;
+    border-radius: 12px;
+    margin: 10px;
+    text-align: center;
+    padding: 4px 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    text-shadow: 1px 3px 1px rgba(255, 255, 255, 0.8);
+    font-size: 30px;
+    font-weight: 800;
+    background: linear-gradient(90deg, rgb(162, 162, 0), rgb(84, 84, 2));
+
+}
+ul {
+    border: 2px ridge;
+    border-radius: 14px;
+    margin: 10px 30px;
+    padding: 10px 16px;
+
+}
+ul li {
+    margin: 4px 10px;
+}
+li a {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+}
+li a:hover {
+    color: white;
+}
+.books ul {
+    border: 3px solid wheat;
+    border-radius: 14px;
+    background: linear-gradient(90deg, rgb(14, 228, 14), green);
+
+}
+.books ul a {
+    border: 2px solid white;
+    border-radius: 12px;
+    padding: 4px 6px;
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(45deg, rgb(9, 142, 250), rgb(33, 243, 247));
+}
+
+.books li {
+    margin: 20px 40px;
+    font-size: 24px;
+}
+.books p {
+    border: 2px ridge;
+    border-radius: 12px;
+    padding: 2px 6px;
+    text-align: center;
+    margin: 10px 80px;
+    font-size: 24px;
+}
+.books p:hover {
+    transform: translateY(-3px);
+}
+.books p:nth-child(even) {
+    background: linear-gradient(90deg, rgb(181, 179, 179), rgb(89, 88, 88));
+    color: white;
+}
+.books_home {
+    border: 3px solid brown;
+    border-radius: 14px;
+    margin: 10px 20px;
+    padding: 10px 20px;
+    max-width: 400px;
+    display: inline-block;
+    background: radial-gradient(circle at top, rgba(255, 0, 0, 0.557), rgba(0, 0, 0, 0.342));
+}
+.books_home h3 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin-top: 0;
+    text-shadow: 3px  1px rgba(0, 0, 0, 1);
+}
+.books_home ol {
+    border: 3px solid transparent;
+    border-top-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    background: linear-gradient(180deg, rgb(75, 237, 255), rgb(93, 255, 215));
+    padding: 10px 30px;
+    box-shadow: 0 8px 10px rgba(76, 244, 191, 0.555);
+}
+.books_home li {
+    font-size: 18px;
+    font-weight: 500;
+}
+.books_home p {
+    border: 2px ridge;
+    margin: 10px 0;
+    padding: 4px 6px;
+    text-align: center;
+    background-color: aquamarine;
+
+}

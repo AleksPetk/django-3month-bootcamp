@@ -1,0 +1,8 @@
+<header>
+    <h1>Aleks Database</h1>
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link {% endif %}">Home</a>
+        <a href="{% url 'posts' %}" class="{% if request.resolver_match.url_name == 'posts' %}active_link {% endif %}">Posts</a>
+        <a href="{% url 'books' %}" class="{% if request.resolver_match.url_name == 'books' %}active_link {% endif %}">Books</a>
+    </nav>
+</header>

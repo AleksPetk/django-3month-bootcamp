@@ -1,0 +1,9 @@
+<section class="books_home">
+    <h3>Books</h3>
+    <ol>
+        {% for book in books %}
+            <li>Book - {{book.title}}</li>
+        {% endfor %}
+    </ol>
+    <p>View All Books <a href="{% url 'books' %}">Here</a></p>
+</section>
