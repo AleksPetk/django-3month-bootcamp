@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Movies{% endblock %}
+
+{% block content %}
+
+    <section class="page_name">
+        <h2>Movies</h2>
+        <p>Look at best Movies.</p>
+    </section>
+    <section class="models_list">
+        <h3>Movies: {{count}}</h3>
+        <ul>
+            {% for movie in movies %}
+                <li>{{movie.title}}.....<a href="{% url 'movie_details' movie.id %}">More Details</a> </li>
+            {% empty %}
+                <li>No movies yet</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+{% endblock %}

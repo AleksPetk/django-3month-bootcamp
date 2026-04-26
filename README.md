@@ -34,3 +34,30 @@ Key skills developed:
 * Filtering data using GET parameters
 
 This week introduced real backend interaction, focusing on how user input is processed and how dynamic applications behave in practice.
+
+Week 3 — Models, Migrations & ORM
+
+In Week 3, I transitioned from temporary data storage into real database-driven development using Django models and ORM.
+
+I built a mini database-powered website with dynamic content management, searchable pages, detail views, and admin-controlled data.
+
+Key skills developed:
+
+* Creating models with meaningful fields
+* Understanding field types (CharField, TextField, IntegerField, BooleanField, DateTimeField)
+* Running migrations with makemigrations and migrate
+* Understanding safe schema changes and migration workflow
+* Using Django admin for content management
+* Customizing admin with search, filters, ordering, editable fields, and computed columns
+* ORM queries using:
+    * .all()
+    * .filter()
+    * .get()
+    * get_object_or_404()
+* Ordering, counting, slicing, and searching querysets
+* Building database-powered list and detail pages
+* Search using GET parameters
+* Published-only visibility logic
+* Reusable templates with {% include %}
+
+This week marked the shift from learning Django syntax to building real backend applications powered by structured data and database logic.

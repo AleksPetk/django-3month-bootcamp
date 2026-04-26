@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Cars{% endblock %}
+
+{% block content %}
+
+    <section class="page_name">
+        <h2>Cars</h2>
+        <p>Best Cars overall!</p>
+    </section>
+    <section class="models_list">
+        <h3>Cars: {{count}}</h3>
+        <ul>
+            {% for car in cars %}
+                <li>{{car.brand}} {{car.model}}.....<a href="{% url 'car_details' car.id %}">More Details</a> </li>
+            {% empty %}
+                <li>No cars yet</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{car.brand}} {{car.model}}{% endblock %}
+
+{% block content %}
+<section class="page_name">
+    <h2>{{car.brand}} {{car.model}}</h2>
+    <p>Brand: {{car.brand}}</p>
+    <p>Model: {{car.model}}</p>
+    <p>Year: {{car.year}}</p>
+</section>
+
+{% endblock %}

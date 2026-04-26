@@ -1,4 +1,4 @@
-from functools import reduce
+
 
 from django.contrib import admin
 from .models  import Post, Car, Student, Family, Book

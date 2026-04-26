@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{{movie.title}}{% endblock %}
+
+{% block content %}
+<section class="page_name">
+    <h2>{{movie.title}}</h2>
+    <p>Authod: {{movie.author}}</p>
+    <p>Released: {{movie.created_at}}</p>
+</section>
+
+{% endblock %}

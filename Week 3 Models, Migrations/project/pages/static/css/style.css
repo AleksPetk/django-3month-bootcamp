@@ -1,0 +1,100 @@
+body {
+    background: linear-gradient(180deg, rgb(8, 206, 255), rgb(187, 255, 0));
+}
+header {
+    border: 3px solid rgb(255, 187, 0);
+    margin: 10px 20px;
+    background: linear-gradient(90deg, rgb(80, 243, 80), green);
+    border-radius: 16px;
+    text-align: center;
+    padding: 16px 0;
+    box-shadow: 8px 12px 8px rgba(255, 8, 230, 0.4), inset 4px 8px 6px rgb(255, 255, 255, 0.6);
+}
+h1 {
+    color: aqua;
+    text-shadow: 2px 2px 1px black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+    margin-top: 0;
+}
+header a {
+    font-size: 24px;
+    border: 2px solid black;
+    border-top-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    text-decoration: none;
+    padding: 4px 6px;
+    background: linear-gradient(45deg, red, blue);
+    color: white;
+    font-weight: 700;
+    text-shadow: 2px 2px 1px black;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
+}
+header a:hover {
+    background: linear-gradient(45deg, rgb(255, 74, 74), rgb(73, 73, 254));
+}
+.active_link {
+    background: linear-gradient(45deg, rgb(189, 189, 189), rgb(255, 217, 0));
+}
+main {
+    border: 2px solid transparent;
+    background: linear-gradient(90deg, rgba(52, 144, 250, 0.649), rgba(77, 13, 145, 0.691));
+    margin: 20px 40px;
+    border-radius: 14px;
+    padding: 14px 18px;
+    justify-content: center;
+    display: block;
+}
+.page_name {
+    border: 2px ridge;
+    border-radius: 14px;
+    padding: 6px 10px;
+    background: radial-gradient(circle at bottom, red, aqua);
+}
+h2 {
+    text-align: center;
+    font-size: 28px;
+    text-shadow: 2px 2px 1px red;
+    color: aqua;
+}
+.page_name p {
+    text-align: center;
+    color: black;
+}
+.models_list {
+    border: 3px solid transparent;
+    border-radius: 20px;
+    background-color: rgba(127, 255, 212, 0.659);
+    margin: 16px 32px;
+    padding: 10px 20px;
+}
+h3 {
+    text-align: center;
+    border: 2px ridge;
+    border-radius: 12px;
+    margin: 10px 80px;
+    font-size: 28px;
+    background-color: aqua;
+    text-shadow: 1px 1px 1px red;
+}
+ul {
+    border: 3px solid brown;
+    border-radius: 14px;
+    margin: 10px 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+li {
+    font-size: 20px;
+    color: black;
+    padding-bottom: 6px;
+}
+li a {
+    text-decoration: none;
+    color: red;
+    text-shadow: 1px 1px 1px black  ;
+}
+li a:hover {
+    color: yellow;
+}

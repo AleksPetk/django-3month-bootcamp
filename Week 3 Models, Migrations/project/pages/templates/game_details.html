@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{{game.title}}{% endblock %}
+
+{% block content %}
+<section class="page_name">
+    <h2>{{game.title}}</h2>
+    <p>Rating: {{game.rating}}</p>
+    <p>Rate: {{rate}}</p>
+</section>
+
+{% endblock %}

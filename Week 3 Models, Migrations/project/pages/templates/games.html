@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Games{% endblock %}
+
+{% block content %}
+
+    <section class="page_name">
+        <h2>Games</h2>
+        <p>Look at Games, from Excellent to Horrible.</p>
+        <p>Showing only from good and up here!</p>
+    </section>
+    <section class="models_list">
+        <h3>Games: {{count}}</h3>
+        <ul>
+            {% for game in games %}
+                <li>{{game.title}}.....<a href="{% url 'game_details' game.id %}">More Details</a> </li>
+            {% empty %}
+                <li>No games yet</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+{% endblock %}

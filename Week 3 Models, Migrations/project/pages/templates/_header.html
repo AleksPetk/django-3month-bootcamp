@@ -1,0 +1,9 @@
+<header>
+    <h1>Project Week 3</h1>
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
+        <a href="{% url 'movies' %}" class="{% if request.resolver_match.url_name == 'movies' %}active_link{% endif %}">Movies</a>
+        <a href="{% url 'cars' %}" class="{% if request.resolver_match.url_name == 'cars' %}active_link{% endif %}">Cars</a>
+        <a href="{% url 'games' %}" class="{% if request.resolver_match.url_name == 'games' %}active_link{% endif %}">Games</a>
+    </nav>
+</header>
