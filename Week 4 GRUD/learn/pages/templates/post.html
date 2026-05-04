@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Post{% endblock %}
+
+{% block content %}
+
+<section class="intro">
+    <h2>Post</h2>
+    <p>Welcome to post page.</p>
+</section>
+<section class="loads">
+    <h3>Last 8 Posts</h3>
+    <ul>
+        {% for post in posts %}
+            <div class="info">
+                <h4>Title: {{post.title}} | ID: {{post.id}}</h4>
+                <p>{{post.description}}</p>
+            </div>
+        {% empty %}
+            <p>No Posts Yet.</p>
+        {% endfor %}
+        <h5>All Posts: {{count}} <a href="#">See All</a></h5>
+    </ul>
+</section>
+
+{% endblock %}
