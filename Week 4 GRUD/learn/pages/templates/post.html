@@ -4,23 +4,47 @@
 
 {% block content %}
 
-<section class="intro">
-    <h2>Post</h2>
-    <p>Welcome to post page.</p>
+<section class="post-list-hero">
+    <h2>Posts</h2>
+    <p>Welcome to the posts page.</p>
 </section>
-<section class="loads">
-    <h3>Last 8 Posts</h3>
-    <ul>
+
+<section class="post-list-section">
+    <div class="post-list-header">
+        {% if all %}
+            <h3>All Posts</h3>
+        {% else %}
+            <h3>Latest 8 Posts</h3>
+        {% endif %}
+        <a href="{% url 'post_create' %}" class="btn btn-create">Create New Post</a>
+    </div>
+
+    <div class="post-list">
         {% for post in posts %}
-            <div class="info">
-                <h4>Title: {{post.title}} | ID: {{post.id}}</h4>
-                <p>{{post.description}}</p>
-            </div>
+            <article class="post-list-card">
+                <div class="post-list-card-top">
+                    <h4>{{ post.title }}</h4>
+                    <span>ID: {{ post.id }}</span>
+                </div>
+
+                <p>{{ post.description|truncatewords:25 }}</p>
+
+                <a href="{% url 'post_details' post.id %}" class="btn btn-view">See Full Post</a>
+            </article>
         {% empty %}
-            <p>No Posts Yet.</p>
+            <p class="empty-message">No posts yet.</p>
         {% endfor %}
-        <h5>All Posts: {{count}} <a href="#">See All</a></h5>
-    </ul>
+    </div>
+
+    <div class="post-count">
+        {% if all %}
+            <p>Back to 8 posts.</p>
+            <a href="{% url 'post' %}">CLICK</a>
+        {% else %}
+            <p>All Posts: {{ count }}</p>
+            <a href="{% url 'post_all' %}">See All</a>
+        {% endif %}
+    </div>
 </section>
 
 {% endblock %}

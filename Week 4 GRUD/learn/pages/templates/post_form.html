@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{% if post %}Edit Post{% else %}Create New Post {% endif %}{% endblock %}
+
+
+{% block content %}
+    <section class="form-page">
+        {% if post %}
+            <h2>Create Post</h2>
+        {% else %}
+            <h2>Edit Post</h2>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            {% if error %}
+                <p class="form-error">{{error}}</p>
+            {% endif %}
+            <input type="text" name="title" value="{% if post %}{{post.title}}{% endif %}" placeholder="Enter name" required>
+            <textarea name="description" placeholder="Description" required>{% if post %}{{post.description}}{% endif %}</textarea>
+            <div class="form-actions">
+                {% if post %}
+                    <button type="submit">Save Changes</button>
+                    <a href="{% url 'post_details' post.id %}">Cancel</a>
+                {% else %}
+                    <button type="submit">Submit</button>
+                    <a href="{% url 'post' %}">Back</a>
+                {% endif %}
+                
+            </div>
+        </form>
+    </section>
+
+{% endblock %}

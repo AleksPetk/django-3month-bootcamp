@@ -1,7 +1,7 @@
 from re import A
 
 from django.contrib import admin
-from .models import Post
+from .models import Post, Book
 # Register your models here.
 
 
@@ -10,5 +10,12 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ("-created_at",)
     list_display_links = ("title", )
 
+class PostBook(admin.ModelAdmin):
+    list_display = ("id", "title", "author", "released_at", "created_at", "pages")
+    ordering = ("pages",)
+    list_display_links = ("title",)
+
+
 
 admin.site.register(Post, PostAdmin)
+admin.site.register(Book, PostBook)

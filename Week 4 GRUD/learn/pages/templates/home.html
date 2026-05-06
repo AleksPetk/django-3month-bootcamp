@@ -4,11 +4,48 @@
 
 {% block content %}
 
-<section class="intro">
+<section class="post-list-hero">
     <h2>Home</h2>
-    <p>Welcome to home page.</p>
+    <p>Welcome to the home page.</p>
 </section>
-<section class="loads">
-    
+
+<section class="post-list-section">
+    <div class="post-list-header">
+        <h3>Posts</h3>
+    </div>
+    <div class="post-list">
+        {% for post in posts %}
+            <article class="post-list-card">
+                <div class="post-list-card-top">
+                    <h4>{{ post.title }}</h4>
+                    <span>ID: {{ post.id }}</span>
+                </div>
+                <p>{{ post.description|truncatewords:25 }}</p>
+                <a href="{% url 'post_details' post.id %}" class="btn btn-view">See Full Post</a>
+            </article>
+        {% empty %}
+            <p class="empty-message">No posts yet.</p>
+        {% endfor %}
+        <p>See all posts <a href="{% url 'post' %}">here</a></p>
+    </div>
+    <div class="post-list-header">
+        <h3>Books</h3>
+    </div>
+    <div class="post-list">
+        {% for book in books %}
+            <article class="post-list-card">
+                <div class="post-list-card-top">
+                    <h4>Title: {{ book.title }}</h4>
+                    <span>ID: {{ book.id }}</span>
+                </div>
+                <p>Author: {{book.author}}</p>
+                <a href="{% url 'book_details' book.id %}" class="btn btn-view">See Full Book</a>
+            </article>
+        {% empty %}
+            <p class="empty-message">No books yet.</p>
+        {% endfor %}
+        <p>See all books <a href="{% url 'books' %}">here</a></p>
+    </div>
 </section>
+
 {% endblock %}

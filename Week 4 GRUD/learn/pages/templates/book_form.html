@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}{% if book %}Edit Book id:{{book.id}}{% else %}Create New Book{% endif %}{% endblock %}
+
+
+{% block content %}
+    <section class="form-page">
+        {% if book %}
+            <h2>Edit Book id:{{book.id}}</h2>
+        {% else %}
+            <h2>Create Book</h2>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            {% if error %}
+                <p class="form-error">{{error}}</p>
+            {% endif %}
+            <input type="text" name="title" value="{% if book %}{{book.title}}{% endif %}" placeholder="Enter name" required>
+            <input type="text" name="author" value="{% if book %}{{book.author}}{% endif %}" placeholder="Enter author" required>
+            <label name="pages">Format: 1997-09-06</label>
+            <input type="date" name="released_at" value="{% if book %}{{book.released_at|date:'Y-m-d'}}{% endif %}" placeholder="Enter release date" required>
+            <input type="number" name="pages" value="{% if book %}{{book.pages}}{% endif %}" placeholder="Enter pages" required>
+            <div class="form-actions">
+                {% if book %}
+                    <button type="submit">Save Changes</button>
+                    <a href="{% url 'book_details' book.id %}">Cancel</a>
+                {% else %}
+                    <button type="submit">Create</button>
+                    <a href="{% url 'books' %}">Back</a>
+                {% endif %}
+            </div>
+        </form>
+    </section>
+
+{% endblock %}

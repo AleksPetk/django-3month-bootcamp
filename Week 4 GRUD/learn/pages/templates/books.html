@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+
+<section class="post-list-hero">
+    <h2>Books</h2>
+    <p>Welcome to the books page.</p>
+</section>
+
+<section class="post-list-section">
+    <div class="post-list-header">
+        <h3>All Books</h3>
+        <a href="{% url 'book_create' %}" class="btn btn-create">Create New Book</a>
+    </div>
+
+    <div class="post-list">
+        {% for book in books %}
+            <article class="post-list-card">
+                <div class="post-list-card-top">
+                    <h4>Title: {{ book.title }} | Author: {{book.author}}</h4>
+                    <span>ID: {{ post.id }} | Release Date: {{book.released_at}} | Pages: {{book.pages}}</span>
+                </div>
+
+                <p>{{ book.created_at }}</p>
+
+                <a href="{% url 'book_details' book.id %}" class="btn btn-view">See Full Book</a>
+            </article>
+        {% empty %}
+            <p class="empty-message">No books yet.</p>
+        {% endfor %}
+    </div>
+
+    <div class="post-count">
+        <p>All Books: {{ count }}</p>
+    </div>
+</section>
+
+{% endblock %}

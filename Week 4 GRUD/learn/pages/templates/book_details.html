@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{book.title}} | {{book.author}}{% endblock %}
+
+
+{% block content %}
+   <section class="post-hero">
+    <h2>Title: {{ book.title }} | Author: {{book.author}}</h2>
+    <p>Book created on {{ book.created_at }}.</p>
+</section>
+
+<section class="post-detail">
+    <h3>Book Description</h3>
+
+    <article class="post-card">
+        <div class="post-meta">
+            <h4>{{ book.title }}</h4>
+            <span>ID: {{ book.id }}</span>
+        </div>
+
+        <small class="post-date">{{ book.created_at }}</small>
+
+        <div class="post-content">
+            Released on {{ book.released_at}}
+            <hr>
+            Pages: {{book.pages}}
+        </div>
+
+        <div class="post-actions">
+            <a href="{% url 'book_edit' book.id %}" class="btn btn-edit">Edit</a>
+            <a href="#" class="btn btn-delete">Delete</a>
+            <a href="{% url 'books' %}" class="btn btn-back">Go Back</a>
+        </div>
+    </article>
+</section>
+
+
+{% endblock %}

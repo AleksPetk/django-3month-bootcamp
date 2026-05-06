@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+
+{% block content %}
+   <section class="post-hero">
+    <h2>{{ post.title }}</h2>
+    <p>Post created on {{ post.created_at }}.</p>
+</section>
+
+<section class="post-detail">
+    <h3>Post Description</h3>
+
+    <article class="post-card">
+        <div class="post-meta">
+            <h4>{{ post.title }}</h4>
+            <span>ID: {{ post.id }}</span>
+        </div>
+
+        <small class="post-date">{{ post.created_at }}</small>
+
+        <div class="post-content">
+            {{ post.description|linebreaks }}
+        </div>
+
+        <div class="post-actions">
+            <a href="{% url 'post_edit' post.id %}" class="btn btn-edit">Edit</a>
+            <a href="#" class="btn btn-delete">Delete</a>
+            <a href="{% url 'post' %}" class="btn btn-back">Go Back</a>
+        </div>
+    </article>
+</section>
+
+
+{% endblock %}
