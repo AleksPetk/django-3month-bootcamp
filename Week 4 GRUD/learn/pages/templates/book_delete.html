@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Book id: {{book.id}}{% endblock %}
+
+{% block content %}
+    <section class="delete-page">
+        <div class="delete-card">
+            <h2>Delete Book id: {{book.id}}</h2>
+            <p>Are you sure you want to delete this book?</p>
+            <h3>Title: {{book.title}}</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <p>This action cannot be undone.</p>
+                <p>You are deleteing: <strong>title: {{book.title}} | id: {{book.id}}</strong></p>
+                <label name="checkbox">Confirm</label>
+                <input type="checkbox" required>
+                <button type="submit" class="btn-delete-confirm">Delete</button>
+                <a href="{% url 'book_details' book.id %}" class="btn-cancel">Cancel</a>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

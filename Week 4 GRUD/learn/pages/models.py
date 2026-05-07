@@ -17,7 +17,30 @@ class Book(models.Model):
     released_at = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     pages = models.IntegerField()
+    is_deleted = models.BooleanField(default=False)
 
 
     def __str__(self):
         return f"Title: {self.title} | Author: {self.author}"
+    
+class Company(models.Model):
+    name = models.CharField(max_length=50)
+    founder = models.CharField(max_length=50)
+    founded = models.DateField()
+    on_stock_market = models.BooleanField(default=False)
+    capital = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+    
+class Car(models.Model):
+    company = models.ForeignKey(
+        Company,
+        on_delete=models.CASCADE
+    )
+    model = models.CharField(max_length=50)
+    brand_new = models.BooleanField(default=True)
+    year = models.DateField()
+    
+    def __str__(self):
+        return self.model

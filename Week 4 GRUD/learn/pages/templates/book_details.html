@@ -28,7 +28,7 @@
 
         <div class="post-actions">
             <a href="{% url 'book_edit' book.id %}" class="btn btn-edit">Edit</a>
-            <a href="#" class="btn btn-delete">Delete</a>
+            <a href="{% url 'book_delete' book.id %}" class="btn btn-delete">Delete</a>
             <a href="{% url 'books' %}" class="btn btn-back">Go Back</a>
         </div>
     </article>

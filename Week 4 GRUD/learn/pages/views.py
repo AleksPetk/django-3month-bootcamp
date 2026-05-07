@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, Book
+from .models import Post, Book, Car, Company
 
 # Create your views here.
 
@@ -71,15 +71,25 @@ def post_edit(request, id):
         "error": error
     })
 
+def post_delete(request, id):
+    post = get_object_or_404(Post, id=id)
+
+    if request.method == "POST":
+        post.delete()
+        return redirect("post")
+    return render(request, "post_delete.html", {
+        "post":post
+    })
+
 def book(request):
-    books = Book.objects.all()
+    books = Book.objects.filter(is_deleted=False)
     return render(request, "books.html", {
         "books": books,
         "count": len(books)
     })
 
 def book_details(request, id):
-    book = get_object_or_404(Book, id=id)
+    book = get_object_or_404(Book, id=id, is_deleted=False)
     return render(request, "book_details.html", {
         "book": book
     })
@@ -107,7 +117,7 @@ def book_create(request):
 
 
 def book_edit(request, id):
-    book = get_object_or_404(Book, id=id)
+    book = get_object_or_404(Book, id=id, is_deleted=False)
     error = ""
     if request.method == "POST":
         title = request.POST.get("title", "")
@@ -127,4 +137,29 @@ def book_edit(request, id):
     return render(request, "book_form.html", {
         "book":book,
         "error": error
+    })
+
+def book_delete(request, id):
+    book = get_object_or_404(Book, id=id, is_deleted=False)
+    
+    if request.method == "POST":
+        book.is_deleted = True
+        book.save()
+        return redirect("books")
+    
+    return render(request, "book_delete.html", {
+        "book":book
+    })
+
+def cars(request):
+    cars = Car.objects.all()
+    return render(request, "cars.html", {
+        "cars": cars,
+        "count": len(cars)
+    })
+
+def companies(request):
+    companies = Company.objects.all()
+    return render(request, "companies.html", {
+        "companies": companies
     })

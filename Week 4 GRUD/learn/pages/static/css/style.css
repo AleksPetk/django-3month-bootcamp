@@ -357,3 +357,57 @@ main {
     opacity: 0.85;
     transition: 0.2s ease;
 }
+.delete-page {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.delete-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.14);
+    text-align: center;
+}
+
+.delete-card h2 {
+    color: #dc2626;
+    margin-bottom: 12px;
+}
+
+.delete-card h3 {
+    margin: 20px 0;
+    color: #111827;
+}
+
+.delete-card form {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-delete-confirm {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background: #e5e7eb;
+    color: #111827;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.btn-delete-confirm:hover,
+.btn-cancel:hover {
+    opacity: 0.85;
+}

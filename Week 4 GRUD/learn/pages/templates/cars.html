@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Cars{% endblock %}
+
+{% block content %}
+
+<section class="post-list-hero">
+    <h2>Cars</h2>
+    <p>Welcome to the cars page.</p>
+</section>
+
+<section class="post-list-section">
+    <div class="post-list-header">
+        <h3>We Have {{count}} Cars</h3>
+        <a href="{% url 'companies' %}" class="btn btn-create">View Our Companies</a>
+    </div>
+
+    <div class="post-list">
+        {% for car in cars %}
+            <article class="post-list-card">
+                <div class="post-list-card-top">
+                    <h4>{{ car.model }}</h4>
+                    <span>Company: {{ car.company }}</span>
+                </div>
+
+                <p>Year: {{car.year}}</p>
+
+            </article>
+        {% empty %}
+            <p class="empty-message">No cars yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
