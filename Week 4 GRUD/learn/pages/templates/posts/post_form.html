@@ -20,10 +20,10 @@
             <div class="form-actions">
                 {% if post %}
                     <button type="submit">Save Changes</button>
-                    <a href="{% url 'post_details' post.id %}">Cancel</a>
+                    <a href="{% url 'post_details' post.slug %}">Cancel</a>
                 {% else %}
                     <button type="submit">Submit</button>
-                    <a href="{% url 'post' %}">Back</a>
+                    <a href="{% url 'posts' %}">Back</a>
                 {% endif %}
                 
             </div>

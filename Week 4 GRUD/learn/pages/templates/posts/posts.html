@@ -29,7 +29,7 @@
 
                 <p>{{ post.description|truncatewords:25 }}</p>
 
-                <a href="{% url 'post_details' post.id %}" class="btn btn-view">See Full Post</a>
+                <a href="{% url 'post_details' post.slug %}" class="btn btn-view">See Full Post</a>
             </article>
         {% empty %}
             <p class="empty-message">No posts yet.</p>
@@ -39,10 +39,10 @@
     <div class="post-count">
         {% if all %}
             <p>Back to 8 posts.</p>
-            <a href="{% url 'post' %}">CLICK</a>
+            <a href="{% url 'posts' %}">CLICK</a>
         {% else %}
             <p>All Posts: {{ count }}</p>
-            <a href="{% url 'post_all' %}">See All</a>
+            <a href="{% url 'posts_all' %}">See All</a>
         {% endif %}
     </div>
 </section>

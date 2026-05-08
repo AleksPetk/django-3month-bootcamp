@@ -25,7 +25,7 @@
 
                 <p>{{ book.created_at }}</p>
 
-                <a href="{% url 'book_details' book.id %}" class="btn btn-view">See Full Book</a>
+                <a href="{% url 'book_details' book.slug %}" class="btn btn-view">See Full Book</a>
             </article>
         {% empty %}
             <p class="empty-message">No books yet.</p>

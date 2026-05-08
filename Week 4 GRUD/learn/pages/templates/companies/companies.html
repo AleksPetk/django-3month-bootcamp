@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Companies{% endblock %}
+
+{% block content %}
+
+<section class="post-list-hero">
+    <h2>Companies</h2>
+    <p>Welcome to the companies page.</p>
+</section>
+
+<section class="post-list-section">
+    <div class="post-list-header">
+        <h3>We Have {{count}} Companies</h3>
+        <a href="{% url 'cars' %}" class="btn btn-create">Go back to the Cars</a>
+    </div>
+
+    <div class="post-list">
+        {% for company in companies %}
+            <article class="post-list-card">
+                <div class="post-list-card-top">
+                    <h4>{{ company.name }}</h4>
+                    <span>Founded on {{ company.founded }} by {{company.founder}}</span>
+                </div>
+
+                <p>Capitalization: {{company.capital}}$</p>
+                <p>On Stock Market: {% if company.on_stock_market %}YES{% else %}NO{% endif %}</p>
+
+            </article>
+        {% empty %}
+            <p class="empty-message">No companies yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

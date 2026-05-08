@@ -6,6 +6,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=300)
     created_at = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -18,6 +19,7 @@ class Book(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     pages = models.IntegerField()
     is_deleted = models.BooleanField(default=False)
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
 
     def __str__(self):
@@ -29,6 +31,7 @@ class Company(models.Model):
     founded = models.DateField()
     on_stock_market = models.BooleanField(default=False)
     capital = models.IntegerField()
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -41,6 +44,7 @@ class Car(models.Model):
     model = models.CharField(max_length=50)
     brand_new = models.BooleanField(default=True)
     year = models.DateField()
+    slug = models.SlugField(unique=True, null=True, blank=True)
     
     def __str__(self):
         return self.model

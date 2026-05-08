@@ -15,7 +15,7 @@
                 <label name="checkbox">Confirm</label>
                 <input type="checkbox" required>
                 <button type="submit" class="btn-delete-confirm">Delete</button>
-                <a href="{% url 'post_details' post.id %}" class="btn-cancel">Cancel</a>
+                <a href="{% url 'post_details' post.slug %}" class="btn-cancel">Cancel</a>
             </form>
         </div>
     </section>

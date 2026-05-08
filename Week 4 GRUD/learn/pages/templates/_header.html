@@ -2,7 +2,7 @@
     <h1>Django W4 Learning</h1>
     <nav>
         <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
-        <a href="{% url 'post' %}" class="{% if request.resolver_match.url_name == 'post' %}active_link{% endif %}">Post</a>
+        <a href="{% url 'posts' %}" class="{% if request.resolver_match.url_name == 'posts' %}active_link{% endif %}">Post</a>
         <a href="{% url 'books' %}" class="{% if request.resolver_match.url_name == 'books' %}active_link{% endif %}">Books</a>
         <a href="{% url 'cars' %}" class="{% if request.resolver_match.url_name == 'cars' %}active_link{% endif %}">Cars</a>
     </nav>

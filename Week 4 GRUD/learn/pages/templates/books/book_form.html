@@ -23,7 +23,7 @@
             <div class="form-actions">
                 {% if book %}
                     <button type="submit">Save Changes</button>
-                    <a href="{% url 'book_details' book.id %}">Cancel</a>
+                    <a href="{% url 'book_details' book.slug %}">Cancel</a>
                 {% else %}
                     <button type="submit">Create</button>
                     <a href="{% url 'books' %}">Back</a>
