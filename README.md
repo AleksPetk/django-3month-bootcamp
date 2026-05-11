@@ -61,3 +61,42 @@ Key skills developed:
 * Reusable templates with {% include %}
 
 This week marked the shift from learning Django syntax to building real backend applications powered by structured data and database logic.
+Week 4 — Full CRUD Applications
+
+In Week 4, I expanded my Django projects from read-only database pages into fully interactive CRUD applications.
+
+I built complete frontend management systems where users can create, read, update, and delete database content directly from the website without relying on Django admin.
+
+This week focused heavily on application structure, reusable templates, clean URL design, safe data handling, and real-world backend patterns.
+
+Key skills developed:
+
+* Full CRUD workflow:
+    * Create
+    * Read
+    * Update
+    * Delete
+* Building frontend forms with POST requests
+* Updating existing database objects using .save()
+* Safe deletion using POST-only confirmation flows
+* Understanding why destructive actions should not use GET requests
+* Redirecting after create, edit, and delete actions
+* Reusing form templates for both create and edit pages
+* Dynamic template behavior using {% if %}
+* Organizing templates into feature-based folders
+* Creating reusable CSS button systems and shared UI structure
+* Working with slug-based URLs using SlugField
+* Automatic slug generation using slugify
+* Creating reusable slug helper functions
+* Understanding route order priority with dynamic slug URLs
+* Using relationships with ForeignKey
+* Creating related objects through forms and POST data
+* Accessing related objects in templates and ORM queries
+* Understanding reverse relationships using _set
+* Implementing soft delete systems using is_deleted
+* Filtering hidden/deleted objects from querysets
+* Customizing admin behavior for soft deleted objects
+* Improving UX with validation, preserved form input, and dynamic navigation
+* Structuring reusable queryset logic appropriately without over-engineering
+
+This week marked the transition from simple database-driven pages into real-world Django application architecture and interactive backend development.
