@@ -21,19 +21,19 @@ class DeletedFilter(admin.SimpleListFilter):
         return queryset.filter(is_deleted = False)
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("id", "title", "created_at")
+    list_display = ("id", "title", "created_at", "slug")
     ordering = ("-created_at",)
     list_display_links = ("title", )
 
 class PostBook(admin.ModelAdmin):
-    list_display = ("id", "title", "author", "released_at", "created_at", "pages")
+    list_display = ("id", "title", "author", "released_at", "created_at", "pages", "slug")
     ordering = ("pages",)
     list_display_links = ("title",)
     list_filter = (DeletedFilter,)
 
 
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "founder", "founded","capital", "stock_status")
+    list_display = ("id", "name", "founder", "founded","capital", "stock_status", "slug")
     ordering = ("-capital",)
     list_display_links = ("name",)
     
@@ -44,7 +44,7 @@ class CompanyAdmin(admin.ModelAdmin):
     stock_status.short_description = "Stock"
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ("id", "company", "model", "year", "brand_new")
+    list_display = ("id", "company", "model", "year", "brand_new", "slug")
     ordering = ("-year",)
     list_display_links = ("model",)
 

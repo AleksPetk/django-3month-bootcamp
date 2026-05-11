@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{anime.title}}{% endblock %}
+
+{% block content %}
+<section class="page_title">
+    <h2>Anime Title: {{anime.title}}</h2>
+    <p>Welcome to {{anime.title}} page</p>
+</section>
+ <section class="details_a">
+    <div class="info">
+        <h4>Anime Title: {{anime.title}}</h4>
+        <p>Author: {{anime.author}} Rating: {{anime.rating}}</p>
+        <small>Released Year: {{anime.released_year}}</small>
+        <small>Slug: {{anime.slug}}</small>
+        <hr>
+        <p>Edit {{anime.title}} <a href="{% url 'anime_edit' anime.slug %}">click here</a></p>
+        <p>Delete {{anime.title}} <a href="{% url 'anime_delete' anime.slug %}">click here</a></p>
+        <p>Go Back <a href="{% url 'animes' %}">click here</a></p>
+    </div>
+</section>
+
+{% endblock %}

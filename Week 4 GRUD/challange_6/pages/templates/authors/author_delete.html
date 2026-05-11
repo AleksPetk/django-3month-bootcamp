@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+
+{% block title %}Delete Author id: {{author.id}}{% endblock %}
+
+{% block content %}
+    <section class="delete-a">
+        <div class="delete-d">
+            <h2>Delete Author id: {{author.id}}</h2>
+            <p>Are you sure you want to delete this author?</p>
+            <h3>Name: {{author.name}}</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <p>This action cannot be undone.</p>
+                <p>You are deleteing: <strong>{{author.name}}</strong></p>
+                <div class="confirm_d">
+                    <label name="checkbox">Confirm</label>
+                    <input type="checkbox" required>
+                </div>
+                <button type="submit" class="btn-delete-confirm">Delete</button>
+                <a href="{% url 'author_details' author.slug %}" class="btn-cancel">Cancel</a>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

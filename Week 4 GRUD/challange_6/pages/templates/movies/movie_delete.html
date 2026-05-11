@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+
+{% block title %}Delete Movie id: {{movie.id}}{% endblock %}
+
+{% block content %}
+    <section class="delete-a">
+        <div class="delete-d">
+            <h2>Delete Movie id: {{movie.id}}</h2>
+            <p>Are you sure you want to delete this movie?</p>
+            <h3>Title: {{movie.title}}</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <p>This action cannot be undone.</p>
+                <p>You are deleteing: <strong>{{movie.title}}</strong></p>
+                <div class="confirm_d">
+                    <label name="checkbox">Confirm</label>
+                    <input type="checkbox" name="checkbox" required>
+                </div>
+                <button type="submit" class="btn-delete-confirm">Delete</button>
+                <a href="{% url 'movie_details' movie.slug %}" class="btn-cancel">Cancel</a>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

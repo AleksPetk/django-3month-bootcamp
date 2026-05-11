@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+
+{% block title %}Movies{% endblock %}
+
+{% block content %}
+<section class="page_title">
+    <h2>Movies</h2>
+    <p>Welcome to movies page</p>
+</section>
+    <ul>
+        {% for movie in movies %}
+            <div class="info">
+                <h4>Movie Title: {{movie.title}}</h4>
+                <p>Author: {{movie.author}} Rating: {{movie.rating}}</p>
+                <small>Released Year: {{movie.released_year}}</small>
+                <hr>
+                <p>{{movie.title}} details: <a href="{% url 'movie_details' movie.slug %}">click here</a></p>
+            </div>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'movie_create' %}">Create New Movie</a>
+
+{% endblock %}

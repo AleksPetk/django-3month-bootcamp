@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+
+{% block title %}Animes{% endblock %}
+
+{% block content %}
+<section class="page_title">
+    <h2>Anime</h2>
+    <p>Welcome to anime page</p>
+</section>
+    <ul>
+        {% for anime in animes %}
+            <div class="info">
+                <h4>Anime Title: {{anime.title}}</h4>
+                <p>Author: {{anime.author}} Rating: {{anime.rating}}</p>
+                <small>Released Year: {{anime.released_year}}</small>
+                <hr>
+                <p>{{anime.title}} details: <a href="{% url 'anime_details' anime.slug %}">click here</a></p>
+            </div>
+        {% endfor %}
+        <a href="{% url 'anime_create' %}">Create New Anime</a>
+    </ul>
+
+{% endblock %}

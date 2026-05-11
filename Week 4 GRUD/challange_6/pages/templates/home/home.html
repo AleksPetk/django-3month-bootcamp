@@ -1,0 +1,49 @@
+{% extends "main/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <section class="page_title">
+        <h2>Home</h2>
+        <p>Welcome to home page</p>
+    </section>
+    <section class="home_content">
+        <div class="content_div">
+            <h3>Animes</h3>
+            <ul>
+                {% for anime in animes %}
+                    <div class="info">
+                        <h4>Anime Title: {{anime.title}}</h4>
+                        <p>Author: {{anime.author}} Rating: {{anime.rating}}</p>
+                    </div>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'animes' %}" class="btn_content">See All</a>
+        </div>
+        <div class="content_div">
+            <h3>Movies</h3>
+            <ul>
+                {% for movie in movies %}
+                    <div class="info">
+                        <h4>Movie Title: {{movie.title}}</h4>
+                        <p>Author: {{movie.author}} Rating: {{movie.rating}}</p>
+                    </div>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'movies' %}" class="btn_content">See All</a>
+        </div>
+        <div class="content_div">
+            <h3>Authors</h3>
+            <ul>
+                {% for author in authors %}
+                    <div class="info">
+                        <h4>Author Name: {{author.name}}</h4>
+                        <p>Birth Year: {{author.year_born}}</p>
+                    </div>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'authors' %}" class="btn_content">See All</a>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+
+{% block title %}{% if anime %}Edit {{anime.title}}{% else %}Create New Anime {% endif %}{% endblock %}
+
+{% block content %}
+<section class="page_title">
+    {% if anime %}
+        <h2>Anime Title: {{anime.title}}</h2>
+        <p>Edit {{anime.title}}</p>
+    {% else %}
+        <h2>Create New Anime</h2>
+        <p>Create the best anime you can!</p>
+    {% endif %}
+</section>
+ <section class="details_a">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" value="{% if anime %}{{anime.title}}{% endif %}" placeholder="Enter Title" required>
+        <hr>
+        <input type="number" name="released_year" value="{% if anime %}{{anime.released_year}}{% endif %}" placeholder="Enter Released Year" required>
+        <hr>
+        <input type="number" name="rating" value="{% if anime %}{{anime.rating}}{% endif %}" placeholder="Enter Rating" required>
+        <hr>
+        {% if anime %}
+            <p>Author is {{anime.author.name}}</p>
+        {% else %}
+            <select name="author_id" required>
+                {% for author in authors %}
+                    <option value="{{author.id}}">
+                        {{author.name}}
+                    </option>
+                {% endfor %}
+            </select>
+        {% endif %}
+        <hr>
+        <button type="submit">{% if anime %}Submit{% else %}Create{% endif %}</button>
+
+    </form>
+    
+</section>
+
+{% endblock %}

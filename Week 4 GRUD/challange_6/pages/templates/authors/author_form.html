@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+
+{% block title %}Create New Author{% endblock %}
+
+{% block content %}
+<section class="page_title">
+    <h2>Create New Author</h2>
+    <p>Should be nice author</p>
+</section>
+ <section class="details_a">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Enter Name" required>
+        <hr>
+        <input type="number" name="year_born" placeholder="Enter Year Born" required>
+        <hr>
+        <button type="submit">Create</button>
+
+    </form>
+    
+</section>
+
+{% endblock %}

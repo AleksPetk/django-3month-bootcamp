@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{movie.title}}{% endblock %}
+
+{% block content %}
+<section class="page_title">
+    <h2>Movie Title: {{movie.title}}</h2>
+    <p>Welcome to {{movie.title}} page</p>
+</section>
+ <section class="details_a">
+    <div class="info">
+        <h4>Movie Title: {{movie.title}}</h4>
+        <p>Author: {{movie.author}} Rating: {{movie.rating}}</p>
+        <small>Released Year: {{movie.released_year}}</small>
+        <small>Slug: {{movie.slug}}</small>
+        <hr>
+        <p>Edit {{movie.title}} <a href="{% url 'movie_edit' movie.slug %}">click here</a></p>
+        <p>Delete {{movie.title}} <a href="{% url 'movie_delete' movie.slug %}">click here</a></p>
+        <p>Go Back <a href="{% url 'movies' %}">click here</a></p>
+    </div>
+</section>
+
+{% endblock %}

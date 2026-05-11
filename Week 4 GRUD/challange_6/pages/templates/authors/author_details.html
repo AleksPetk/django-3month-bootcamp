@@ -1,0 +1,26 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{author.name}}{% endblock %}
+
+{% block content %}
+<section class="page_title">
+    <h2>Author Name: {{author.name}}</h2>
+    <p>Welcome to {{author.name}} page</p>
+</section>
+ <section class="details_a">
+    <div class="info">
+        <h4>Author Name: {{author.name}}</h4>
+        {% if author.alive %}
+            <p>Mr. {{author.name}} is still alive.</p>
+        {% else %}
+            <p>Mr. {{author.name}} is dead.</p>
+        {% endif %}
+        <small>Birth year: {{author.year_born}}</small>
+        <small>Slug: {{author.slug}}</small>
+        <hr>
+        <a href="{% url 'author_delete' author.slug %}">Delete Author</a>
+        <p>Go Back <a href="{% url 'authors' %}">click here</a></p>
+    </div>
+</section>
+
+{% endblock %}

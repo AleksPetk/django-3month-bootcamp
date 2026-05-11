@@ -1,0 +1,9 @@
+<header>
+    <h1>Challange_6</h1>
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
+        <a href="{% url 'animes' %}" class="{% if request.resolver_match.url_name == 'animes' %}active_link{% endif %}">Anime</a>
+        <a href="{% url 'movies' %}" class="{% if request.resolver_match.url_name == 'movies' %}active_link{% endif %}">Movie</a>
+        <a href="{% url 'authors' %}" class="{% if request.resolver_match.url_name == 'authors' %}active_link{% endif %}">Author</a>
+    </nav>
+</header>

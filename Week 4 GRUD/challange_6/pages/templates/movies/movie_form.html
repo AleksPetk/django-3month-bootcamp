@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+
+{% block title %}{% if movie %}Edit {{movie.title}}{% else %}Create New Movie {% endif %}{% endblock %}
+
+{% block content %}
+<section class="page_title">
+    {% if movie %}
+        <h2>Movie Title: {{movie.title}}</h2>
+        <p>Edit {{movie.title}}</p>
+    {% else %}
+        <h2>Create New Movie</h2>
+        <p>Create the best movie you can!</p>
+    {% endif %}
+</section>
+ <section class="details_a">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" value="{% if movie %}{{movie.title}}{% endif %}" placeholder="Enter Title" required>
+        <hr>
+        <input type="number" name="released_year" value="{% if movie %}{{movie.released_year}}{% endif %}" placeholder="Enter Released Year" required>
+        <hr>
+        <input type="number" name="rating" value="{% if movie %}{{movie.rating}}{% endif %}" placeholder="Enter Rating" required>
+        <hr>
+        {% if movie %}
+            <p>Author is {{movie.author.name}}</p>
+        {% else %}
+            <select name="author_id" required>
+                {% for author in authors %}
+                    <option value="{{author.id}}">
+                        {{author.name}}
+                    </option>
+                {% endfor %}
+            </select>
+        {% endif %}
+        <hr>
+        <button type="submit">{% if movie %}Submit{% else %}Create{% endif %}</button>
+
+    </form>
+    
+</section>
+
+{% endblock %}

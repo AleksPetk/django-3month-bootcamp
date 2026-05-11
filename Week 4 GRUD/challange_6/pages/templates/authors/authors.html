@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+
+{% block title %}Authors{% endblock %}
+
+{% block content %}
+<section class="page_title">
+    <h2>Authors</h2>
+    <p>Welcome to authors page</p>
+</section>
+    <ul>
+        {% for author in authors %}
+            <div class="info">
+                <h4>Author Name: {{author.name}}</h4>
+                {% if author.alive %}
+                    <p>Mr. {{author.name}} is still alive.</p>
+                {% else %}
+                    <p>Mr. {{author.name}} is dead.</p>
+                {% endif %}
+                <small>Birth year: {{author.year_born}}</small>
+                <hr>
+                <p>{{author.name}} details: <a href="{% url 'author_details' author.slug %}">click here</a></p>
+            </div>
+        {% endfor %}
+        <a href="{% url 'author_create' %}">Create new author</a>
+    </ul>
+
+{% endblock %}
