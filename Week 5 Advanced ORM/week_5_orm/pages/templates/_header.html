@@ -1,0 +1,7 @@
+<header>
+    <h1>Week 5 ORM</h1>
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
+        <a href="{% url 'games' %}" class="{% if request.resolver_match.url_name == 'games' %}active_link{% endif %}">Games</a>
+    </nav>
+</header>

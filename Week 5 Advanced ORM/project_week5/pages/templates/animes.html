@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Animes{% endblock %}
+
+{% block content %}
+    <section class="games-page">
+        <h2>Animes</h2>
+        <form method="GET">
+            <input
+                type="text"
+                name="q"
+                placeholder="Search animes..."
+                value="{{query}}"
+            >
+            <details class="advanced-filters">
+                <summary>Advanced Filters</summary>
+                <div class="advanced-filter-grid">
+                    <select name="is_deleted">
+                        <option value="">Can be watched</option>
+                        <option value="all" {% if is_deleted == "all" %}selected{% endif %}>All</option>
+                        <option value="yes" {% if is_deleted == "yes" %}selected{% endif %}>Deleted</option>
+                    </select>
+                    <select name="ongoing">
+                        <option value="">All</option>
+                        <option value="yes" {% if ongoing == "yes" %}selected{% endif %}>Ongoing</option>
+                        <option value="no" {% if ongoing == "no" %}selected{% endif %}>Finished</option>
+                    </select>
+                    <select name="ranking">
+                        <option value="">All</option>
+                        {% for rank in rankings %}
+                            <option value={{rank}} {% if ranking == rank|stringformat:"s" %}selected{% endif %}>{{rank}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </details>
+            <button type="submit">Search</button>
+            <a href="{% url 'animes' %}" class="reset-btn">Reset Filters</a>
+        </form>
+        <div class="games_stats">
+            <div>
+                <strong>Total</strong>
+                <span>{{count}}</span>
+            </div>
+        </div>
+        <div class="games-list">
+            
+            {% for anime in animes %}
+                <article class="game-card">
+                    <h3>{{ anime.title }}</h3>
+                    <p>Rating: {{ anime.rating }}</p>
+                    <p>Studio: {{ anime.studio.name }}</p>
+                    {% if anime.is_deleted == False %}
+                        <form method="POST" action="{% url 'anime_delete' anime.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    {% endif %}
+                </article>
+            {% empty %}
+                <p>No games found.</p>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

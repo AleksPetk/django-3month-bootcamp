@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Games{% endblock %}
+
+{% block content %}
+    <section class="games-page">
+        <h2>Games</h2>
+        <form method="GET">
+            <input
+                type="text"
+                name="q"
+                placeholder="Search games..."
+                value="{{query}}"
+            >
+            <details class="advanced-filters">
+                <summary>Advanced Filters</summary>
+                <div class="advanced-filter-grid">
+                    <input
+                        type="number"
+                        name="min_rating"
+                        placeholder="Minimum rating"
+                        min="1"
+                        max="10"
+                        value="{{min_rating}}"
+                    >
+                    <input
+                        type="number"
+                        name="year"
+                        placeholder="Release year"
+                        value="{{year}}"
+                    >
+                    <select name="sort">
+                        <option value="newest"
+                            {% if sort == "newest" %}selected{% endif %}>
+                            Newest
+                        </option>
+                        <option value="oldest"
+                            {% if sort == "oldest" %}selected{% endif %}>
+                            Oldest
+                        </option>
+                        <option value="rating"
+                            {% if sort == "rating" %}selected{% endif %}>
+                            Highest Rating
+                        </option>
+                        <option value="lowest_rating"
+                            {% if sort == "lowest_rating" %}selected{% endif %}>
+                            Lowest Rating
+                        </option>
+                        <option value="studio"
+                            {% if sort == "studio" %}selected{% endif %}>
+                            Studio Name
+                        </option>
+                    </select>
+
+                    <select name="studio">
+                        <option value="">All Studios</option>
+                        {% for studio in studios %}
+                            <option value="{{studio.id}}" {% if studio_id == studio.id|stringformat:"s" %}selected{% endif %}>{{studio.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="genre" multiple>
+                        <option value="">All Genre</option>
+                        {% for g in genres %}
+                            <option value="{{g}}" {% if g in genre_selected %}selected{% endif %}>{{g}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select name="multiplayer">
+                        <option value="">All Games</option>
+                        <option value="yes"{% if multiplayer == "yes" %}selected{% endif %}>
+                            Multiplayer
+                        </option>
+                        <option value="no"{% if multiplayer == "no" %}selected{% endif %}>
+                            Singleplayer
+                        </option>
+                    </select>
+                    <label name="deleted">Check to see all.</label>
+                    <input id="deleted" type="checkbox" name="deleted" {% if deleted %}checked{% endif %}>
+                </div>
+            </details>
+            <button type="submit">Search</button>
+            <a href="{% url 'games' %}" class="reset-btn">Reset Filters</a>
+        </form>
+        {% if query %}
+            <p>Results for: <strong>"{{query}}"</strong> ({{count}})</p>
+        {% else %}
+            <p>All Games ({{count}})</p>
+        {% endif %}
+        <div class="games-stats">
+            <div>
+                <strong>Total</strong>
+                <span>{{ count }}</span>
+            </div>
+
+            <div>
+                <strong>Average Rating</strong>
+                <span>{{ stats.average_rating|floatformat:1 }}</span>
+            </div>
+
+            <div>
+                <strong>Highest Rating</strong>
+                <span>{{ stats.highest_rating }}</span>
+            </div>
+
+            <div>
+                <strong>Lowest Rating</strong>
+                <span>{{ stats.lowest_rating }}</span>
+            </div>
+        </div>
+        <div class="games-list">
+            {% for game in games %}
+                <article class="game-card">
+                    <h3>{{ game.title }}</h3>
+                    <p>Rating: {{ game.rating }}</p>
+                    <p>Studio: {{ game.studio.name }}</p>
+                </article>
+            {% empty %}
+                <p>No games found.</p>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

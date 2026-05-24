@@ -1,0 +1,7 @@
+<header>
+    <h1>Project Week5</h1>
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
+        <a href="{% url 'animes' %}" class="{% if request.resolver_match.url_name == 'animes' %}active_link{% endif %}">Animes</a>
+    </nav>
+</header>

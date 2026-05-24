@@ -15,7 +15,7 @@ Key skills developed:
 This week established the foundation for backend development using Django and prepared for handling requests, forms, and databases in later stages.
 
 
-Week 2 — HTTP & Forms Basics
+## Week 2 — HTTP & Forms Basics
 
 In Week 2, I focused on understanding how data flows between the user and the server using HTTP methods.
 
@@ -35,7 +35,7 @@ Key skills developed:
 
 This week introduced real backend interaction, focusing on how user input is processed and how dynamic applications behave in practice.
 
-Week 3 — Models, Migrations & ORM
+## Week 3 — Models, Migrations & ORM
 
 In Week 3, I transitioned from temporary data storage into real database-driven development using Django models and ORM.
 
@@ -61,7 +61,8 @@ Key skills developed:
 * Reusable templates with {% include %}
 
 This week marked the shift from learning Django syntax to building real backend applications powered by structured data and database logic.
-Week 4 — Full CRUD Applications
+
+## Week 4 — Full CRUD Applications
 
 In Week 4, I expanded my Django projects from read-only database pages into fully interactive CRUD applications.
 
@@ -100,3 +101,81 @@ Key skills developed:
 * Structuring reusable queryset logic appropriately without over-engineering
 
 This week marked the transition from simple database-driven pages into real-world Django application architecture and interactive backend development.
+
+## Week 5 — Advanced ORM
+
+In Week 5, I focused on understanding Django ORM more deeply and building advanced search, filtering, sorting, and query behavior.
+
+I built a searchable and filterable content system where users can dynamically control which database records are shown using GET parameters, multiple filters, ordering options, and relationship-based search.
+
+This week focused less on CRUD mechanics and more on backend data logic, QuerySet behavior, and building scalable filtering systems.
+
+Key skills developed:
+
+* Advanced filtering using:
+    * `.filter()`
+    * `.exclude()`
+    * `__gt`
+    * `__gte`
+    * `__lt`
+    * `__lte`
+    * `__in`
+    * `__range`
+    * `__isnull`
+* Building search systems with:
+    * `icontains`
+    * GET parameters
+    * preserved search values
+    * `Q()` objects
+    * OR conditions
+* Filtering through relationships using ForeignKey fields, such as:
+    * `studio__name`
+    * `studio__country`
+* Dynamic sorting with `.order_by()`
+* Sorting from GET parameters, such as:
+    * newest
+    * oldest
+    * highest rating
+    * lowest rating
+    * related model name
+* Understanding QuerySet behavior:
+    * lazy evaluation
+    * chaining
+    * caching basics
+    * when database queries actually execute
+* Comparing:
+    * `.count()` vs `len()`
+    * `.get()` vs `.filter()`
+    * `.exists()`
+    * `.first()`
+    * `.last()`
+* Using QuerySet slicing for limited results
+* Using lightweight query outputs:
+    * `.values()`
+    * `.values_list()`
+    * `flat=True`
+    * `.distinct()`
+* Using aggregate calculations:
+    * `Avg`
+    * `Max`
+    * `Min`
+    * `Sum`
+* Using annotations with `annotate()` and `Count`
+* Understanding `select_related()` for ForeignKey optimization
+* Building progressive filtering logic step-by-step
+* Creating advanced filtering pages with:
+    * search
+    * studio filter
+    * genre multi-select
+    * rating filter
+    * year filter
+    * multiplayer filter
+    * deleted visibility toggle
+    * sorting dropdown
+* Using `getlist()` for multi-select filters
+* Using `__in` for multiple selected values
+* Adding reset filter links for GET-based filtering systems
+* Building dashboard-style statistics from filtered QuerySets
+* Improving filter UX with basic and advanced filter sections using `<details>`
+
+This week marked the transition from simply accessing database records to controlling, analyzing, filtering, and optimizing data like a real backend application.
