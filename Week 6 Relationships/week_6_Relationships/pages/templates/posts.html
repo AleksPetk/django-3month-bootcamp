@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+<section class="page-title">
+    <h2>Posts</h2>
+    <p>Posts connected to authors through ForeignKey.</p>
+</section>
+
+<section class="posts-list">
+    {% for post in posts %}
+        <article class="post-card">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.content }}</p>
+
+            <div class="post-meta">
+                <span>Author: {{ post.author.name }}</span>
+                <span>Author Email: {{ post.author.email }}</span>
+                <span>Author Born: {{ post.author.birth_year }}</span>
+                <span>Rating: {{ post.rating }}</span>
+                <span>Views: {{ post.views }}</span>
+            </div>
+        </article>
+    {% empty %}
+        <p class="empty-message">No posts yet.</p>
+    {% endfor %}
+</section>
+{% endblock %}

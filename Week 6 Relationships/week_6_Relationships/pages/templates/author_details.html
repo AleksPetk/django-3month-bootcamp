@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{author.name}}{% endblock %}
+
+{% block content %}
+    <h2>{{ author.name }}</h2>
+    <p>Total of: {{posts.count}} posts</p>
+    <p><strong>Create New Post: </strong><a href="{% url 'author_create' author.id %}">Click</a></p>
+    <form method="GET">
+        <input type="text" name="q" placeholder="Search this author's post..." value="{{query}}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% for post in posts %}
+
+        <h3>{{ post.title }} - {% if post.published %}Published{% else %}Unpublished{% endif %}</h3>
+        <p>{{ post.content }}</p>
+        <p><strong>Post Views: </strong>{{post.views}}</p>
+        <p><strong>Post Rating: </strong>{{post.rating}}</p>
+
+    {% endfor %}
+    <p><strong>Avarage Rating: </strong>{{stats.average_rating}}</p>
+    <p><strong>Total views: </strong>{{stats.total_views}}</p>
+    <h4>Top Post: {{top_post.title}}</h4>
+    <h4>Best Post: {{best_post.title}}</h4>
+
+    <section class="published_p">
+        <ul>
+            <h4>Published Posts</h4>
+            {% for post in published_posts %}
+                <li><strong>Title: </strong>{{post.title}} <strong>Views: </strong>{{post.views}}</li>
+            {% empty %}
+                <p>There is not publushed posts yet.</p>
+            {% endfor %}
+        </ul>
+        <ol>
+            <h4>Unpublished Posts</h4>
+            {% for post in unpublished_posts %}
+                <li><strong>Title: </strong>{{post.title}} <strong>Views: </strong>{{post.views}}</li>
+            {% empty %}
+                <p>There is not unpublished posts yet.</p>
+            {% endfor %}
+        </ol>
+    </section>
+
+{% endblock %}

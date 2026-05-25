@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Authors{% endblock %}
+
+{% block content %}
+<section class="page-title">
+    <h2>Authors</h2>
+    <p>Active authors and their connected posts.</p>
+    <p>All Posts: {{count}}</p>
+</section>
+
+<section class="authors-grid">
+    {% for author in authors %}
+        {% if author.post_set.count > 0 %}
+            <article class="author-card">
+                <div class="author-top">
+                    <h3>{{ author.name }}</h3>
+                    <span>{{ author.post_set.count }} posts</span>
+                </div>
+
+                <div class="author-info">
+                    <p><strong>Email:</strong> {{ author.email }}</p>
+                    <p><strong>Birth Year:</strong> {{ author.birth_year }}</p>
+                    <p><strong>Author Details:</strong><a href="{% url 'author_details' author.id %}"> Here</a></p>
+                </div>
+            </article>
+        {% endif %}
+    {% empty %}
+        <p class="empty-message">No authors yet.</p>
+    {% endfor %}
+</section>
+{% endblock %}

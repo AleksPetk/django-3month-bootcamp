@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h2>Welcome to Django Relationships</h2>
+    <p>This week focuses on connecting models together using ForeignKey relationships.</p>
+    <a href="{% url 'posts' %}" class="btn">View Posts</a>
+</section>
+
+<section class="info-section">
+    <h3>Week 6 Focus</h3>
+    <div class="info-grid">
+        <div class="info-card">
+            <h4>Authors</h4>
+            <p>Each author can have many posts.</p>
+        </div>
+
+        <div class="info-card">
+            <h4>Posts</h4>
+            <p>Each post belongs to one author.</p>
+        </div>
+
+        <div class="info-card">
+            <h4>Relationships</h4>
+            <p>Practice accessing related data through Django ORM.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

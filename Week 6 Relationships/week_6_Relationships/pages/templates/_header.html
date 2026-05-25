@@ -1,0 +1,8 @@
+<header>
+    <h1>Django Relationships</h1>
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
+        <a href="{% url 'posts' %}" class="{% if request.resolver_match.url_name == 'posts' %}active_link{% endif %}">Posts</a>
+        <a href="{% url 'authors' %}" class="{% if request.resolver_match.url_name == 'authors' %}active_link{% endif %}">Authors</a>
+    </nav>
+</header>
