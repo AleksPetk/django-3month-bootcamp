@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Articles{% endblock %}
+
+{% block content %}
+
+<section class="page_preview">
+        <h2>Articles Page</h2>
+        <p>Page to get to know about articles</p>
+    </section>
+    <section class="last_3">
+        {% for article in articles %}
+            <h3>Title: <strong>{{article.title}}</strong></h3>
+            <p>Body: {{article.body}}</p>
+            <p>Views: {{article.views}}</p>
+            <p>Rating: {{article.rating}}</p>
+            <p>Teacher: {{article.teacher.name}} | <a href="{% url 'teacher_details' article.teacher.id %}">View Teacher</a></p>
+            <p>Subject: {{article.subject.name}} | <a href="{% url 'subject_details' article.subject.id %}">View Subject</a></p>
+            {% for comment in article.comments.all %}
+                <p>{{comment.name}} - {{comment.message}}</p>
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
+            
+        {% endfor %}
+    </section>
+
+
+{% endblock %}

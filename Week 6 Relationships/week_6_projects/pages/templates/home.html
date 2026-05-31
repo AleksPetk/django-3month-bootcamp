@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    <section class="page_preview">
+        <h2>Home Page</h2>
+        <p>Page to get to know about this website</p>
+    </section>
+    <section class="all_art">
+        {% for key, value in count.items %}
+            <div class="items_s">
+                <p><strong>{{key.capitalize}}: </strong>{{value}}</p>
+            </div>
+        {% endfor %}
+    </section>
+    <section class="last_3">
+        <h3>Last 3 Articles</h3>
+        {% for article in articles %}
+            <div class="div_3">
+                <h4>Title: {{article.title}}</h4>
+                <p>Body: {{article.body}}</p>
+                <p>Views: {{article.views}} | Rating: {{article.rating}}</p>
+            </div>
+        {% endfor %}
+    </section>
+
+{% endblock %}

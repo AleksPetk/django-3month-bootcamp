@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Teachers{% endblock %}
+
+{% block content %}
+
+    <section class="page_preview">
+        <h2>Teachers Page</h2>
+        <p>Page to get to know about our Teachers</p>
+    </section>
+    <section class="last_3">
+        <h3>Teachers</h3>
+        {% for teacher in teachers %}
+            <div class="div_3">
+                <h4>Name: {{teacher.name}}</h4>
+                <p>Specialty: {{teacher.specialty}}</p>
+                <p>Articles: {{teacher.articles.count}} | Total Views: {{teacher.total_views}}</p>
+                <a href="{% url 'teacher_details' teacher.id %}">Teacher Page</a>
+            </div>
+        {% endfor %}
+    </section>
+
+{% endblock %}

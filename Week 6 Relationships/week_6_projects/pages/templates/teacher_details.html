@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{teacher.name}}{% endblock %}
+
+
+{% block content %}
+    <h2>{{teacher.name}}</h2>
+    <p>All articles: {{total_count}}</p>
+    <p>Total Views: {{teacher.total_views}}</p>
+    <div class="published_art">
+        <h3>Published Articles</h3>
+        {% for article in teacher.published_articles %}
+            <h4>Title: <strong>{{article.title}}</strong></h4>
+            <p>{{article.body}}</p>
+            <p>Subject: {{article.subject.name}}: <a href="{% url 'subject_details' article.subject.id %}">View Subject</a></p>
+        {% empty %}
+            <p>No published articles yet.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
