@@ -220,3 +220,265 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+.post-detail-page {
+    display: grid;
+    gap: 24px;
+}
+
+.post-detail-card,
+.comments-section {
+    padding: 24px;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+
+.post-detail-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+}
+
+.post-detail-header h2 {
+    margin: 0;
+    font-size: 30px;
+    color: #111827;
+}
+
+.post-detail-header span {
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #2563eb;
+    font-weight: 800;
+}
+
+.post-content {
+    line-height: 1.7;
+    color: #374151;
+    font-size: 17px;
+}
+
+.post-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.post-info-box {
+    padding: 16px;
+    border-radius: 12px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.post-info-box strong {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.post-info-box p {
+    margin: 8px 0;
+    font-weight: 800;
+    color: #111827;
+}
+
+.post-info-box a {
+    color: #2563eb;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.comments-section h3 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.comments-list {
+    display: grid;
+    gap: 14px;
+}
+
+.comment-card {
+    padding: 16px;
+    border-radius: 12px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.comment-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.approved {
+    color: #16a34a;
+    font-weight: 800;
+}
+
+.pending {
+    color: #dc2626;
+    font-weight: 800;
+}
+
+.comment-card p {
+    margin: 0;
+    color: #374151;
+    line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+    .post-detail-header,
+    .comment-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .post-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.category-detail-page {
+    display: grid;
+    gap: 24px;
+}
+
+.category-hero,
+.category-posts {
+    padding: 24px;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+
+.category-hero h2 {
+    margin: 0 0 10px;
+    font-size: 32px;
+    color: #111827;
+}
+
+.category-hero p {
+    margin: 0;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+.category-posts h3 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.category-post-list {
+    display: grid;
+    gap: 16px;
+}
+
+.category-post-card {
+    padding: 18px;
+    border-radius: 14px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.category-post-card h4 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    color: #111827;
+}
+
+.category-post-card p {
+    color: #374151;
+    line-height: 1.6;
+}
+
+.category-post-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 14px 0;
+}
+
+.category-post-meta span {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #1f2937;
+    font-weight: 700;
+    font-size: 14px;
+}
+.ranking-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.ranking-card {
+    display: grid;
+    grid-template-columns: 70px 1fr 2fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 18px;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+}
+
+.ranking-number {
+    font-size: 24px;
+    font-weight: 900;
+    color: #2563eb;
+}
+
+.ranking-info h3 {
+    margin: 0 0 6px;
+}
+
+.ranking-info p {
+    margin: 0;
+    color: #6b7280;
+}
+
+.ranking-stats {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.ranking-stats span {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #eef2ff;
+    font-weight: 700;
+}
+
+@media (max-width: 800px) {
+    .ranking-card {
+        grid-template-columns: 1fr;
+    }
+}
+.ranking-summary {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+.ranking-summary p {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #eef2ff;
+    font-weight: 700;
+}
+.spec {
+    border: 3px solid gray;
+    border-radius: 14px;
+    padding: 10px 14px;
+    background-color: white;
+}

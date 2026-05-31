@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<section class="post-detail-page">
+
+    <article class="post-detail-card">
+        <div class="post-detail-header">
+            <h2>{{ post.title }}</h2>
+            <span>Rating: {{ post.rating }}</span>
+        </div>
+
+        <p class="post-content">{{ post.content }}</p>
+
+        <div class="post-info-grid">
+            <div class="post-info-box">
+                <strong>Author</strong>
+                <p>{{ post.author.name }}</p>
+                <a href="{% url 'author_details' post.author.id %}">View Author</a>
+            </div>
+
+            <div class="post-info-box">
+                <strong>Category</strong>
+                <p>
+                    {% if post.category %}
+                        {{ post.category.name }}
+                        <a href="{% url 'category_details' post.category.id %}">View Category</a>
+                    {% else %}
+                        No category
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="post-info-box">
+                <strong>Views</strong>
+                <p>{{ post.views }}</p>
+            </div>
+        </div>
+    </article>
+
+    <section class="comments-section">
+        <h3>Comments</h3>
+
+        <div class="comments-list">
+            {% for comment in post.comments.all %}
+                <article class="comment-card">
+                    <div class="comment-top">
+                        <strong>{{ comment.name }}</strong>
+                        {% if comment.approved %}
+                            <span class="approved">Approved</span>
+                        {% else %}
+                            <span class="pending">Pending</span>
+                        {% endif %}
+                    </div>
+
+                    <p>{{ comment.message }}</p>
+                </article>
+            {% empty %}
+                <p class="empty-message">No comments yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+</section>
+{% endblock %}

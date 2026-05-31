@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Follow{% endblock %}
+
+
+{% block content %}
+    {% for follow in follows %}
+        <h2>{{follow.follower}} is following {{follow.following}}</h2>
+    {% endfor %}
+
+{% endblock %}

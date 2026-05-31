@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Authors Ranking{% endblock %}
+
+{% block content %}
+<section class="page-title">
+    <h2>Authors Ranking</h2>
+    <p>Authors ranked by number of posts.</p>
+    <div class="ranking-summary">
+        <p>Showing {{ authors|length }} authors</p>
+        <p>Sorted by: {{ sort }}</p>
+    </div>
+</section>
+<form method="GET" class="ranking-sort">
+    <select name="sort">
+        <option value="posts" {% if sort == "posts" %}selected{% endif %}>Most Posts</option>
+        <option value="views" {% if sort == "views" %}selected{% endif %}>Most Views</option>
+        <option value="rating" {% if sort == "rating" %}selected{% endif %}>Best Rating</option>
+    </select>
+    <label class="check-line">
+        <input type="checkbox" name="active_only" {% if active_only %}checked{% endif %}>
+        Active authors only
+    </label>
+    <button type="submit">Sort</button>
+</form>
+
+<section class="ranking-list">
+    {% for author in authors %}
+        <article class="ranking-card">
+            <div class="ranking-number">#{{ forloop.counter }}</div>
+
+            <div class="ranking-info">
+                <h3>{{ author.name }}</h3>
+                <p>{{ author.email }}</p>
+            </div>
+
+            <div class="ranking-stats">
+                <span>Posts: {{ author.posts_count }}</span>
+                <span>Views: {{ author.total_views|default:0 }}</span>
+                <span>Avg Rating: {{ author.average_rating|floatformat:1 }}</span>
+            </div>
+
+            <a href="{% url 'author_details' author.id %}" class="btn">View</a>
+        </article>
+    {% empty %}
+        <p class="empty-message">No authors yet.</p>
+    {% endfor %}
+</section>
+{% endblock %}

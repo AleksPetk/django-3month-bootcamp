@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Avg, Sum
-from .models import Post, Author
+from django.db.models import Avg, Sum, Count, Prefetch
+from .models import Category, Post, Author, Follow
+from django.db import reset_queries, connection
 
 # Create your views here.
 
@@ -8,16 +9,58 @@ def home(request):
     return render(request, "home.html")
 
 def posts(request):
-    posts = Post.objects.filter(
-        author__birth_year__gte = 1998,
-        published = True
-    )
+    posts = Post.objects.select_related("author")
     return render(request, "posts.html", {
         "posts":posts
     })
 
+def post_details(request, id):
+    post = get_object_or_404(Post.objects.select_related("author", "category").prefetch_related("comments"), id=id)
+
+    return render(request, "post_details.html", {
+        "post": post
+    })
+
+def follow(request):
+    follows = Follow.objects.all()
+    return render(request, "follows.html", {
+        "follows":follows
+    })
+
+def authors_ranking(request):
+    authors = Author.objects.prefetch_related("posts").annotate(
+        posts_count=Count("posts"),
+        total_views=Sum("posts__views"),
+        average_rating=Avg("posts__rating")
+    )
+
+    sort = request.GET.get("sort", "posts")
+    active_only = request.GET.get("active_only")
+    if active_only:
+        authors = authors.filter(is_active = True)
+    if sort == "views":
+        authors = authors.order_by("-total_views")
+    elif sort == "rating":
+        authors = authors.order_by("-average_rating")
+    else:
+        authors = authors.order_by("-posts_count")
+
+    return render(request, "authors_ranking.html", {
+        "authors": authors,
+        "sort": sort,
+        "active_only": active_only
+    })
+
+
+
 def authors(request):
-    authors = Author.objects.filter(is_active=True)
+    authors = Author.objects.prefetch_related(
+        Prefetch(
+            "posts",
+            queryset=Post.objects.filter(published=True).select_related("category").order_by("-created_at"),
+            to_attr="published_posts"
+        )
+    )
     count_posts = Post.objects.all().count()
 
     return render(request, "authors.html", {
@@ -25,9 +68,18 @@ def authors(request):
         "count": count_posts
     })
 
+def category_details(request, id):
+    category = get_object_or_404(Category.objects.prefetch_related("posts__author"), id=id)
+    posts = category.posts.all()
+    return render(request, "category_details.html", {
+        "category":category,
+        "posts":posts
+    })
+
+
 def author_details(request, id):
-    author = get_object_or_404(Author, id=id)
-    posts = author.post_set.all()
+    author = get_object_or_404(Author.objects.prefetch_related("posts"), id=id)
+    posts = author.posts.all()
     stats = posts.aggregate(
         average_rating = Avg("rating"),
         total_views = Sum("views")

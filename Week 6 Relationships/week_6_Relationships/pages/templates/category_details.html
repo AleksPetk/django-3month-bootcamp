@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+<section class="category-detail-page">
+
+    <div class="category-hero">
+        <h2>{{ category.name }}</h2>
+
+        {% if category.description %}
+            <p>{{ category.description }}</p>
+        {% else %}
+            <p>Posts connected to this category.</p>
+        {% endif %}
+    </div>
+
+    <section class="category-posts">
+        <h3>Posts in this category</h3>
+
+        <div class="category-post-list">
+            {% for post in posts %}
+                <article class="category-post-card">
+                    <h4>{{ post.title }}</h4>
+                    <p>{{ post.content|truncatewords:25 }}</p>
+
+                    <div class="category-post-meta">
+                        <span>Author: {{ post.author.name }}</span>
+                        <span>Rating: {{ post.rating }}</span>
+                        <span>Views: {{ post.views }}</span>
+                    </div>
+
+                    <a href="{% url 'post_details' post.id %}" class="btn">View Post</a>
+                </article>
+            {% empty %}
+                <p class="empty-message">No posts yet.</p>
+            {% endfor %}
+    </section>
+
+</section>
+{% endblock %}

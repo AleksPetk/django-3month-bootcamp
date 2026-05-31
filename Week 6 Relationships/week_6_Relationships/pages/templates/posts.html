@@ -20,6 +20,7 @@
                 <span>Author Born: {{ post.author.birth_year }}</span>
                 <span>Rating: {{ post.rating }}</span>
                 <span>Views: {{ post.views }}</span>
+                <a href="{% url 'post_details' post.id %}">Details</a>
             </div>
         </article>
     {% empty %}

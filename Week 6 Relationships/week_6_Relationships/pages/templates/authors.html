@@ -11,11 +11,11 @@
 
 <section class="authors-grid">
     {% for author in authors %}
-        {% if author.post_set.count > 0 %}
+        {% if author.posts.count > 0 %}
             <article class="author-card">
                 <div class="author-top">
                     <h3>{{ author.name }}</h3>
-                    <span>{{ author.post_set.count }} posts</span>
+                    <span>{{ author.posts.count }} posts</span>
                 </div>
 
                 <div class="author-info">
@@ -28,5 +28,17 @@
     {% empty %}
         <p class="empty-message">No authors yet.</p>
     {% endfor %}
+    {% for author in authors %}
+        <section class="spec">
+            <h3>{{author.name}}</h3>
+            {% for post in author.published_posts %}
+                <p>{{post.title}} - {{post.category.name}}</p>
+            {% empty %}
+                <p>No published posts.</p>
+            {% endfor %}
+        </section>
+    {% endfor %}
+        
+    <a href="{% url 'authors_ranking' %}" class="ranking-link">View Authors Ranking</a>
 </section>
 {% endblock %}
