@@ -179,3 +179,47 @@ Key skills developed:
 * Improving filter UX with basic and advanced filter sections using `<details>`
 
 This week marked the transition from simply accessing database records to controlling, analyzing, filtering, and optimizing data like a real backend application.
+
+## Week 6 — Relationships
+
+In Week 6, I focused on understanding how Django models connect together and how to build relationship-driven applications.
+
+I built a connected blog-style system where teachers, subjects, articles, and comments are linked through ForeignKey relationships and reverse relations.
+
+This week focused less on individual models and more on how data moves between connected models in real backend systems.
+
+Key skills developed:
+
+* Creating one-to-many relationships with ForeignKey
+* Understanding forward relationship access, such as:
+    * article.teacher.name
+    * article.subject.name
+    * comment.article.title
+* Understanding reverse relationships using related_name, such as:
+    * teacher.articles.all()
+    * subject.articles.all()
+    * article.comments.all()
+* Replacing default _set reverse access with cleaner related_name
+* Filtering through relationship chains using double underscores, such as:
+    * articles__published=True
+    * comments__approved=True
+    * article__teacher__is_active=True
+* Building multi-level relationship chains across connected models
+* Using annotate() with relationship counts and totals
+* Using Count, Sum, and Avg across related models
+* Understanding bridge/connection models such as follow relationships
+* Using UniqueConstraint to prevent duplicate relationships
+* Using CheckConstraint, Q(), and F() to protect relationship rules
+* Understanding class Meta for model-level configuration
+* Understanding the N+1 query problem
+* Optimizing ForeignKey relationships with select_related()
+* Optimizing reverse relationships with prefetch_related()
+* Using Prefetch() for filtered or ordered related data
+* Building relationship-based pages such as:
+    * teacher detail pages
+    * subject detail pages
+    * article detail pages
+    * comments connected to articles
+    * ranking/dashboard pages
+
+This week marked the transition from working with separate database tables to building connected backend systems where models interact through clear relationships and optimized queries.
