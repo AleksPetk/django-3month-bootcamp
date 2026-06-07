@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Registration{% endblock %}
+
+
+{% block content %}
+{% if error %}
+    <p>{{error}}</p>
+{% endif %}
+<p class="auth-switch">
+    Already have an account?
+    <a href="{% url 'login' %}">Login here</a>
+</p>
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Enter username" value="{{username}}" required>
+    <input type="password" name="password" id = "password"placeholder="Enter Password" required>
+    <input type="password" name="password_confirm" id="password_confirm" placeholder="Confirm password" required>
+    <button type="button" onclick="togglePasswords()">Show Passwords</button>
+    <input type="email" name="email" placeholder="Enter email" value="{{email}}">
+    <button type="submit">Register</button>
+</form>
+<script>
+    function togglePasswords() {
+        const password = document.getElementById("password")
+        const passwordConfirm = document.getElementById("password_confirm")
+
+        if (password.type === ("password")) {
+            password.type = "text";
+            passwordConfirm.type = "text";
+        } else {
+            password.type = "password";
+            passwordConfirm.type = 'password';
+        }
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{user.username}} posts{% endblock %}
+
+{% block content %}
+
+    <h2>{{user.username}} has {{posts.count}}</h2>
+    {% for post in posts %}
+        <article>
+            <h3>Title: {{post.title}}</h3>
+            <p>Post ID: {{post.id}}</p>
+            <p>Content: {{post.content}}</p>
+            {% if post.published %}
+                <p>Post is Published</p>
+            {% else %}
+                <p>Post is Not published yet.</p>
+            {% endif %}
+            <a href="{% url 'post_edit' post.id %}">Edit post</a>
+        </article>
+    {% empty %}
+        <p>No posts yet.</p>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Create Post{% endblock %}
+
+{% block content %}
+
+    <h2>Create Post</h2>
+    {% if error %}
+        <p>{{error}}</p>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Title" value="{% if post %}{{post.title}}{% endif %}" required>
+        <textarea name="content" placeholder="Content" required>{% if post %}{{post.content}}{% endif %}</textarea>
+        <label>
+            <input type="checkbox" name="published" {% if not post or post.published %}checked{% endif %}>
+            Published
+        </label>
+        <button type="submit">Create</button>
+    </form>
+
+
+{% endblock %}

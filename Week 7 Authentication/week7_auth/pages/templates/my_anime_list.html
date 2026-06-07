@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}My Animes{% endblock %}
+
+{% block content %}
+
+    <h2>My Animes</h2>
+    {% for item in user_animes %}
+        <h3>{{item.anime.name}}</h3>
+        <p>Watched: {{item.is_watched}}</p>
+        <p>Added: {{item.addet_at}}</p>
+    {% empty %}
+        <p>Your list is empty.</p>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <section class="preview">
+        <h2>Home</h2>
+        <p>Welcome to week 7 leanring proccess.</p>
+    </section>
+    <section class="main_content">
+        <h3>Users</h3>
+        {% if user.is_authenticated %}
+            <p>Welcome {{user.username}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>{{user.first_name}}</p>
+        {% else %}
+            <p>Welcome Guest</p>
+            <p>Please login.</p>
+        {% endif %}
+        <p><strong>Current User: </strong>{{user}}</p>
+        <p><strong>Authenticated: </strong>{{user.is_authenticated}}</p>
+    </section>
+    {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'easy_logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'easy_login' %}">Login</a>
+    {% endif %}
+
+
+{% endblock %}

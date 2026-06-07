@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{user.username}} posts
+{% endblock %}
+
+{% block content %}
+
+    <section class="page_s">
+        <h2>{{user.username}} Posts</h2>
+        <p>Welcome to your posts mr. {{user.username}}</p>
+    </section>
+    <section class="page_c">
+        <a href="{% url 'post_create' %}">Create New Post</a>
+        {% for post in posts %}
+            <article>
+                <h3>Title: {{post.title}}</h3>
+                <p>Content: {{post.content}}</p>
+                {% if post.published %}
+                    <p>Published Post</p>
+                {% else %}
+                    <p>Not Published Post yet.</p>
+                {% endif %}
+                <p>Created ON: {{post.created_at}}</p>
+                <a href="{% url 'post_edit' post.id %}">Edit</a>
+                <a href="{% url 'post_delete' post.id %}">Delete</a>
+            </article>
+        {% empty %}
+            <p>No posts yet.</p>
+        {% endfor %}
+    </section>
+
+{% endblock %}

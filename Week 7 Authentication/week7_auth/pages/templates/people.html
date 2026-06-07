@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}People{% endblock %}
+
+{% block content %}
+    <h2>People</h2>
+    {% for user in users %}
+        <div class="user-card">
+                <h3>{{user.username}}</h3>
+                <p><strong>User ID:</strong> {{user.id}}</p>
+                <p><strong>Email:</strong> {{user.email}}</p>
+                <p><strong>Staff:</strong> {{user.is_staff}}</p>
+                <p><strong>Superuser:</strong> {{user.is_superuser}}</p>
+                <p><strong>Date Joined:</strong> {{user.date_joined}}</p>
+                <p><strong>Last Login:</strong> {{user.last_login}}</p>
+            </div>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Animes{% endblock %}
+
+
+{% block content %}
+
+    <h2>Animes</h2>
+    {% for anime in animes %}
+        <p>{{anime.name}}</p>
+        {% if user.is_authenticated %}
+            {% if anime.id in user_anime_ids %}
+                <button disabled>
+                    Already Added
+                </button>
+            {% else %}
+                <form method="POST" action="{% url 'add_anime' anime.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Add to my list</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

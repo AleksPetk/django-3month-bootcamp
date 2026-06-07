@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <section class="dashboard-page">
+        <h2>User Dashboard</h2>
+        <p><strong>Role:</strong> {{role}}</p>
+        <p>Session Key: {{request.session.session_key}}</p>
+        {% if user.is_superuser %}
+            <p>Registreted Users: {{users_count}}</p>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <div class="user-card">
+                <h3>{{user.username}}</h3>
+                <p><strong>User ID:</strong> {{user.id}}</p>
+                <p><strong>Email:</strong> {{user.email}}</p>
+                <p><strong>Staff:</strong> {{user.is_staff}}</p>
+                <p><strong>Superuser:</strong> {{user.is_superuser}}</p>
+                <p><strong>Date Joined:</strong> {{user.date_joined}}</p>
+                <p><strong>Last Login:</strong> {{user.last_login}}</p>
+            </div>
+            {% if user.is_superuser %}
+                <div class="role-box admin-role">
+                    <h4>Superuser Area</h4>
+                    <p>You have full system access.</p>
+                </div>
+            {% elif user.is_staff %}
+                <div class="role-box staff-role">
+                    <h4>Staff Area</h4>
+                    <p>You can access admin-related tools.</p>
+                </div>
+            {% else %}
+                <div class="role-box normal-role">
+                    <h4>Normal User Area</h4>
+                    <p>You have a regular account.</p>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="guest-card">
+                <h3>You are not logged in.</h3>
+                <p>Login through admin for now, then come back here</p>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

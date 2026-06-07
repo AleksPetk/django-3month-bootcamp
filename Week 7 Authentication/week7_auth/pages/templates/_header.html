@@ -1,0 +1,29 @@
+<header>
+    <h1>Week_7_Learn</h1>
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
+        <a href="{% url 'posts' %}">Posts</a>
+        {% if user.is_authenticated %}
+            {% if user.animeaccess_set.exists %}
+                <a href="{% url 'animes' %}">Animes</a>
+            {% endif %}
+            {% if can_access_movie %}
+                <a href="{% url 'movies' %}">Movies</a>
+            {% endif %}
+            <a href="{% url 'my_anime_list' %}">My Animes</a>
+            <a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active_link{% endif %}">Dashboard</a>
+            {% if user.is_staff %}
+                <a href="{% url 'staff_room' %}" class="{% if request.resolver_match.url_name == 'staff_room' %}active_link{% endif %}">Staff Room</a>
+            {% endif %}
+            {% if user.is_superuser %}
+                <a href="{% url 'people' %}">People</a>
+            {% endif %}
+            {% include '_logout.html' %}
+            <span class="nav-user">Hi, {{user.username}}</span>
+        {% else %}
+            <a href="{% url 'login' %}" class="{% if request.resolver_match.url_name == 'login' %}active_link{% endif %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+            <span class="nav-user">Guest</span>
+        {% endif %}
+    </nav>
+</header>
