@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Create Task{% endblock %}
+
+{% block content %}
+    <section class="page_h">
+        <h2>Create New Task</h2>
+        <p>Hello {{user.username}}</p>
+    </section>
+    <section class="page_c">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">
+                {% if task %}
+                    Edit
+                {% else %}
+                    Create
+                {% endif %}
+            </button>
+        </form>
+    </section>
+{% endblock %}

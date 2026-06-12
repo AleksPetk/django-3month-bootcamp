@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+
+    <section class="page_h">
+        <h2>Events</h2>
+        <p>All Active Events: {{events.count}} notes</p>
+        <p>Want to create new one? <a href="{% url 'event_create' %}">Click</a></p>
+    </section>
+    <section class="page_c">
+        {% for event in events %}
+            <article>
+                <h3>Event Title: {{event.title}}</h3>
+                <span>Event ID: {{event.id}}</span>
+                <p>Event Description: {{event.description}}</p>
+                <p>Start Date: <strong>{{event.start_date}}</strong></p>
+                <p>End Date: <strong>{{event.end_date}}</strong></p>
+                <p>Capacity: {{event.max_people}}</p>
+                <span>Created at {{event.created_at}}</span>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'event_edit' event.id %}">Edit</a>
+                    <a href="{% url 'event_delete' event.id %}">Delete</a>
+                {% else %}
+                    <p>Login to Edit -> <a href="{% url 'event_edit' event.id %}">Click</a></p>
+                {% endif %}
+            </article>
+        {% empty %}
+            <p>There isn't any post yet.</p>
+        {% endfor %}
+    </section>
+
+{% endblock %}

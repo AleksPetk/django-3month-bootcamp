@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks{% endblock %}
+
+
+{% block content %}
+
+    <section class="page_h">
+        <h2>Tasks</h2>
+        <p>Check all tasks: {{tasks.count}} tasks to do</p>
+    </section>
+    <section class="page_c">
+        {% for task in tasks %}
+            <article>
+                <h3>Title: {{task.title}}</h3>
+                <p>Description: {{task.description}}</p>
+                <p>Priority: {{task.priority}}</p>
+                <p><strong>Owner: </strong>{{task.owner}}</p>
+                <p>Created at {{task.created_at}}</p>
+                {% if user.is_authenticated and task.owner_id == user.id %}
+                    <a href="{% url 'task_edit' task.id %}">Edit</a>
+                    <a href="{% url 'task_delete' task.id %}">Delete</a>
+                {% endif %}
+            </article>
+        {% empty %}
+            <p>No tasks yet.</p>
+        {% endfor %}
+    </section>
+
+
+
+{% endblock %}

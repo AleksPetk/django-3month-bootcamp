@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Create Event{% endblock %}
+
+{% block content %}
+    <section class="page_h">
+        <h2>Create New Event</h2>
+        <p>Hello {{user.username}}</p>
+    </section>
+    <section class="page_c">
+        <form method="POST">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="form-arrors">
+                    {{form.non_field_errors}}
+                </div>
+            {% endif %}
+            {{form.as_p}}
+            <button type="submit">
+                {% if event %}
+                    Edit
+                {% else %}
+                    Create
+                {% endif %}
+            </button>
+        </form>
+    </section>
+{% endblock %}

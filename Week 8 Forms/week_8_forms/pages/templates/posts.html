@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+
+    <section class="page_h">
+        <h2>Notes</h2>
+        <p>All Published Posts: {{posts.count}} notes</p>
+        <p>Want to create new one? <a href="{% url 'post_create' %}">Click</a></p>
+    </section>
+    <section class="page_c">
+        {% for post in posts %}
+            <article>
+                <h3>Post Title: {{post.title}}</h3>
+                <span>Post ID: {{post.id}}</span>
+                <p>Post Content: {{post.content}}</p>
+                <h4>Post Author: {{post.author.username}}</h4>
+                <p>Post Created On: {{post.created_at}}</p>
+            </article>
+        {% empty %}
+            <p>There isn't any post yet.</p>
+        {% endfor %}
+    </section>
+
+{% endblock %}

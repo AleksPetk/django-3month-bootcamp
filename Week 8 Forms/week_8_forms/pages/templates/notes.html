@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Notes{% endblock %}
+
+{% block content %}
+
+    <section class="page_h">
+        <h2>Notes</h2>
+        <p>All Notes: {{notes.count}} notes</p>
+        <p>Want to create new one? <a href="{% url 'note_create' %}">Click</a></p>
+    </section>
+    <section class="page_c">
+        {% for note in notes %}
+            <article>
+                <h3>Note Title: {{note.title}}</h3>
+                <span>Note ID: {{note.id}}</span>
+                <p>Note Content: {{note.content}}</p>
+                <h4>Note Author: {{note.author.username}}</h4>
+            </article>
+        {% empty %}
+            <p>There isn't any notes yet.</p>
+        {% endfor %}
+    </section>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block title %}Create Note{% endblock %} 
+
+{% block content %}
+
+    <section class="page_h">
+        <h2>Create Note</h2>
+        <p>Make one more note.</p>
+    </section>
+    <section class="page_c">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="field-errors">
+                {{form.non_field_errors}}
+            </div>
+            {{form.title.label_tag}}
+            {{form.title}}
+            <p class="help-text">{{form.help_text}}</p>
+            <div class="field-errors">
+                {{form.title.errors}}
+            </div>
+            {{form.content.label_tag}}
+            {{form.content}}
+            <p class="help-text">{{form.content.help_text}}</p>
+            <div class="field-errors">
+                {{form.content.errors}}
+            </div>
+            {{form.is_public}}
+            <button type="submit">
+                Create
+            </button>
+        </form>
+    </section>
+
+
+{% endblock %}

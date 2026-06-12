@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Create Post{% endblock %}
+
+{% block content %}
+    <section class="page_h">
+        <h2>Create New Post</h2>
+        <p>Hello {{user.username}}</p>
+    </section>
+    <section class="page_c">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">
+                {% if post %}
+                    Edit
+                {% else %}
+                    Create
+                {% endif %}
+            </button>
+            <a href="{% url 'home' %}">Cancel</a>
+        </form>
+    </section>
+{% endblock %}

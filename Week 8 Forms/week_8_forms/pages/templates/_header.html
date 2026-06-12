@@ -1,0 +1,24 @@
+<header>
+    <h1>Week 8 Forms</h1>
+    {% if user.is_authenticated %}
+        <p>{{user.username}}</p>
+    {% else %}
+        <p>Guest</p>
+    {% endif %}
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
+        <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active_link{% endif %}">Contact</a>
+        <a href="{% url 'notes' %}" class="{% if request.resolver_match.url_name == 'notes' %}active_link{% endif %}">Notes</a>
+        <a href="{% url 'tasks' %}" class="{% if request.resolver_match.url_name == 'tasks' %}active_link{% endif %}">Tasks</a>
+        <a href="{% url 'posts' %}" class="{% if request.resolver_match.url_name == 'posts' %}active_link{% endif %}">Posts</a>
+        <a href="{% url 'events' %}" class="{% if request.resolver_match.url_name == 'events' %}active_link{% endif %}">Events</a>
+        {% if user.is_authenticated %}
+            {% include "logout.html" %}
+            <a href="{% url 'task_create' %}">Create New Task</a>
+            <a href="{% url 'categories' %}">Categories</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+</header>
