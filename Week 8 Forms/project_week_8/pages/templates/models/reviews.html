@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block content %}
+
+    <section class="page_t">
+        <h2>Reviews</h2>
+        {% if user.is_authenticated %}
+            <a href="{% url 'review_create' %}">Create New Review</a>
+        {% endif %}
+        <p>Check our reviews</p>
+    </section>
+    <section>
+        {% for review in reviews %}
+            <article>
+                <h3>{{review.title}}</h3>
+                <p>{{review.category.name}}</p>
+                <p>{{review.content}}</p>
+                <p>{{review.author.username}}</p>
+                <p>{{review.rating}}</p>
+                <span>Created_at: {{review.created_at}}</span>
+                <span>Updated on: {{review.updated_at}}</span>
+                {% if review.author_id == user.id %}
+                    <a href="{% url 'review_edit' review.id %}">Edit</a>
+                    <a href="{% url 'review_delete' review.id %}">Delete</a>
+                {% endif %}
+            </article>
+        {% empty %}
+            <p>No reviews yet.</p>
+        {% endfor %}
+    </section>
+
+{% endblock %}

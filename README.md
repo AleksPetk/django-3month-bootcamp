@@ -330,3 +330,137 @@ Key skills developed:
 * Styling authentication pages, post pages, forms, navigation, and cards with shared CSS
 
 This week marked the transition from building general database-driven Django pages into building real user-based web applications with login systems, registration, protected pages, roles, access control, and ownership permissions.
+
+## Week 8 — Django Forms
+
+In Week 8, I focused on learning Django Forms and ModelForms to handle user input in a cleaner, safer, and more maintainable way.
+
+I refactored projects that previously relied on manual request.POST.get() handling into form-driven applications using forms.py, validation methods, reusable templates, and ModelForms connected directly to database models.
+
+This week focused heavily on form validation, reusable CRUD architecture, user registration forms, and separating responsibilities between forms, views, and models.
+
+Key skills developed:
+
+* Understanding the role of forms.py in Django applications
+* Understanding the difference between:
+    * forms.Form
+    * forms.ModelForm
+* Building forms using:
+    * forms.CharField
+    * forms.EmailField
+    * forms.IntegerField
+    * forms.BooleanField
+    * forms.PasswordInput
+    * forms.Textarea
+    * forms.TextInput
+    * forms.Select
+    * forms.NumberInput
+    * forms.CheckboxInput
+* Understanding widgets and how they control HTML display
+* Adding widget attributes such as:
+    * class
+    * placeholder
+    * rows
+    * min
+    * max
+    * type=“date”
+* Connecting forms directly to models using ModelForm
+* Understanding ModelForm Meta configuration:
+    * model
+    * fields
+    * labels
+    * help_texts
+    * widgets
+* Understanding why fields is usually safer than exclude
+* Understanding why fields = “all” can be risky in user-facing forms
+* Processing form submissions with:
+    * request.POST
+    * form.is_valid()
+    * form.cleaned_data
+* Understanding the difference between:
+    * raw POST data
+    * validated cleaned_data
+* Understanding the validation lifecycle:
+    * built-in field validation
+    * clean_()
+    * clean()
+    * forms.ValidationError
+    * self.add_error()
+* Implementing field-level validation with clean_(), including:
+    * minimum length checks
+    * maximum length checks
+    * bad word filtering
+    * password length validation
+    * rating validation
+    * description length validation
+* Implementing form-level validation with clean(), including:
+    * password confirmation
+    * username/password similarity checks
+    * start date and end date comparison
+    * title/content relationship checks
+    * name/description relationship checks
+    * recommendation rules based on rating
+* Understanding when to use:
+    * clean_() for single-field validation
+    * clean() for multi-field validation
+    * self.add_error() to attach multi-field errors to a specific field
+* Transforming cleaned data using:
+    * strip()
+    * title()
+    * lower()
+* Saving ModelForms using:
+    * form.save()
+    * form.save(commit=False)
+* Understanding commit=False as a way to create a model object without saving immediately
+* Assigning protected fields in views, such as:
+    * author = request.user
+    * owner = request.user
+* Understanding that request belongs to views, not forms, unless explicitly passed
+* Editing existing objects using:
+    * instance=object
+* Understanding the difference between:
+    * no instance = create new object
+    * instance=object = edit existing object
+* Overriding save() inside forms
+* Building a custom user registration ModelForm
+* Adding password confirmation as a form-only field
+* Hashing user passwords correctly with:
+    * set_password()
+* Auto-logging users in after registration
+* Understanding why passwords should not be saved directly with plain form.save()
+* Using ForeignKey fields inside ModelForms
+* Understanding that ForeignKey fields automatically become dropdown select fields
+* Understanding why str() matters for dropdown display
+* Building reusable templates:
+    * form_page.html
+    * delete_form.html
+* Passing reusable context variables such as:
+    * form
+    * page_title
+    * button_text
+    * cancel_url
+    * object
+    * page_title_name
+* Reusing one form template across create and edit pages
+* Reusing one delete confirmation template across different models
+* Building complete ModelForm CRUD systems, including:
+    * Task CRUD
+    * Event CRUD
+    * Category CRUD
+    * Review CRUD
+* Building a Mini Review Board project with:
+    * public reviews
+    * categories
+    * review creation
+    * review editing
+    * review deletion
+    * user registration
+    * owner-based permissions
+* Using @login_required to protect form pages
+* Checking ownership in views before edit/delete actions
+* Using request.user.is_superuser for restricted category management
+* Using POST-only confirmation for delete actions
+* Using select_related() to optimize ForeignKey queries in review lists
+* Styling form-driven pages with reusable CSS and shared templates
+
+This week marked the transition from manually handling user input with request.POST.get() to building professional Django applications using forms, validation, reusable templates, and ModelForms that keep validation logic, user input rules, view flow, and database saving properly separated.

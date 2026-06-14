@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+
+    <section class="page_t">
+        <h2>Categories</h2>
+        {% if user.is_superuser %}
+            <a href="{% url 'category_create' %}">Create New Cateogry</a>
+        {% endif %}
+        <p>Check our categories</p>
+    </section>
+    <section>
+        {% for category in categories %}
+            <article>
+                <h3>{{category.name}}</h3>
+                <p>{{category.description}}</p>
+                <span>Created_at: {{category.created_at}}</span>
+                {% if user.is_superuser %}
+                    <a href="{% url 'category_edit' category.id %}">Edit</a>
+                    <a href="{% url 'category_delete' category.id %}">Delete</a>
+                {% endif %}
+            </article>
+        {% empty %}
+            <p>No categories yet.</p>
+        {% endfor %}
+    </section>
+
+{% endblock %}

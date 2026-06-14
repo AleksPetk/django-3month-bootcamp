@@ -1,0 +1,19 @@
+<header>
+    <h1>Project Week 8</h1>
+    {% if user.is_authenticated %}
+        <p>{{user.username}}</p>
+    {% else %}
+        <p>Guest</p>
+    {% endif %}
+    <nav>
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active_link{% endif %}">Home</a>
+        <a href="{% url 'reviews' %}" class="{% if request.resolver_match.url_name == 'reviews' %}active_link{% endif %}">Reviews</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'categories' %}" class="{% if request.resolver_match.url_name == 'categories' %}active_link{% endif %}">Categories</a>
+            {% include "login/_logout.html" %}
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+</header>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+
+    <section class="page_t">
+        <h2>{{page_title}}</h2>
+    </section>
+    <section>
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">{{button_text}}</button>
+            <a href="{% url cancel_url %}">Cancel</a>
+        </form>
+    </section>
+
+{% endblock %}
