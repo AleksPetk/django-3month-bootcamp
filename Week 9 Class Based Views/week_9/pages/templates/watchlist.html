@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+
+    <h2>{{page_title}}</h2>
+
+    <a href="{% url 'watchlist_create' %}">Add Movie to Watchlist</a>
+
+    {% for item in items %}
+        <article>
+            <h3>{{item.movie.title}}</h3>
+            <p>Priority: {{item.priority}}</p>
+
+            {% if item.note %}
+                <p>{{item.note}}</p>
+            {% else %}
+                <p>No note.</p>
+            {% endif %}
+
+            <span>Added: {{item.created_at}}</span>
+            <a href="{% url 'watchlist_edit' item.id %}">Edit</a>
+            <a href="{% url 'watchlist_delete' item.id %}">Delete</a>
+        </article>
+    {% empty %}
+        <p>Your watchlist is empty.</p>
+    {% endfor %}
+
+{% endblock %}

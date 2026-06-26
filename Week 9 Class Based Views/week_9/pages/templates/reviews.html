@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+
+{% block content %}
+    <h2>{{page_title}}</h2>
+    <p>Recommended Reviews: {{count_rev}}</p>
+    {% if request.resolver_match.url_name == "reviews" %}
+        <a href="{% url 'reviews_all' %}">Check all</a>
+    {% endif %}
+    {% for review in reviews %}
+        <article>
+            <h3>{{review.title}}</h3>
+            <p>{{review.content}}</p>
+            <p>{{review.rating}}</p>
+            <span>{{review.created_at}}</span>
+            <a href="{% url 'review_detail' review.id %}">Read Deatails</a>
+        </article>
+    {% empty %}
+        <p>No reviews yet.</p>
+    {% endfor %}
+    {% if is_paginated %}
+        <div>
+            {% if page_obj.has_previous %}
+                <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+            {% endif %}
+            <span>
+                Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+            </span>
+            {% if page_obj.has_next %}
+                <a href="?page={{page_obj.next_page_number}}">Next</a>
+            {% endif %}
+        </div>
+    {% endif %}
+
+
+{% endblock %}

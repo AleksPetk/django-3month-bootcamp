@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <p class="hero-tag">Week 9 Django Practice</p>
+    <h2>Movie Library & Review Board</h2>
+    <p>
+        Practice project for Class-Based Views, DetailView, ListView,
+        pagination, forms, and ownership rules.
+    </p>
+
+    <div class="hero-actions">
+        <a href="{% url 'reviews' %}">Recommended Reviews</a>
+        <a href="{% url 'movies' %}">Movie Library</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'movie_create' %}">Add Movie</a>
+        {% else %}
+            <a href="{% url 'register' %}">Create Account</a>
+        {% endif %}
+    </div>
+</section>
+
+<section class="home-grid">
+    <article>
+        <h3>Reviews</h3>
+        <p>Browse recommended reviews and open detail pages.</p>
+    </article>
+
+    <article>
+        <h3>Movies</h3>
+        <p>Add movies, edit your own movies, and manage watched items.</p>
+    </article>
+
+    <article>
+        <h3>CBV Training</h3>
+        <p>Convert function-based views into ListView, DetailView, CreateView, UpdateView, and DeleteView.</p>
+    </article>
+</section>
+
+{% endblock %}

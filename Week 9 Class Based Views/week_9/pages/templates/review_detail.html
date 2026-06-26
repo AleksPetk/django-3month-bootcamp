@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{review.title}}{% endblock %}
+
+{% block content %}
+
+    <h2>{{review.title}}</h2>
+    <p>{{review.content}}</p>
+    <p>Rating: {{review.rating}}</p>
+    <p>Recommended: 
+        {% if review.recommended %}
+        Yes
+        {% else %}
+        No
+        {% endif %}
+    </p>
+    <p>Created: {{review.created_at}}</p>
+
+{% endblock %}

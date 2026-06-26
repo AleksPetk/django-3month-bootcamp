@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Movies{% endblock %}
+
+{% block content %}
+    <h2>Movies</h2>
+    {% for movie in movies %}
+        <article>
+            <h3>{{movie.title}}</h3>
+            <p>{{movie.description}}</p>
+            <p>{{movie.added_user.username}}</p>
+            <p>{{movie.year}}</p>
+            <p>{{movie.rating}}</p>
+            <span>{{movie.created_at}}</span>
+            <a href="{% url 'movie_details' movie.id %}">Details</a>
+            {% if user == movie.added_user %}
+                <a href="{% url 'movie_edit' movie.id %}">Edit</a>
+            {% endif %}
+            {% if user == movie.added_user or user.is_superuser %}
+                <a href="{% url 'movie_delete' movie.id %}">Delete</a>
+            {% endif %}
+        </article>
+    {% empty %}
+        <p>No movies yet.</p>
+    {% endfor %}
+    {% if is_paginated %}
+        <div>
+            {% if page_obj.has_previous %}
+                <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+            {% endif %}
+            <span>
+                Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+            </span>
+            {% if page_obj.has_next %}
+                <a href="?page={{page_obj.next_page_number}}">Next</a>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'movie_create' %}">Add New Movie</a>
+    {% endif %}
+{% endblock %}
