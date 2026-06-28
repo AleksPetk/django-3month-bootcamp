@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+    <h2>{{page_title}}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <h3>{{object.title}}</h3>
+        <p>{{object.description}}</p>
+        <p>Are you sure you want to delete?</p>
+        <button type="submit">Delete</button>
+        <a href="{% url cancel_url %}">Cancel</a>
+    </form>
+{% endblock %}

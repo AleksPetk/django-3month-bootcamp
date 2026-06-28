@@ -184,6 +184,7 @@ class MovieUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if not self.request.user.is_authenticated:
             return redirect("login")
         return redirect("movies")
+    
 
     """def dispatch(self, request, *args, **kwargs):
         movie = get_object_or_404(Movie, pk=kwargs["pk"])

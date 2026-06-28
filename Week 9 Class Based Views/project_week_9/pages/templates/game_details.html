@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+    <h3>Title: {{game.title}}</h3>
+    <p>Description: {{game.description}}</p>
+    <p>Owner: {{game.owner.username}}</p>
+    <p>Platform: {{game.platform}}</p>
+    <p>Rating: {{game.rating}}</p>
+    <p>Status: {{game.status}}</p>
+    <p>Hours: {{game.hours_played}}</p>
+    <span>Updated: {{game.updated_at}}</span>
+    <span>Created: {{game.created_at}}</span>
+
+{% endblock %}

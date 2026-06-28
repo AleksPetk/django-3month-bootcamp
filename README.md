@@ -464,3 +464,77 @@ Key skills developed:
 * Styling form-driven pages with reusable CSS and shared templates
 
 This week marked the transition from manually handling user input with request.POST.get() to building professional Django applications using forms, validation, reusable templates, and ModelForms that keep validation logic, user input rules, view flow, and database saving properly separated.
+
+## Week 9 — Class-Based Views
+
+In Week 9, I focused on learning Django Class-Based Views and how common CRUD patterns can be built using Django’s generic views.
+
+I converted Function-Based Views into Class-Based Views, built user-owned CRUD features, and practiced using built-in CBV hooks to control querysets, forms, permissions, redirects, and template context.
+
+This week focused heavily on understanding how Django organizes repeated view logic through generic views, while also learning when Function-Based Views may still be clearer for custom logic.
+
+Key skills developed:
+
+* Understanding the difference between Function-Based Views and Class-Based Views
+* Using Django generic views:
+    * ListView
+    * DetailView
+    * CreateView
+    * UpdateView
+    * DeleteView
+* Understanding how .as_view() connects CBVs to urls.py
+* Understanding Django’s pk convention for object URLs
+* Using ListView to display multiple objects
+* Customizing ListView with:
+    * model
+    * template_name
+    * context_object_name
+    * paginate_by
+    * get_queryset()
+    * get_context_data()
+* Adding pagination with:
+    * page_obj
+    * paginator
+    * is_paginated
+* Using DetailView to display one object
+* Understanding how DetailView replaces get_object_or_404()
+* Using CreateView to create database objects
+* Using UpdateView to edit existing database objects
+* Using DeleteView to delete objects through confirmation pages
+* Understanding which CBVs need form_class and which do not
+* Using reverse_lazy() for CBV redirects
+* Using form_valid() to add protected fields before saving, such as:
+    * owner = request.user
+    * user = request.user
+* Understanding the CBV version of form.save(commit=False)
+* Using get_success_url() for dynamic redirects after saving
+* Using get_queryset() for ownership-based access control
+* Comparing permission patterns:
+    * get_queryset()
+    * dispatch()
+    * UserPassesTestMixin
+    * test_func()
+    * handle_no_permission()
+* Using LoginRequiredMixin instead of @login_required for CBVs
+* Passing custom data from views to forms using get_form_kwargs()
+* Using custom form init() methods with kwargs.pop()
+* Filtering ForeignKey dropdowns based on the logged-in user
+* Reusing one ModelForm for both create and update behavior
+* Understanding self.instance in ModelForms during create vs update
+* Preventing duplicate records using:
+    * UniqueConstraint
+    * filtered form querysets
+* Building reusable form and delete templates with CBVs
+* Building complete CBV-based features, including:
+    * Movie CRUD
+    * Watchlist CRUD
+    * Game Backlog project
+* Understanding when CBVs reduce repeated CRUD code
+* Understanding when FBVs may be clearer for custom logic
+* Thinking about views by feature rather than putting everything into one large file
+* Understanding when to split views.py into feature-based files such as:
+    * content_views.py
+    * review_views.py
+    * account_views.py
+
+This week marked the transition from writing manual view logic with Function-Based Views to using Django’s generic Class-Based Views for reusable CRUD architecture, ownership-based access control, cleaner form handling, and more structured backend development.

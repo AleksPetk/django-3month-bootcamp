@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Games{% endblock %}
+
+{% block content %}
+    <h2>Games</h2>
+    {% for game in games %}
+        <article>
+            <h3>Title: {{game.title}}</h3>
+            <p>Owner: {{game.owner.username}}</p>
+            <p>Platform: {{game.platform}}</p>
+            <p>Rating: {{game.rating}}</p>
+            <p>Status: {{game.status}}</p>
+            <p>Hours: {{game.hours_played}}</p>
+            <span>Created: {{game.created_at}}</span>
+            <a href="{% url 'game_details' game.id %}">Check Out</a>
+            {% if user.id == game.owner.id %}
+                <a href="{% url 'game_edit' game.id %}">Edit</a>
+            {% endif %}
+            {% if user.id == game.owner.id or user.is_superuser %}
+                <a href="{% url 'game_delete' game.id %}">Delete</a>
+            {% endif %}
+        </article>
+    {% empty %}
+        <p>No movies yet.</p>
+    {% endfor %}
+    {% if is_paginated %}
+        <div>
+            {% if page_obj.has_previous %}
+                <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+            {% endif %}
+            <span>
+                Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+            </span>
+            {% if page_obj.has_next %}
+                <a href="?page={{page_obj.next_page_number}}">Next</a>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'game_create' %}">Add New Game</a>
+    {% endif %}
+{% endblock %}
