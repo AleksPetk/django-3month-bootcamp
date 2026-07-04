@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+    <h2>{{page_title}}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete this post?</p>
+        <h3>{{object.title}}</h3>
+        {% if object.cover_image %}
+            <img 
+                src="{{object.cover_image.url}}"
+                alt="{{object.title}}"
+                class="blog-image"
+            >
+        {% endif %}
+        <button title="submit">Delete</button>
+        <a href="{% url cancel_url %}">Cancel</a>
+    </form>
+
+
+{% endblock %}

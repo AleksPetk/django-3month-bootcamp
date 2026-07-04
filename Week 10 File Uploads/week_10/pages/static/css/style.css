@@ -1,0 +1,240 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+header,
+footer {
+    background: #111827;
+    color: white;
+    padding: 18px 40px;
+}
+nav {
+    display: flex;
+    justify-content:left;
+}
+header a {
+    color: white;
+    text-decoration: none;
+    margin-right: 18px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.logout_b {
+    border: none;
+    color: rgb(88, 236, 255);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    background: none;
+}
+.logout_b:hover {
+    cursor: pointer;
+    color: #60a5fa;
+}
+
+header a:hover {
+    color: #60a5fa;
+}
+
+main {
+    max-width: 1050px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-size: 34px;
+    margin-bottom: 24px;
+    color: #111827;
+}
+
+article {
+    background: white;
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+article h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #2563eb;
+}
+
+article img {
+    width: 100%;
+    max-width: 420px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    margin: 14px 0;
+}
+
+article p {
+    line-height: 1.7;
+    color: #4b5563;
+}
+
+article span {
+    display: block;
+    margin-top: 14px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 60px;
+}
+.blog-image {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 4px solid black;
+}
+.page_form {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 32px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.10);
+}
+
+.page_form p {
+    margin-bottom: 22px;
+}
+
+.page_form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.form-input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 13px 15px;
+    border: 2px solid #dbeafe;
+    border-radius: 14px;
+    background: #f8fafc;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+.form-input:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #2563eb;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 160px;
+}
+
+input[type="file"] {
+    border-style: dashed;
+    cursor: pointer;
+    background: #f0f9ff;
+}
+
+input[type="file"]:hover {
+    border-color: #2563eb;
+    background: #dbeafe;
+}
+
+.helptext {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.errorlist {
+    list-style: none;
+    padding: 12px 14px;
+    margin: 0 0 14px;
+    background: #fee2e2;
+    border-left: 5px solid #ef4444;
+    border-radius: 10px;
+    color: #991b1b;
+    font-weight: 600;
+}
+
+.page_form button,
+.page_form a {
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 12px 18px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.page_form button {
+    border: none;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    cursor: pointer;
+}
+
+.page_form button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+}
+
+.page_form a {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.page_form a:hover {
+    background: #d1d5db;
+}
+.image-preview-box {
+    margin-bottom: 24px;
+    padding: 18px;
+    margin-right: 150px;
+    height: 300px;
+    width: 300px;
+    background: #f8fafc;
+    border: 2px solid #dbeafe;
+    border-radius: 18px;
+}
+
+.image-preview-box p {
+    margin: 0 0 12px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.image-preview-box img {
+    width: 100%;
+    max-width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+
+    <h2>{{page_title}}</h2>
+    <form method="POST" enctype="multipart/form-data" class="page_form">
+        {% csrf_token %}
+        {% if current_image %}
+            <div class="image-preview-box">
+                <p>Current image</p>
+                <img src="{{current_image.url}}", alt="Current image">
+            </div>
+        {% endif %}
+        {{form.as_p}}
+        <button type="submit">{{button_name}}</button>
+    </form>
+    <a href="{% url cancel_url %}">Cancel</a>
+{% endblock %}

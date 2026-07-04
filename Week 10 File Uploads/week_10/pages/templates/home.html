@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h2>Home</h2>
+    {% for post in posts %}
+        {% if post %}
+            <h3>{{post.title}}</h3>
+            {% if post.cover_image %}
+                <p>Name: {{post.cover_image.name}}</p>
+                <p>Path: {{post.cover_image.path}}</p>
+                <p>URL: {{post.cover_image.url}}</p>
+                <a href="{{post.cover_image.url}}">Download</a>
+                <img src="{{post.cover_image.url}}"
+                alt="{{post.title}}" 
+                class="blog-image">
+
+            {% else %}
+                <p>No cover image.</p>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
