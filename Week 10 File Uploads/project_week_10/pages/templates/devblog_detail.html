@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}DevBlog {{post.title}}{% endblock %}
+
+{% block content %}
+    <h2>Dev Blog {{post.title}}</h2>
+
+        <h3>{{post.title}}</h3>
+        {% if post.cover_image %}
+            <img src="{{post.cover_image.url}}"
+                alt="{{post.title}}"
+                class="blog-image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+        <p>Content: {{post.content}}</p>
+        <p>Category: {{post.category.name}}</p>
+        <p>Author: {{post.author.username}}</p>
+        <span>Created: {{post.created_at}}</span>
+        {% if post.author_id == user.id %}
+            <a href="{% url 'devblog_edit' post.id %}">Edit</a>
+            <a href="{% url 'devblog_delete' post.id %}">Delete</a>
+        {% endif %}
+    
+
+{% endblock %}

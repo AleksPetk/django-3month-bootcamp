@@ -70,7 +70,7 @@ class BlogPostForm(forms.ModelForm):
                 "class": "form-input",
                 "accept": ".JPG, .jpeg, .png, .webp, .heic, .heif",
                 "multiple": False,
-                "reqired": False
+                "required": False
             })
         }
 

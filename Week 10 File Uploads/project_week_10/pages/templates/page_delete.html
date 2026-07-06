@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{page_title}}{% endblock %}
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <h2>{{object.title}}</h2>
+        <p>{{object.content|truncatewords:15}}</p>
+        {% if object.cover_image %}
+            <div class="image-preview-box">
+                <p>Current Image</p>
+                <img src="{{ object.cover_image.url}}" alt="Current image" width="200">
+            </div>
+        {% endif %}
+        <p>Are you sure you want to delete it?</p>
+
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url cancel_url %}">Cancel</a>
+
+{% endblock %}

@@ -538,3 +538,75 @@ Key skills developed:
     * account_views.py
 
 This week marked the transition from writing manual view logic with Function-Based Views to using Django’s generic Class-Based Views for reusable CRUD architecture, ownership-based access control, cleaner form handling, and more structured backend development.
+
+## Week 10 — File Uploads
+
+In Week 10, I focused on learning how Django handles uploaded files and images.
+
+I built upload-enabled blog systems where users can create, display, update, replace, clear, and delete images while keeping the media folder organized and avoiding unused files.
+
+This week focused heavily on media settings, ImageField, request.FILES, upload forms, image processing, and cleanup logic for user-uploaded content.
+
+Key skills developed:
+
+* Understanding the difference between:
+    * static files
+    * media files
+* Configuring uploaded files using:
+    * MEDIA_ROOT
+    * MEDIA_URL
+* Understanding that uploaded files are stored on disk while the database stores only the file path
+* Using upload-related model fields:
+    * FileField
+    * ImageField
+* Understanding upload_to and custom upload path functions
+* Organizing uploaded images into user-specific folders
+* Using UUID-based filenames to avoid filename conflicts
+* Installing and using Pillow for image processing
+* Supporting HEIC / HEIF images using pillow-heif
+* Building image upload forms with ModelForm
+* Using ClearableFileInput for image upload, replace, and clear behavior
+* Understanding why file upload forms require:
+    * enctype="multipart/form-data"
+* Understanding the difference between:
+    * request.POST
+    * request.FILES
+* Using CreateView and UpdateView with uploaded files
+* Displaying uploaded images in templates using:
+    * image.url
+    * image.name
+    * image.path
+    * image.size
+* Safely displaying optional images with template conditions
+* Adding image previews to edit forms using reusable context variables
+* Understanding image update behavior:
+    * keeping the old image when no new file is selected
+    * replacing the image when a new file is uploaded
+    * clearing the image with ClearableFileInput
+* Processing uploaded images with Pillow:
+    * reading image dimensions
+    * checking image format and mode
+    * resizing with thumbnail()
+    * preserving aspect ratio
+    * converting HEIC / HEIF to JPG
+    * saving optimized images
+* Understanding the difference between:
+    * resizing
+    * converting
+    * compressing
+* Understanding image modes such as:
+    * RGB
+    * RGBA
+    * P
+* Understanding why JPEG requires RGB
+* Cleaning up uploaded files by overriding:
+    * save()
+    * delete()
+* Deleting old files when images are replaced or cleared
+* Deleting image files when posts are deleted
+* Creating a custom management command to remove existing orphan files
+* Using recursive file searching with rglob()
+* Creating a .gitignore file to exclude media files, local databases, virtual environments, cache files, logs, and environment variables
+* Building a Week 10 project with image upload CRUD, media handling, image preview, cleanup logic, and basic styling
+
+This week marked the transition from handling only text-based database content to managing real user-uploaded files. I learned how Django connects uploaded files, database paths, media settings, forms, templates, image processing, and cleanup logic into one complete file upload system.
