@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    <section class="home-hero">
+        <div>
+            <p class="eyebrow">Django practice project</p>
+            <h2>Week 11 Performance and Structure</h2>
+            <p>
+                This website is a small Django app for practicing structured views,
+                reusable templates, forms, authentication, database models, and
+                optimized query patterns.
+            </p>
+        </div>
+        <div class="home-actions">
+            <a class="button-link primary" href="{% url 'post_list' %}">Browse Posts</a>
+            <a class="button-link" href="{% url 'cars' %}">View Cars</a>
+            {% if user.is_authenticated %}
+                <a class="button-link" href="{% url 'bigs' %}">Open Bigs</a>
+            {% else %}
+                <a class="button-link" href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="feature-grid">
+        <article class="feature-card">
+            <h3>Posts</h3>
+            <p>
+                Read published posts, view details, and add comments when you are logged in.
+            </p>
+        </article>
+        <article class="feature-card">
+            <h3>Cars</h3>
+            <p>
+                Browse saved cars and create new car records using a Django model form.
+            </p>
+        </article>
+        <article class="feature-card">
+            <h3>Bigs</h3>
+            <p>
+                Authenticated users can open the Bigs page and review category-linked data.
+            </p>
+        </article>
+    </section>
+
+{% endblock %}

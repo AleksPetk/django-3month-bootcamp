@@ -1,0 +1,45 @@
+<div class="ai-helper" id="ai-helper">
+    <button
+        type="button"
+        class="ai-helper-toggle"
+        id="ai-helper-toggle"
+        aria-label="Open AI Helper"
+    >
+        AI
+    </button>
+
+    <section class="ai-helper-panel" id="ai-helper-panel" aria-live="polite">
+        <div class="ai-helper-header">
+            <h2>AI Helper</h2>
+            <button
+                type="button"
+                class="ai-helper-close"
+                id="ai-helper-close"
+                aria-label="Close AI Helper"
+            >
+                Close
+            </button>
+        </div>
+
+        <div class="ai-helper-messages" id="ai-helper-messages">
+            <div class="ai-helper-message ai-helper-message-bot">
+                Ask me about posts, cars, comments, login, registration, or where to find pages.
+            </div>
+        </div>
+
+        <form
+            class="ai-helper-form"
+            id="ai-helper-form"
+            data-url="{% url 'ai_helper_ask' %}"
+        >
+            {% csrf_token %}
+            <input
+                type="text"
+                id="ai-helper-input"
+                placeholder="Ask about this website..."
+                autocomplete="off"
+            >
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</div>

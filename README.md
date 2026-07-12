@@ -1,4 +1,6 @@
-01"
+## ALL WEEKS DJANGO README EXPLANATION
+
+
 ## Week 1 — Django Foundations
 
 In Week 1, I focused on learning the fundamentals of Django and how a web application is structured.
@@ -35,6 +37,7 @@ Key skills developed:
 
 This week introduced real backend interaction, focusing on how user input is processed and how dynamic applications behave in practice.
 
+
 ## Week 3 — Models, Migrations & ORM
 
 In Week 3, I transitioned from temporary data storage into real database-driven development using Django models and ORM.
@@ -61,6 +64,7 @@ Key skills developed:
 * Reusable templates with {% include %}
 
 This week marked the shift from learning Django syntax to building real backend applications powered by structured data and database logic.
+
 
 ## Week 4 — Full CRUD Applications
 
@@ -101,6 +105,7 @@ Key skills developed:
 * Structuring reusable queryset logic appropriately without over-engineering
 
 This week marked the transition from simple database-driven pages into real-world Django application architecture and interactive backend development.
+
 
 ## Week 5 — Advanced ORM
 
@@ -180,6 +185,7 @@ Key skills developed:
 
 This week marked the transition from simply accessing database records to controlling, analyzing, filtering, and optimizing data like a real backend application.
 
+
 ## Week 6 — Relationships
 
 In Week 6, I focused on understanding how Django models connect together and how to build relationship-driven applications.
@@ -223,6 +229,7 @@ Key skills developed:
     * ranking/dashboard pages
 
 This week marked the transition from working with separate database tables to building connected backend systems where models interact through clear relationships and optimized queries.
+
 
 ## Week 7 — Authentication
 
@@ -330,6 +337,7 @@ Key skills developed:
 * Styling authentication pages, post pages, forms, navigation, and cards with shared CSS
 
 This week marked the transition from building general database-driven Django pages into building real user-based web applications with login systems, registration, protected pages, roles, access control, and ownership permissions.
+
 
 ## Week 8 — Django Forms
 
@@ -465,6 +473,7 @@ Key skills developed:
 
 This week marked the transition from manually handling user input with request.POST.get() to building professional Django applications using forms, validation, reusable templates, and ModelForms that keep validation logic, user input rules, view flow, and database saving properly separated.
 
+
 ## Week 9 — Class-Based Views
 
 In Week 9, I focused on learning Django Class-Based Views and how common CRUD patterns can be built using Django’s generic views.
@@ -539,6 +548,7 @@ Key skills developed:
 
 This week marked the transition from writing manual view logic with Function-Based Views to using Django’s generic Class-Based Views for reusable CRUD architecture, ownership-based access control, cleaner form handling, and more structured backend development.
 
+
 ## Week 10 — File Uploads
 
 In Week 10, I focused on learning how Django handles uploaded files and images.
@@ -610,3 +620,64 @@ Key skills developed:
 * Building a Week 10 project with image upload CRUD, media handling, image preview, cleanup logic, and basic styling
 
 This week marked the transition from handling only text-based database content to managing real user-uploaded files. I learned how Django connects uploaded files, database paths, media settings, forms, templates, image processing, and cleanup logic into one complete file upload system.
+
+
+## Week 11 — Performance & Project Structure
+
+In Week 11, I focused on improving Django performance and organizing larger projects more clearly.
+
+I built a blog-style application with posts, categories, comments, image uploads, and an AI helper, then used it to study database query optimization, pagination, project structure, and separation of responsibilities.
+
+Key skills developed:
+
+* Understanding the N+1 query problem
+* Using Django Debug Toolbar to inspect SQL queries and execution time
+* Optimizing ForeignKey and OneToOne relationships with:
+    * select_related()
+* Optimizing reverse ForeignKey and ManyToMany relationships with:
+    * prefetch_related()
+    * Prefetch()
+    * to_attr
+* Combining prefetch_related() with nested select_related()
+* Understanding when not to use relationship preloading
+* Reviewing QuerySet performance using:
+    * exists()
+    * count()
+    * len()
+    * first()
+    * last()
+    * only()
+    * defer()
+* Understanding QuerySet lazy evaluation and caching
+* Understanding why pagination adds a COUNT query
+* Testing large QuerySets and understanding the cost of:
+    * database loading
+    * Python object creation
+    * template rendering
+    * browser DOM rendering
+* Learning why large datasets require pagination, search, and filtering
+* Splitting views into feature-based modules:
+    * post_views.py
+    * comment_views.py
+    * account_views.py
+    * other_views.py
+* Understanding Python packages and relative imports
+* Organizing URL routes by feature
+* Learning how circular imports happen and how dependency direction helps avoid them
+* Understanding the role of:
+    * utils.py
+    * services.py
+    * validators.py
+* Moving image-processing logic into a service layer
+* Creating reusable utilities for upload paths and comment response data
+* Keeping views focused on request and response handling
+* Keeping models focused on database behavior
+* Keeping forms focused on validation
+* Keeping services focused on multi-step application logic
+* Structuring settings, admin, forms, models, URLs, utilities, validators, and services consistently
+* Adding useful docstrings and comments
+* Storing API keys in .env and excluding secrets with .gitignore
+* Connecting a Django website helper to the OpenAI Responses API
+* Handling API responses, timeouts, and common error conditions
+
+This week marked the transition from building Django features that simply work to building applications that are faster, better organized, easier to understand, and more maintainable as the project grows.

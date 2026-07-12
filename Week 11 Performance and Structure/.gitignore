@@ -1,0 +1,45 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+week_11/.env
+week_11/.env.*
+!week_11/.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+
+# Django
+*.log
+db.sqlite3
+week_11/db.sqlite3
+media/
+week_11/media/
+staticfiles/
+week_11/staticfiles/
+
+# Uploaded/generated images
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.heic
+*.heif
+*.JPG
+
+# Test and coverage output
+.coverage
+.pytest_cache/
+htmlcov/
+
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/

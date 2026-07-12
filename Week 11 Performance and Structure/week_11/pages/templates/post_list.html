@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+
+    <h2>Posts</h2>
+    {% if user.is_authenticated %}
+        <a href="{% url 'post_create' %}">Create Post</a>
+    {% endif %}
+    {% for post in posts %}
+        <article class="post-card">
+            {% if post.cover_image %}
+                <img src="{{post.cover_image.url}}" alt="{{post.title}}" width="200">
+            {% endif %}
+            <h3>{{post.title}}</h3>
+            <p><strong>Author:</strong> {{post.author.username}}</p>
+            <p><strong>Category:</strong> {{post.category.name}}</p>
+            <p>{{post.created_at|date:"Y-m-d H:i"}}</p>
+            <p>{{post.content|truncatewords:150}}</p>
+            <a href="{% url 'post_detail' post.id %}">Read More</a>
+            <div class="comments-section" id="comments-section-{{post.id}}">
+                <h4>Latest Comments</h4>
+                <div class="comments-list" id="comments-list-{{post.id}}">
+                    {% for comment in post.approved_comments|slice:":3" %}
+                        <div class="comment-card" id="comment-card-{{comment.id}}">
+                            <strong>{{comment.author.username}}</strong>
+                            <span>{{comment.created_at|date:"Y-m-d H:i"}}</span>
+                            <p>{{comment.content}}</p>
+                            {% if comment.author_id == user.id %}
+                                <button
+                                    type="button"
+                                    class="comment-edit-btn"
+                                    data-url="{% url 'comment_update' comment.id %}"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    type="button"
+                                    class="comment-delete-btn"
+                                    data-url="{% url 'comment_delete' comment.id %}"
+                                    data-comment-id="{{ comment.id }}"
+                                >
+                                    Delete
+                                </button>
+                            {% endif %}
+                        </div>
+                    {% empty %}
+                        <p class="no-comments" id="no-comments-{{post.id}}">No comments yet.</p>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'post_comments' post.id %}">Show all comments</a>
+                {% if user.is_authenticated %}
+                    <form
+                        class="comment-form"
+                        data-post-id="{{post.id}}"
+                        data-url="{% url 'comment_create' post.id %}"
+                    >
+                        {% csrf_token %}
+                        {{comment_form.as_p}}
+                        <button type="submit">Add Comment</button>
+                    </form>
+                {% else %}
+                    <p>Please login to comment</p>
+                {% endif %}
+            </div>
+        </article>
+    {% empty %}
+        <p>No posts found.</p>
+    {% endfor %}
+    {% if is_paginated %}
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <a href="?page={{page_obj.next_page_number}}">Next</a>
+            {% endif %}
+            <span>Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}</span>
+        </div>
+    {% endif %}
+
+{% endblock %}

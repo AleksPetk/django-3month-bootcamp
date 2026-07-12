@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Comments{% endblock %}
+
+{% block content %}
+
+    <h2>Comments for: {{post.title}}</h2>
+    {% for comment in post.comments.all %}
+        {% if comment.is_approved %}
+            <div class="comment-card">
+                <strong>{{comment.author.username}}</strong>
+                <span>{{comment.created_at|date:"Y-m-d H:i"}}</span>
+                <p>{{comment.content}}</p>
+                {% if comment.author_id == user.id %}
+                    <button
+                        type="button"
+                        class="comment-edit-btn"
+                        data-url="{% url 'comment_update' comment.id %}"
+                    >
+                        Edit
+                    </button>
+                    <button
+                        type="button"
+                        class="comment-delete-btn"
+                        data-url="{% url 'comment_delete' comment.id %}"
+                        data-comment-id="{{ comment.id }}"
+                    >
+                        Delete
+                    </button>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+    <a href="{% url 'post_list' %}">Back to posts</a>
+
+{% endblock %}
