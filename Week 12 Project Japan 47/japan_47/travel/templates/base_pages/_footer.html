@@ -1,0 +1,17 @@
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <span class="site-footer__mark" aria-hidden="true">四十七</span>
+        <div class="site-footer__content">
+            <nav class="site-footer__links" aria-label="Legal information">
+                <a href="{% url 'travel:privacy-policy' %}">Privacy Policy</a>
+                <a href="{% url 'travel:terms-of-use' %}">Terms of Use</a>
+            </nav>
+            <p class="site-footer__text">
+                &copy; {% now "Y" %} Japan 47. All rights reserved.
+            </p>
+            <p class="site-footer__credit">
+                Japan 47 <span aria-hidden="true">×</span> Aleks Petk
+            </p>
+        </div>
+    </div>
+</footer>

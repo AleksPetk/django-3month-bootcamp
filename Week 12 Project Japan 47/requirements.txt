@@ -1,0 +1,5 @@
+Django==6.0.7
+openai==2.45.0
+Pillow==12.3.0
+pillow-heif==1.4.0
+python-dotenv==1.2.2

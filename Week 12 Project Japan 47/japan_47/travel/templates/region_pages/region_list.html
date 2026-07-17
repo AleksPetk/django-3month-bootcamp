@@ -1,0 +1,68 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}Regions of Japan{% endblock %}
+
+{% block content %}
+    <section class="regions-page">
+        <header class="regions-page__header">
+            <p class="regions-page__eyebrow">Explore Japan</p>
+            <h1 class="regions-page__title">Regions of Japan</h1>
+            <p class="regions-page__introduction">
+                Discover the character, landscapes, and prefectures of every
+                region across Japan.
+            </p>
+        </header>
+
+        {% if regions %}
+            <div class="region-grid">
+                {% for region in regions %}
+                    <article class="region-card">
+                        <a
+                            class="region-card__link"
+                            href="{% url 'travel:region-detail' region.name %}"
+                        >
+                            <div class="region-card__image-wrapper">
+                                {% if region.image %}
+                                    <img
+                                        class="region-card__image"
+                                        src="{{ region.image.url }}"
+                                        alt="{{ region.get_name_display }} region"
+                                        loading="lazy"
+                                    >
+                                {% else %}
+                                    <div class="region-card__image-placeholder">
+                                        <span>No image available</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="region-card__content">
+                                <h2 class="region-card__title">
+                                    {{ region.get_name_display }}
+                                </h2>
+                                <div class="area-rating">
+                                    <span aria-hidden="true">★</span>
+                                    {% if region.average_rating %}
+                                        {{ region.average_rating|floatformat:1 }} average rating
+                                    {% else %}
+                                        Not yet rated
+                                    {% endif %}
+                                </div>
+                                {% if region.description %}
+                                    <p class="region-card__description">
+                                        {{ region.description|truncatewords:28 }}
+                                    </p>
+                                {% endif %}
+                                <span class="region-card__action">Explore region</span>
+                            </div>
+                        </a>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="regions-page__empty">
+                <p>No regions are available yet.</p>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

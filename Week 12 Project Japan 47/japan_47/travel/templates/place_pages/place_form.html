@@ -1,0 +1,46 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}{{ form_title }}{% endblock %}
+
+{% block content %}
+    <section class="place-form-page">
+        <div class="place-form-page__introduction">
+            <a
+                class="place-form-page__back-link"
+                href="{% url 'travel:prefecture-detail' prefecture.name %}"
+            >
+                Back to {{ prefecture.name }}
+            </a>
+            <p class="place-form-page__eyebrow">{{ prefecture.name }} prefecture</p>
+            <h1 class="place-form-page__title">{{ form_title }}</h1>
+            <p class="place-form-page__text">
+                Share what makes this place special. New suggestions are reviewed
+                before they appear publicly.
+            </p>
+        </div>
+
+        <form class="place-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="place-form__errors">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="place-form__field place-form__field--{{ field.name }}">
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}{% if field.field.required %}<span aria-hidden="true"> *</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    {% if field.help_text %}<p class="place-form__help">{{ field.help_text }}</p>{% endif %}
+                    {% if field.errors %}<div class="place-form__errors">{{ field.errors }}</div>{% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="place-form__actions">
+                <button class="button button--primary" type="submit">{{ submit_label }}</button>
+                <a href="{% url 'travel:prefecture-detail' prefecture.name %}">Cancel</a>
+            </div>
+        </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}Delete {{ place.name }}{% endblock %}
+
+{% block content %}
+    <section class="place-delete-page">
+        <div class="place-delete-card">
+            <span class="place-delete-card__mark" aria-hidden="true">削</span>
+            <p class="place-delete-card__eyebrow">Permanent action</p>
+            <h1 class="place-delete-card__title">Delete {{ place.name }}?</h1>
+            <p class="place-delete-card__text">
+                This removes the place and its uploaded image permanently. This action cannot be undone.
+            </p>
+
+            <form class="place-delete-card__actions" method="post">
+                {% csrf_token %}
+                <button class="button place-delete-card__confirm" type="submit">Delete place</button>
+                <a
+                    class="button button--secondary"
+                    href="{% url 'travel:place-detail' place.prefecture.name place.slug %}"
+                >
+                    Keep place
+                </a>
+            </form>
+        </div>
+    </section>
+{% endblock %}

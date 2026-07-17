@@ -1,0 +1,272 @@
+{% extends "base_pages/base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <section class="home-hero">
+        <div class="home-hero__decoration" aria-hidden="true">桜</div>
+        <div class="home-hero__content">
+            <p class="home-hero__eyebrow">日本を旅する</p>
+            <h1 class="home-hero__title">
+                Discover Japan,<br>
+                <span>one region at a time.</span>
+            </h1>
+            <p class="home-hero__description">
+                Wander from quiet mountain towns to lantern-lit streets and
+                discover the distinct beauty of Japan's regions and prefectures.
+            </p>
+            <div class="home-hero__actions">
+                <a class="button button--primary" href="{% url 'travel:region-list' %}">
+                    Explore the regions
+                </a>
+                {% if not user.is_authenticated %}
+                    <a class="button button--secondary" href="{% url 'travel:register' %}">
+                        Join the journey
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="home-hero__visual" aria-hidden="true">
+            <div class="home-hero__sun"></div>
+            <div class="home-hero__mountain home-hero__mountain--back"></div>
+            <div class="home-hero__mountain home-hero__mountain--front"></div>
+            <span class="home-hero__petal home-hero__petal--one">✦</span>
+            <span class="home-hero__petal home-hero__petal--two">✦</span>
+            <span class="home-hero__petal home-hero__petal--three">✦</span>
+        </div>
+    </section>
+
+    <section class="home-feature-section" aria-labelledby="latest-places-heading">
+        <header class="home-feature-section__header">
+            <div>
+                <p class="home-feature-section__eyebrow">Fresh discoveries</p>
+                <h2 id="latest-places-heading">The latest places</h2>
+                <p>Three recently added destinations from the Japan 47 community.</p>
+            </div>
+            <a class="home-feature-section__link" href="{% url 'travel:place-list' %}">
+                See all places
+            </a>
+        </header>
+
+        {% if latest_places %}
+            <div class="home-latest-grid">
+                {% for place in latest_places %}
+                    <article class="home-latest-card">
+                        <a href="{% url 'travel:place-detail' place.prefecture.name place.slug %}">
+                            <div class="home-latest-card__image-wrapper">
+                                {% if place.image %}
+                                    <img src="{{ place.image.url }}" alt="{{ place.name }}" loading="lazy">
+                                {% else %}
+                                    <span class="home-latest-card__placeholder" aria-hidden="true">旅</span>
+                                {% endif %}
+                                <span class="home-latest-card__number">{{ forloop.counter|stringformat:"02d" }}</span>
+                            </div>
+                            <div class="home-latest-card__content">
+                                <p>{{ place.prefecture.name }}{% if place.city %} · {{ place.city }}{% endif %}</p>
+                                <h3>{{ place.name }}</h3>
+                                <div class="place-rating-summary">
+                                    <span class="place-rating-summary__star" aria-hidden="true">★</span>
+                                    {% if place.average_rating %}
+                                        <strong>{{ place.average_rating|floatformat:1 }}</strong>
+                                        <span>{{ place.review_count }} review{{ place.review_count|pluralize }}</span>
+                                    {% else %}
+                                        <span>Not yet rated</span>
+                                    {% endif %}
+                                </div>
+                                <time datetime="{{ place.created_at|date:'c' }}">
+                                    Added {{ place.created_at|date:"M j, Y" }}
+                                </time>
+                            </div>
+                        </a>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="home-feature-empty">
+                <span aria-hidden="true">旅</span>
+                <p>No published places have been added yet.</p>
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="home-feature-section" aria-labelledby="top-places-heading">
+        <header class="home-feature-section__header">
+            <div>
+                <p class="home-feature-section__eyebrow">Community approved</p>
+                <h2 id="top-places-heading">Top-rated places</h2>
+                <p>The destinations earning the strongest ratings from Japan 47 travelers.</p>
+            </div>
+            <a class="home-feature-section__link" href="{% url 'travel:place-list' %}?sort=rating_best">
+                See all places
+            </a>
+        </header>
+
+        {% if top_places %}
+            <div class="home-top-place-grid">
+                {% for place in top_places %}
+                    <article class="home-top-place-card">
+                        <a href="{% url 'travel:place-detail' place.prefecture.name place.slug %}">
+                            <div class="home-top-place-card__image-wrapper">
+                                {% if place.image %}
+                                    <img src="{{ place.image.url }}" alt="{{ place.name }}" loading="lazy">
+                                {% else %}
+                                    <span aria-hidden="true">旅</span>
+                                {% endif %}
+                                <strong class="home-top-place-card__rank">#{{ forloop.counter }}</strong>
+                            </div>
+                            <div class="home-top-place-card__content">
+                                <p>{{ place.prefecture.name }} · {{ place.prefecture.region.get_name_display }}</p>
+                                <h3>{{ place.name }}</h3>
+                                <div class="home-top-place-card__rating">
+                                    <strong><span aria-hidden="true">★</span> {{ place.average_rating|floatformat:1 }}</strong>
+                                    <span>{{ place.review_count }} review{{ place.review_count|pluralize }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="home-feature-empty">
+                <span aria-hidden="true">★</span>
+                <p>No places have received ratings yet.</p>
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="home-feature-section home-feature-section--prefectures" aria-labelledby="top-prefectures-heading">
+        <header class="home-feature-section__header">
+            <div>
+                <p class="home-feature-section__eyebrow">Traveler favorites</p>
+                <h2 id="top-prefectures-heading">Top-rated prefectures</h2>
+                <p>Leading destinations based on the equal-weight ratings of their places.</p>
+            </div>
+            <a class="home-feature-section__link" href="{% url 'travel:prefecture-list' %}">
+                See all prefectures
+            </a>
+        </header>
+
+        {% if top_prefectures %}
+            <div class="home-ranking-grid">
+                {% for prefecture in top_prefectures %}
+                    <a class="home-ranking-card" href="{% url 'travel:prefecture-detail' prefecture.name %}">
+                        <span class="home-ranking-card__position">{{ forloop.counter|stringformat:"02d" }}</span>
+                        <div class="home-ranking-card__image-wrapper">
+                            {% if prefecture.image %}
+                                <img src="{{ prefecture.image.url }}" alt="{{ prefecture.name }} prefecture" loading="lazy">
+                            {% else %}
+                                <span aria-hidden="true">県</span>
+                            {% endif %}
+                        </div>
+                        <div class="home-ranking-card__content">
+                            <p>{{ prefecture.region.get_name_display }} region</p>
+                            <h3>{{ prefecture.name }}</h3>
+                            <strong><span aria-hidden="true">★</span> {{ prefecture.average_rating|floatformat:1 }}</strong>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="home-feature-empty">
+                <span aria-hidden="true">県</span>
+                <p>No prefectures have received ratings yet.</p>
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="home-introduction">
+        <p class="home-introduction__eyebrow">The archipelago</p>
+        <h2 class="home-introduction__title">Forty-seven prefectures. Countless reasons to explore.</h2>
+        <p class="home-introduction__text">
+            Japan 47 is a growing guide to the places, traditions, and everyday
+            moments that make each corner of Japan unforgettable.
+        </p>
+    </section>
+
+    <section class="home-feature-section home-feature-section--regions" aria-labelledby="top-regions-heading">
+        <header class="home-feature-section__header">
+            <div>
+                <p class="home-feature-section__eyebrow">Across the archipelago</p>
+                <h2 id="top-regions-heading">Top-rated regions</h2>
+                <p>Japan's leading regions based on equal-weight prefecture ratings.</p>
+            </div>
+            <a class="home-feature-section__link" href="{% url 'travel:region-list' %}">
+                See all regions
+            </a>
+        </header>
+
+        {% if top_regions %}
+            <div class="home-ranking-grid home-ranking-grid--regions">
+                {% for region in top_regions %}
+                    <a class="home-ranking-card home-ranking-card--region" href="{% url 'travel:region-detail' region.name %}">
+                        <span class="home-ranking-card__position">{{ forloop.counter|stringformat:"02d" }}</span>
+                        <div class="home-ranking-card__image-wrapper">
+                            {% if region.image %}
+                                <img src="{{ region.image.url }}" alt="{{ region.get_name_display }} region" loading="lazy">
+                            {% else %}
+                                <span aria-hidden="true">日</span>
+                            {% endif %}
+                        </div>
+                        <div class="home-ranking-card__content">
+                            <p>Region</p>
+                            <h3>{{ region.get_name_display }}</h3>
+                            <strong><span aria-hidden="true">★</span> {{ region.average_rating|floatformat:1 }}</strong>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="home-feature-empty">
+                <span aria-hidden="true">日</span>
+                <p>No regions have received ratings yet.</p>
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="home-feature-section home-feature-section--contributors" aria-labelledby="top-contributors-heading">
+        <header class="home-feature-section__header">
+            <div>
+                <p class="home-feature-section__eyebrow">Community guides</p>
+                <h2 id="top-contributors-heading">Leading contributors</h2>
+                <p>Travelers helping Japan 47 grow through published places and thoughtful reviews.</p>
+            </div>
+        </header>
+
+        {% if top_contributors %}
+            <div class="home-contributor-grid">
+                {% for contributor in top_contributors %}
+                    <a class="home-contributor-card" href="{% url 'travel:profile-detail' contributor.pk %}">
+                        <span class="home-contributor-card__rank">{{ forloop.counter|stringformat:"02d" }}</span>
+                        {% include "profile_pages/_avatar.html" with profile=contributor.profile account=contributor avatar_class="profile-avatar--home" %}
+                        <div class="home-contributor-card__identity">
+                            <p>Japan 47 contributor</p>
+                            <h3>{{ contributor.profile.display_name }}</h3>
+                            <strong>{{ contributor.contributor_stats.points }} points</strong>
+                        </div>
+                        <div class="home-contributor-card__badge">
+                            <div class="home-contributor-card__badge-art">
+                                <span aria-hidden="true">旅</span>
+                                <img
+                                    src="{% static 'images/badges/' %}{{ contributor.contributor_stats.badge.filename }}"
+                                    alt=""
+                                    onerror="this.style.display='none'"
+                                >
+                            </div>
+                            <span>{{ contributor.contributor_stats.badge.name }}</span>
+                        </div>
+                        <div class="home-contributor-card__stats">
+                            <span>{{ contributor.contributor_stats.published_place_count }} place{{ contributor.contributor_stats.published_place_count|pluralize }}</span>
+                            <span>{{ contributor.contributor_stats.review_count }} review{{ contributor.contributor_stats.review_count|pluralize }}</span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="home-feature-empty">
+                <span aria-hidden="true">人</span>
+                <p>No contributor profiles are available yet.</p>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

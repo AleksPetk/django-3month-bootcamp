@@ -1,0 +1,210 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}{{ place.name }}{% endblock %}
+
+{% block content %}
+    <article class="place-detail">
+        <nav class="place-detail__breadcrumbs" aria-label="Breadcrumb">
+            <a href="{% url 'travel:place-list' %}">Places</a>
+            <span aria-hidden="true">/</span>
+            <a href="{% url 'travel:prefecture-detail' place.prefecture.name %}">
+                {{ place.prefecture.name }}
+            </a>
+            <span aria-hidden="true">/</span>
+            <span>{{ place.name }}</span>
+        </nav>
+
+        {% if place.status != "published" %}
+            <div class="place-detail__status place-detail__status--{{ place.status }}">
+                This place is currently {{ place.get_status_display|lower }} and is only visible to you and administrators.
+            </div>
+        {% endif %}
+
+        <header class="place-detail__hero">
+            <div class="place-detail__heading">
+                <p class="place-detail__location">
+                    {{ place.prefecture.name }} prefecture
+                    {% if place.city %}<span>·</span> {{ place.city }}{% endif %}
+                </p>
+                <h1 class="place-detail__title">{{ place.name }}</h1>
+                {% with author_profile=place.author.profile %}
+                    <p class="place-detail__author">
+                        Shared by
+                        <a href="{% url 'travel:profile-detail' place.author.pk %}">
+                            {% if author_profile %}{{ author_profile.display_name }}{% else %}{{ place.author.username }}{% endif %}
+                        </a>
+                    </p>
+                {% endwith %}
+                <div class="place-rating-summary place-rating-summary--large">
+                    <span class="place-rating-summary__star" aria-hidden="true">★</span>
+                    {% if place.average_rating %}
+                        <strong>{{ place.average_rating|floatformat:1 }}</strong>
+                        <span>{{ place.review_count }} review{{ place.review_count|pluralize }}</span>
+                    {% else %}
+                        <strong>New</strong>
+                        <span>No reviews yet</span>
+                    {% endif %}
+                </div>
+
+                {% if user == place.author or user.is_superuser %}
+                    <div class="place-detail__owner-actions">
+                        <a
+                            class="button button--secondary"
+                            href="{% url 'travel:place-update' place.prefecture.name place.slug %}"
+                        >
+                            Edit place
+                        </a>
+                        <a
+                            class="place-detail__delete-link"
+                            href="{% url 'travel:place-delete' place.prefecture.name place.slug %}"
+                        >
+                            Delete
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="place-detail__image-wrapper">
+                {% if place.image %}
+                    <img class="place-detail__image" src="{{ place.image.url }}" alt="{{ place.name }}">
+                {% else %}
+                    <div class="place-detail__placeholder">
+                        <span aria-hidden="true">旅</span>
+                        <p>No image available</p>
+                    </div>
+                {% endif %}
+            </div>
+        </header>
+
+        <div class="place-detail__body">
+            <section class="place-detail__story" aria-labelledby="about-place">
+                <p class="place-detail__eyebrow">The story</p>
+                <h2 id="about-place">About {{ place.name }}</h2>
+                <div class="place-detail__description">{{ place.description|linebreaks }}</div>
+
+                {% if place.travel_tips %}
+                    <aside class="place-detail__tips">
+                        <p class="place-detail__tips-label">Traveler tip</p>
+                        {{ place.travel_tips|linebreaks }}
+                    </aside>
+                {% endif %}
+            </section>
+
+            <aside class="place-detail__sidebar">
+                <h2 class="place-detail__sidebar-title">Plan your visit</h2>
+                <dl class="place-detail__facts">
+                    <div>
+                        <dt>Prefecture</dt>
+                        <dd>
+                            <a href="{% url 'travel:prefecture-detail' place.prefecture.name %}">
+                                {{ place.prefecture.name }}
+                            </a>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Region</dt>
+                        <dd>
+                            <a href="{% url 'travel:region-detail' place.prefecture.region.name %}">
+                                {{ place.prefecture.region.get_name_display }}
+                            </a>
+                        </dd>
+                    </div>
+                    {% if place.city %}
+                        <div><dt>City</dt><dd>{{ place.city }}</dd></div>
+                    {% endif %}
+                </dl>
+
+                <div class="place-detail__external-links">
+                    {% if place.google_maps_url %}
+                        <a href="{{ place.google_maps_url }}" target="_blank" rel="noopener noreferrer">
+                            Open in Google Maps <span aria-hidden="true">↗</span>
+                        </a>
+                    {% endif %}
+                    {% if place.official_website %}
+                        <a href="{{ place.official_website }}" target="_blank" rel="noopener noreferrer">
+                            Official website <span aria-hidden="true">↗</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </aside>
+        </div>
+
+        <section class="place-reviews" aria-labelledby="reviews-heading">
+            <header class="place-reviews__header">
+                <div>
+                    <p class="place-reviews__eyebrow">Traveler experiences</p>
+                    <h2 id="reviews-heading" class="place-reviews__title">Reviews</h2>
+                </div>
+
+                {% if user.is_authenticated %}
+                    {% if user_review %}
+                        <a
+                            class="button button--secondary"
+                            href="{% url 'travel:review-update' place.prefecture.name place.slug user_review.pk %}"
+                        >
+                            Edit your review
+                        </a>
+                    {% else %}
+                        <a
+                            class="button button--primary"
+                            href="{% url 'travel:review-create' place.prefecture.name place.slug %}"
+                        >
+                            Write a review
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <a class="button button--secondary" href="{% url 'travel:login' %}?next={{ request.path }}">
+                        Login to review
+                    </a>
+                {% endif %}
+            </header>
+
+            {% if reviews %}
+                <div class="review-list">
+                    {% for review in reviews %}
+                        <article class="review-card">
+                            <header class="review-card__header">
+                                {% with review_profile=review.author.profile %}
+                                    <a class="review-card__avatar-link" href="{% url 'travel:profile-detail' review.author.pk %}">
+                                        {% include "profile_pages/_avatar.html" with profile=review_profile account=review.author avatar_class="profile-avatar--review" %}
+                                    </a>
+                                    <div>
+                                        <h3 class="review-card__author">
+                                            <a href="{% url 'travel:profile-detail' review.author.pk %}">
+                                                {% if review_profile %}{{ review_profile.display_name }}{% else %}{{ review.author.username }}{% endif %}
+                                            </a>
+                                        </h3>
+                                        <time datetime="{{ review.created_at|date:'c' }}">
+                                            {{ review.created_at|date:"F j, Y" }}
+                                        </time>
+                                    </div>
+                                {% endwith %}
+                                <div class="review-card__stars" aria-label="{{ review.rating }} out of 5 stars">
+                                    {% for star in rating_stars %}
+                                        <span class="{% if star <= review.rating %}is-active{% endif %}" aria-hidden="true">★</span>
+                                    {% endfor %}
+                                </div>
+                            </header>
+
+                            {% if review.comment %}
+                                <div class="review-card__comment">{{ review.comment|linebreaks }}</div>
+                            {% endif %}
+
+                            {% if user == review.author or user.is_staff or user.is_superuser %}
+                                <footer class="review-card__actions">
+                                    <a href="{% url 'travel:review-update' place.prefecture.name place.slug review.pk %}">Edit</a>
+                                    <a href="{% url 'travel:review-delete' place.prefecture.name place.slug review.pk %}">Delete</a>
+                                </footer>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="place-reviews__empty">
+                    <span aria-hidden="true">☆</span>
+                    <p>Be the first traveler to review {{ place.name }}.</p>
+                </div>
+            {% endif %}
+        </section>
+    </article>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% load static %}
+
+<header class="site-header">
+    <div class="site-header__inner">
+        <div class="site-brand">
+            <a class="site-brand__link" href="{% url 'travel:home' %}">
+                <img
+                    class="site-brand__logo"
+                    src="{% static 'images/logo/logo.PNG' %}"
+                    alt="Japan 47"
+                >
+            </a>
+        </div>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a class="site-nav__link" href="{% url 'travel:home' %}">Home</a>
+            <a class="site-nav__link" href="{% url 'travel:region-list' %}">Regions</a>
+            <a class="site-nav__link" href="{% url 'travel:prefecture-list' %}">Prefectures</a>
+            <a class="site-nav__link" href="{% url 'travel:place-list' %}">Places</a>
+            {% if user.is_authenticated %}
+                {% with current_profile=user.profile %}
+                    <a class="site-user" href="{% url 'travel:profile-detail' user.pk %}">
+                        {% include "profile_pages/_avatar.html" with profile=current_profile account=user avatar_class="profile-avatar--header" %}
+                        <span>
+                            {% if current_profile %}{{ current_profile.display_name }}{% else %}{{ user.username }}{% endif %}
+                        </span>
+                    </a>
+                {% endwith %}
+                {% include "authentication_pages/_logout.html" %}
+            {% else %}
+                <a class="site-nav__link" href="{% url 'travel:login' %}">Login</a>
+                <a class="site-nav__link site-nav__link--accent" href="{% url 'travel:register' %}">
+                    Register
+                </a>
+            {% endif %}
+        </nav>
+    </div>
+</header>

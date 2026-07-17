@@ -1,0 +1,42 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}Edit profile{% endblock %}
+
+{% block content %}
+    <section class="profile-form-page">
+        <div class="profile-form-introduction">
+            {% include "profile_pages/_avatar.html" with profile=profile account=user avatar_class="profile-avatar--form" %}
+            <p class="profile-form-introduction__eyebrow">Your account</p>
+            <h1>Edit profile</h1>
+            <p>Update how you appear to the Japan 47 community.</p>
+        </div>
+
+        <form class="profile-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="profile-form__field">
+                <span class="profile-form__label">Username</span>
+                <div class="profile-form__readonly">{{ user.username }}</div>
+                <p class="profile-form__help">Your username cannot be changed.</p>
+            </div>
+
+            {% if form.non_field_errors %}
+                <div class="profile-form__errors">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="profile-form__field profile-form__field--{{ field.name }}">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}<p class="profile-form__help">{{ field.help_text }}</p>{% endif %}
+                    {% if field.errors %}<div class="profile-form__errors">{{ field.errors }}</div>{% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="profile-form__actions">
+                <button class="button button--primary" type="submit">Save profile</button>
+                <a href="{% url 'travel:profile-detail' user.pk %}">Cancel</a>
+            </div>
+        </form>
+    </section>
+{% endblock %}

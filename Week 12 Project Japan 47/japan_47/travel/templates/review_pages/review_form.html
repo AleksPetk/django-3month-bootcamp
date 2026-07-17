@@ -1,0 +1,119 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}{{ form_title }}{% endblock %}
+
+{% block content %}
+    <section class="review-form-page">
+        <div class="review-form-card">
+            <a
+                class="review-form-card__back"
+                href="{% url 'travel:place-detail' place.prefecture.name place.slug %}"
+            >
+                Back to {{ place.name }}
+            </a>
+
+            <header class="review-form-card__header">
+                <p class="review-form-card__eyebrow">{{ place.prefecture.name }} prefecture</p>
+                <h1 class="review-form-card__title">{{ form_title }}</h1>
+                <p class="review-form-card__place">Your experience at {{ place.name }}</p>
+            </header>
+
+            <form class="review-form" method="post">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="review-form__errors">{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                <fieldset class="review-form__rating-group">
+                    <legend>Your rating</legend>
+                    <div
+                        class="review-rating"
+                        data-initial-rating="{{ form.rating.value|default:0 }}"
+                    >
+                        {{ form.rating }}
+                        <div class="review-rating__stars" role="group" aria-label="Choose a rating from 1 to 5 stars">
+                            {% for value in "12345" %}
+                                <button
+                                    class="review-rating__star"
+                                    type="button"
+                                    data-rating="{{ value }}"
+                                    aria-label="{{ value }} star{{ value|pluralize }}"
+                                    aria-pressed="false"
+                                >
+                                    ★
+                                </button>
+                            {% endfor %}
+                        </div>
+                        <p class="review-rating__label" aria-live="polite">Select a rating</p>
+                    </div>
+                    {% if form.rating.errors %}
+                        <div class="review-form__errors">{{ form.rating.errors }}</div>
+                    {% endif %}
+                </fieldset>
+
+                <div class="review-form__comment">
+                    <label for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
+                    {{ form.comment }}
+                    {% if form.comment.errors %}
+                        <div class="review-form__errors">{{ form.comment.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="review-form__actions">
+                    <button class="button button--primary" type="submit">{{ submit_label }}</button>
+                    <a href="{% url 'travel:place-detail' place.prefecture.name place.slug %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        (() => {
+            const rating = document.querySelector(".review-rating");
+            if (!rating) return;
+
+            const input = rating.querySelector("input[type='hidden']");
+            const stars = Array.from(rating.querySelectorAll(".review-rating__star"));
+            const label = rating.querySelector(".review-rating__label");
+            let selected = Number(input.value || rating.dataset.initialRating || 0);
+
+            const paintStars = (value) => {
+                stars.forEach((star) => {
+                    const active = Number(star.dataset.rating) <= value;
+                    star.classList.toggle("is-active", active);
+                    star.setAttribute(
+                        "aria-pressed",
+                        Number(star.dataset.rating) === selected ? "true" : "false"
+                    );
+                });
+            };
+
+            const updateLabel = () => {
+                label.textContent = selected
+                    ? `${selected} out of 5 stars`
+                    : "Select a rating";
+            };
+
+            stars.forEach((star) => {
+                star.addEventListener("mouseenter", () => {
+                    paintStars(Number(star.dataset.rating));
+                });
+
+                star.addEventListener("click", () => {
+                    selected = Number(star.dataset.rating);
+                    input.value = selected;
+                    paintStars(selected);
+                    updateLabel();
+                });
+            });
+
+            rating.querySelector(".review-rating__stars").addEventListener("mouseleave", () => {
+                paintStars(selected);
+            });
+
+            paintStars(selected);
+            updateLabel();
+        })();
+    </script>
+{% endblock %}

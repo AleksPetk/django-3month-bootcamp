@@ -1,0 +1,30 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <section class="auth-page">
+        <div class="auth-card">
+            <header class="auth-card__header">
+                <span class="auth-card__mark" aria-hidden="true">旅</span>
+                <p class="auth-card__eyebrow">Welcome back</p>
+                <h1 class="auth-card__title">Login</h1>
+            </header>
+
+            {% if user.is_authenticated %}
+                <p class="auth-card__message">You are already logged in.</p>
+            {% else %}
+                <form class="auth-form" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="button button--primary button--full" type="submit">Login</button>
+                </form>
+            {% endif %}
+
+            <p class="auth-card__alternative">
+                New to Japan 47?
+                <a href="{% url 'travel:register' %}">Create an account</a>
+            </p>
+        </div>
+    </section>
+{% endblock %}

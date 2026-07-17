@@ -681,3 +681,58 @@ Key skills developed:
 * Handling API responses, timeouts, and common error conditions
 
 This week marked the transition from building Django features that simply work to building applications that are faster, better organized, easier to understand, and more maintainable as the project grows.
+
+
+## Week 12 — Complete Django Project
+
+In Week 12, I combined everything learned throughout the first eleven weeks into one complete Django application.
+
+I built Japan 47, a community-driven travel website where users can explore Japan by region, prefecture, and place, contribute new destinations, write reviews, build public profiles, earn contributor badges, and interact through a fully moderated content system.
+
+This week focused on applying previous knowledge to a realistic, larger-scale project while improving project organization, user experience, and overall application architecture.
+
+Key skills developed:
+
+* Planning and building a complete Django application from scratch
+* Designing a scalable project architecture
+* Combining:
+    * authentication
+    * CRUD
+    * relationships
+    * forms
+    * CBVs
+    * file uploads
+    * services
+    * utilities
+    * validation
+    * performance optimization
+* Creating a multi-level travel database using:
+    * Region
+    * Prefecture
+    * Place
+    * Review
+    * Profile
+* Building hierarchical navigation between related models
+* Creating a community review system with:
+    * one review per user per place
+    * average place ratings
+    * prefecture ratings
+    * region ratings
+* Calculating hierarchical ratings using annotations and reusable service functions
+* Building a public contributor profile system
+* Automatically creating profiles for new users
+* Managing profile images and contributor information
+* Creating a contributor points and badge system
+* Implementing staff moderation for user-submitted places
+* Displaying only published content to public visitors
+* Building reusable filtering, searching, and sorting interfaces
+* Reusing generic Class-Based Views across multiple features
+* Reusing image-processing services across different models
+* Organizing uploaded media and static assets appropriately
+* Building responsive templates with reusable components
+* Integrating an AI website helper using the OpenAI Responses API
+* Configuring environment variables and secure API key management
+* Structuring a larger Django project into maintainable modules
+* Preparing a project for future deployment with documentation, testing, and production configuration
+
+This week marked the transition from learning individual Django concepts to building a complete, production-style web application where multiple features work together as one cohesive system.

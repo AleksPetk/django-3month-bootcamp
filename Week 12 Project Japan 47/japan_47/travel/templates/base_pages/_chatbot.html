@@ -1,0 +1,79 @@
+<aside
+    class="website-assistant"
+    data-website-assistant
+    data-endpoint="{% url 'travel:assistant-ask' %}"
+>
+    <section
+        class="website-assistant__panel"
+        id="website-assistant-panel"
+        role="dialog"
+        aria-labelledby="website-assistant-title"
+        aria-hidden="true"
+        hidden
+    >
+        <header class="website-assistant__header">
+            <div>
+                <span class="website-assistant__status" aria-hidden="true"></span>
+                <p>Japan 47 helper</p>
+                <h2 id="website-assistant-title">How can I help?</h2>
+            </div>
+            <button
+                class="website-assistant__close"
+                type="button"
+                aria-label="Close website helper"
+                data-assistant-close
+            >
+                &times;
+            </button>
+        </header>
+
+        <div
+            class="website-assistant__messages"
+            aria-live="polite"
+            aria-relevant="additions"
+            data-assistant-messages
+        >
+            <div class="website-assistant__message website-assistant__message--helper">
+                Ask me how to explore Japan 47, find places, use filters, write reviews,
+                or manage your contributions.
+            </div>
+        </div>
+
+        <form class="website-assistant__form" data-assistant-form>
+            {% csrf_token %}
+            <label class="sr-only" for="website-assistant-question">
+                Ask about the Japan 47 website
+            </label>
+            <div class="website-assistant__input-row">
+                <input
+                    id="website-assistant-question"
+                    name="question"
+                    type="text"
+                    maxlength="800"
+                    autocomplete="off"
+                    placeholder="Ask about Japan 47..."
+                    required
+                    data-assistant-input
+                >
+                <button type="submit" aria-label="Send question" data-assistant-submit>
+                    <span aria-hidden="true">&#8593;</span>
+                </button>
+            </div>
+            <p class="website-assistant__note">
+                Website questions only. AI answers can make mistakes.
+            </p>
+        </form>
+    </section>
+
+    <button
+        class="website-assistant__toggle"
+        type="button"
+        aria-controls="website-assistant-panel"
+        aria-expanded="false"
+        aria-label="Open Japan 47 website helper"
+        data-assistant-toggle
+    >
+        <span class="website-assistant__question-mark" aria-hidden="true">?</span>
+        <span class="website-assistant__toggle-label">Ask Japan 47</span>
+    </button>
+</aside>

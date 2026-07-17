@@ -1,0 +1,156 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}Places{% endblock %}
+
+{% block content %}
+    <section class="places-page">
+        <header class="places-page__header">
+            <p class="places-page__eyebrow">Community discoveries</p>
+            <h1 class="places-page__title">Places worth finding</h1>
+            <p class="places-page__introduction">
+                Temples, gardens, hidden streets, viewpoints, and local favorites
+                shared by travelers across Japan.
+            </p>
+        </header>
+
+        <form class="place-filters" method="get">
+            <div class="place-filters__field place-filters__field--search">
+                <label for="place-search">Search</label>
+                <input
+                    id="place-search"
+                    name="q"
+                    type="search"
+                    value="{{ search_query }}"
+                    placeholder="Place or prefecture name"
+                >
+            </div>
+
+            <div class="place-filters__field">
+                <label for="place-prefecture-filter">Prefecture</label>
+                <select id="place-prefecture-filter" name="prefecture">
+                    <option value="">All prefectures</option>
+                    {% for prefecture in prefectures %}
+                        <option
+                            value="{{ prefecture.name }}"
+                            {% if selected_prefecture == prefecture.name %}selected{% endif %}
+                        >
+                            {{ prefecture.name }} — {{ prefecture.region.get_name_display }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="place-filters__field">
+                <label for="place-rating-filter">Minimum rating</label>
+                <select id="place-rating-filter" name="rating">
+                    <option value="">Any rating</option>
+                    {% for value in "4321" %}
+                        <option value="{{ value }}" {% if selected_rating == value %}selected{% endif %}>
+                            {{ value }} star{{ value|pluralize }} &amp; up
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="place-filters__field place-filters__field--sort">
+                <label for="place-sort">Sort by</label>
+                <select id="place-sort" name="sort">
+                    {% for value, label in sort_options %}
+                        <option value="{{ value }}" {% if selected_sort == value %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button class="button button--primary place-filters__submit" type="submit">
+                Find places
+            </button>
+
+            {% if search_query or selected_prefecture or selected_rating or selected_sort != "newest" %}
+                <a class="place-filters__reset" href="{% url 'travel:place-list' %}">
+                    Reset filters and sorting
+                </a>
+            {% endif %}
+        </form>
+
+        {% if places %}
+            <div class="place-gallery">
+                {% for place in places %}
+                    <article class="place-gallery-card">
+                        <a
+                            class="place-gallery-card__link"
+                            href="{% url 'travel:place-detail' place.prefecture.name place.slug %}"
+                        >
+                            <div class="place-gallery-card__image-wrapper">
+                                {% if place.image %}
+                                    <img
+                                        class="place-gallery-card__image"
+                                        src="{{ place.image.url }}"
+                                        alt="{{ place.name }}"
+                                        loading="lazy"
+                                    >
+                                {% else %}
+                                    <div class="place-gallery-card__placeholder">
+                                        <span aria-hidden="true">旅</span>
+                                    </div>
+                                {% endif %}
+                                <span class="place-gallery-card__region">
+                                    {{ place.prefecture.region.get_name_display }}
+                                </span>
+                            </div>
+
+                            <div class="place-gallery-card__content">
+                                <p class="place-gallery-card__location">
+                                    {{ place.prefecture.name }}{% if place.city %} · {{ place.city }}{% endif %}
+                                </p>
+                                <h2 class="place-gallery-card__title">{{ place.name }}</h2>
+                                <div class="place-rating-summary">
+                                    <span class="place-rating-summary__star" aria-hidden="true">★</span>
+                                    {% if place.average_rating %}
+                                        <strong>{{ place.average_rating|floatformat:1 }}</strong>
+                                        <span>{{ place.review_count }} review{{ place.review_count|pluralize }}</span>
+                                    {% else %}
+                                        <span>Not yet rated</span>
+                                    {% endif %}
+                                </div>
+                                <p class="place-gallery-card__description">
+                                    {{ place.description|truncatewords:24 }}
+                                </p>
+                                <span class="place-gallery-card__action">View place</span>
+                            </div>
+                        </a>
+                    </article>
+                {% endfor %}
+            </div>
+
+            {% if is_paginated %}
+                <nav class="pagination" aria-label="Place pages">
+                    <div class="pagination__side">
+                        {% if page_obj.has_previous %}
+                            <a href="?{% if pagination_query %}{{ pagination_query }}&amp;{% endif %}page=1">First</a>
+                            <a href="?{% if pagination_query %}{{ pagination_query }}&amp;{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
+                        {% endif %}
+                    </div>
+
+                    <span class="pagination__status">
+                        Page {{ page_obj.number }} of {{ paginator.num_pages }}
+                    </span>
+
+                    <div class="pagination__side pagination__side--next">
+                        {% if page_obj.has_next %}
+                            <a href="?{% if pagination_query %}{{ pagination_query }}&amp;{% endif %}page={{ page_obj.next_page_number }}">Next</a>
+                            <a href="?{% if pagination_query %}{{ pagination_query }}&amp;{% endif %}page={{ paginator.num_pages }}">Last</a>
+                        {% endif %}
+                    </div>
+                </nav>
+            {% endif %}
+        {% else %}
+            <div class="places-page__empty">
+                <span aria-hidden="true">旅</span>
+                <h2>No published places yet</h2>
+                <p>Community recommendations will appear here after review.</p>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

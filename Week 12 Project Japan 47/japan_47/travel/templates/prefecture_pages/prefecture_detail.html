@@ -1,0 +1,146 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}{{ prefecture.name }}{% endblock %}
+
+{% block content %}
+    <article class="prefecture-detail">
+        <nav class="prefecture-detail__breadcrumbs" aria-label="Breadcrumb">
+            <a href="{% url 'travel:prefecture-list' %}">Prefectures</a>
+            <span aria-hidden="true">/</span>
+            <a href="{% url 'travel:region-detail' prefecture.region.name %}">
+                {{ prefecture.region.get_name_display }}
+            </a>
+            <span aria-hidden="true">/</span>
+            <span>{{ prefecture.name }}</span>
+        </nav>
+
+        <header class="prefecture-detail__hero">
+            <div class="prefecture-detail__image-wrapper">
+                {% if prefecture.image %}
+                    <img
+                        class="prefecture-detail__image"
+                        src="{{ prefecture.image.url }}"
+                        alt="{{ prefecture.name }} prefecture"
+                    >
+                {% else %}
+                    <div class="prefecture-detail__placeholder">
+                        <span aria-hidden="true">県</span>
+                        <p>No image available</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="prefecture-detail__panel">
+                <a
+                    class="prefecture-detail__region"
+                    href="{% url 'travel:region-detail' prefecture.region.name %}"
+                >
+                    {{ prefecture.region.get_name_display }} region
+                </a>
+                <p class="prefecture-detail__eyebrow">Explore the prefecture</p>
+                <h1 class="prefecture-detail__title">{{ prefecture.name }}</h1>
+                <div class="area-rating">
+                    <span aria-hidden="true">★</span>
+                    {% if prefecture.average_rating %}
+                        {{ prefecture.average_rating|floatformat:1 }} prefecture rating
+                    {% else %}
+                        Not yet rated
+                    {% endif %}
+                </div>
+                {% if prefecture.description %}
+                    <div class="prefecture-detail__description">
+                        {{ prefecture.description|linebreaks }}
+                    </div>
+                {% else %}
+                    <p class="prefecture-detail__description prefecture-detail__description--empty">
+                        More details about {{ prefecture.name }} are coming soon.
+                    </p>
+                {% endif %}
+            </div>
+        </header>
+
+        <section class="prefecture-places" aria-labelledby="places-heading">
+            <header class="prefecture-places__header">
+                <div>
+                    <p class="prefecture-places__eyebrow">Worth the journey</p>
+                    <h2 id="places-heading" class="prefecture-places__title">
+                        Places in {{ prefecture.name }}
+                    </h2>
+                </div>
+                <span class="prefecture-places__count">
+                    {{ prefecture.published_place_count }} place{{ prefecture.published_place_count|pluralize }}
+                </span>
+            </header>
+
+            {% if user.is_authenticated or prefecture.published_place_count %}
+                <div class="prefecture-places__actions">
+                    {% if user.is_authenticated %}
+                        <a
+                            class="button button--primary"
+                            href="{% url 'travel:place-create' prefecture.name %}"
+                        >
+                            Suggest a place
+                        </a>
+                    {% endif %}
+                    {% if prefecture.published_place_count %}
+                        <a
+                            class="button button--secondary"
+                            href="{% url 'travel:place-list' %}?prefecture={{ prefecture.name|urlencode }}"
+                        >
+                            Check all places in {{ prefecture.name }}
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if published_places %}
+                {% if prefecture.published_place_count > 6 %}
+                    <p class="prefecture-places__preview-note">
+                        Showing the 6 newest of {{ prefecture.published_place_count }} published places.
+                    </p>
+                {% endif %}
+                <div class="prefecture-place-grid">
+                    {% for place in published_places %}
+                        <article class="prefecture-place-card">
+                            <a
+                                class="prefecture-place-card__link"
+                                href="{% url 'travel:place-detail' prefecture.name place.slug %}"
+                            >
+                                {% if place.image %}
+                                    <img
+                                        class="prefecture-place-card__image"
+                                        src="{{ place.image.url }}"
+                                        alt="{{ place.name }}"
+                                        loading="lazy"
+                                    >
+                                {% endif %}
+                                <div class="prefecture-place-card__content">
+                                    {% if place.city %}
+                                        <p class="prefecture-place-card__city">{{ place.city }}</p>
+                                    {% endif %}
+                                    <h3 class="prefecture-place-card__title">{{ place.name }}</h3>
+                                    <div class="place-rating-summary">
+                                        <span class="place-rating-summary__star" aria-hidden="true">★</span>
+                                        {% if place.average_rating %}
+                                            <strong>{{ place.average_rating|floatformat:1 }}</strong>
+                                            <span>{{ place.review_count }} review{{ place.review_count|pluralize }}</span>
+                                        {% else %}
+                                            <span>Not yet rated</span>
+                                        {% endif %}
+                                    </div>
+                                    <p class="prefecture-place-card__description">
+                                        {{ place.description|truncatewords:25 }}
+                                    </p>
+                                </div>
+                            </a>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="prefecture-places__empty">
+                    <p>No published places have been added for {{ prefecture.name }} yet.</p>
+                </div>
+            {% endif %}
+        </section>
+    </article>
+{% endblock %}

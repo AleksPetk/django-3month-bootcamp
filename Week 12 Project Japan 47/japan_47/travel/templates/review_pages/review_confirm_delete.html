@@ -1,0 +1,27 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}Delete review{% endblock %}
+
+{% block content %}
+    <section class="review-delete-page">
+        <div class="review-delete-card">
+            <span class="review-delete-card__mark" aria-hidden="true">★</span>
+            <p class="review-delete-card__eyebrow">Remove your rating</p>
+            <h1 class="review-delete-card__title">Delete this review?</h1>
+            <p class="review-delete-card__text">
+                Your {{ review.rating }}-star review of {{ review.place.name }} will be permanently removed.
+            </p>
+
+            <form class="review-delete-card__actions" method="post">
+                {% csrf_token %}
+                <button class="button review-delete-card__confirm" type="submit">Delete review</button>
+                <a
+                    class="button button--secondary"
+                    href="{% url 'travel:place-detail' review.place.prefecture.name review.place.slug %}"
+                >
+                    Keep review
+                </a>
+            </form>
+        </div>
+    </section>
+{% endblock %}

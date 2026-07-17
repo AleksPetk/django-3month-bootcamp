@@ -1,0 +1,107 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}{{ region.get_name_display }}{% endblock %}
+
+{% block content %}
+    <article class="region-detail">
+        <a class="region-detail__back-link" href="{% url 'travel:region-list' %}">
+            Back to all regions
+        </a>
+
+        <header class="region-detail__hero">
+            <div class="region-detail__hero-content">
+                <p class="region-detail__eyebrow">Region of Japan</p>
+                <h1 class="region-detail__title">{{ region.get_name_display }}</h1>
+                <div class="area-rating area-rating--centered">
+                    <span aria-hidden="true">★</span>
+                    {% if region.average_rating %}
+                        {{ region.average_rating|floatformat:1 }} region rating
+                    {% else %}
+                        Not yet rated
+                    {% endif %}
+                </div>
+                {% if region.description %}
+                    <div class="region-detail__description">
+                        {{ region.description|linebreaks }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="region-detail__image-wrapper">
+                {% if region.image %}
+                    <img
+                        class="region-detail__image"
+                        src="{{ region.image.url }}"
+                        alt="{{ region.get_name_display }} region"
+                    >
+                {% else %}
+                    <div class="region-detail__image-placeholder">
+                        <span>No image available</span>
+                    </div>
+                {% endif %}
+            </div>
+        </header>
+
+        <section class="region-prefectures" aria-labelledby="prefectures-heading">
+            <header class="region-prefectures__header">
+                <p class="region-prefectures__eyebrow">Where to go</p>
+                <h2 id="prefectures-heading" class="region-prefectures__title">
+                    Prefectures in {{ region.get_name_display }}
+                </h2>
+            </header>
+
+            {% with prefectures=region.prefectures.all %}
+                {% if prefectures %}
+                    <div class="prefecture-grid">
+                        {% for prefecture in prefectures %}
+                            <article class="prefecture-card">
+                                <div class="prefecture-card__image-wrapper">
+                                    {% if prefecture.image %}
+                                        <img
+                                            class="prefecture-card__image"
+                                            src="{{ prefecture.image.url }}"
+                                            alt="{{ prefecture.name }} prefecture"
+                                            loading="lazy"
+                                        >
+                                    {% else %}
+                                        <div class="prefecture-card__image-placeholder">
+                                            <span>No image available</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="prefecture-card__content">
+                                    <h3 class="prefecture-card__title">
+                                        <a
+                                            class="prefecture-card__link"
+                                            href="{% url 'travel:prefecture-detail' prefecture.name %}"
+                                        >
+                                            {{ prefecture.name }}
+                                        </a>
+                                    </h3>
+                                    <div class="area-rating">
+                                        <span aria-hidden="true">★</span>
+                                        {% if prefecture.average_rating %}
+                                            {{ prefecture.average_rating|floatformat:1 }}
+                                        {% else %}
+                                            Not yet rated
+                                        {% endif %}
+                                    </div>
+                                    {% if prefecture.description %}
+                                        <p class="prefecture-card__description">
+                                            {{ prefecture.description|truncatewords:24 }}
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="region-prefectures__empty">
+                        <p>No prefectures are available for this region yet.</p>
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </section>
+    </article>
+{% endblock %}

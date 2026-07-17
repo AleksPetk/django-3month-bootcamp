@@ -1,0 +1,163 @@
+{% extends "base_pages/base.html" %}
+
+{% block title %}Prefectures of Japan{% endblock %}
+
+{% block content %}
+    <section class="prefectures-page">
+        <header class="prefectures-page__header">
+            <div class="prefectures-page__heading">
+                <p class="prefectures-page__eyebrow">47 distinct destinations</p>
+                <h1 class="prefectures-page__title">Prefectures of Japan</h1>
+                <p class="prefectures-page__introduction">
+                    Search all prefectures or browse them region by region.
+                </p>
+            </div>
+
+            <form class="prefecture-filters" method="get">
+                <div class="prefecture-filters__field prefecture-filters__field--search">
+                    <label for="prefecture-search">Search</label>
+                    <input
+                        id="prefecture-search"
+                        name="q"
+                        type="search"
+                        value="{{ search_query }}"
+                        placeholder="Prefecture or region name"
+                    >
+                </div>
+
+                <div class="prefecture-filters__field">
+                    <label for="region-filter">Region</label>
+                    <select id="region-filter" name="region">
+                        <option value="">All regions</option>
+                        {% for region in regions %}
+                            <option
+                                value="{{ region.name }}"
+                                {% if selected_region == region.name %}selected{% endif %}
+                            >
+                                {{ region.get_name_display }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="prefecture-filters__field">
+                    <label for="prefecture-rating-filter">Minimum rating</label>
+                    <select id="prefecture-rating-filter" name="rating">
+                        <option value="">Any rating</option>
+                        {% for value in "4321" %}
+                            <option value="{{ value }}" {% if selected_rating == value %}selected{% endif %}>
+                                {{ value }} star{{ value|pluralize }} &amp; up
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="prefecture-filters__field prefecture-filters__field--sort">
+                    <label for="prefecture-sort">Sort by</label>
+                    <select id="prefecture-sort" name="sort">
+                        {% for value, label in sort_options %}
+                            <option value="{{ value }}" {% if selected_sort == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button class="button button--primary prefecture-filters__submit" type="submit">
+                    Find prefectures
+                </button>
+
+                {% if search_query or selected_region or selected_rating or selected_sort != "region" %}
+                    <a class="prefecture-filters__reset" href="{% url 'travel:prefecture-list' %}">
+                        Reset filters and sorting
+                    </a>
+                {% endif %}
+            </form>
+        </header>
+
+        {% if prefectures %}
+            {% regroup prefectures by region as region_groups %}
+            <div class="prefecture-directory">
+                {% for group in region_groups %}
+                    <section class="prefecture-region-group">
+                        <header class="prefecture-region-group__header">
+                            <span class="prefecture-region-group__number">
+                                {{ forloop.counter|stringformat:"02d" }}
+                            </span>
+                            <div>
+                                <p class="prefecture-region-group__label">Region</p>
+                                <h2 class="prefecture-region-group__title">
+                                    {{ group.grouper.get_name_display }}
+                                </h2>
+                            </div>
+                            <a
+                                class="prefecture-region-group__link"
+                                href="{% url 'travel:region-detail' group.grouper.name %}"
+                            >
+                                View region
+                            </a>
+                        </header>
+
+                        <div class="prefecture-directory-grid">
+                            {% for prefecture in group.list %}
+                                <article class="prefecture-directory-card">
+                                    <a
+                                        class="prefecture-directory-card__link"
+                                        href="{% url 'travel:prefecture-detail' prefecture.name %}"
+                                    >
+                                        <div class="prefecture-directory-card__image-wrapper">
+                                            {% if prefecture.image %}
+                                                <img
+                                                    class="prefecture-directory-card__image"
+                                                    src="{{ prefecture.image.url }}"
+                                                    alt="{{ prefecture.name }} prefecture"
+                                                    loading="lazy"
+                                                >
+                                            {% else %}
+                                                <div class="prefecture-directory-card__placeholder">
+                                                    <span aria-hidden="true">県</span>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="prefecture-directory-card__content">
+                                            <h3 class="prefecture-directory-card__title">
+                                                {{ prefecture.name }}
+                                            </h3>
+                                            <div class="area-rating">
+                                                <span aria-hidden="true">★</span>
+                                                {% if prefecture.average_rating %}
+                                                    {{ prefecture.average_rating|floatformat:1 }}
+                                                {% else %}
+                                                    Not yet rated
+                                                {% endif %}
+                                            </div>
+                                            <p class="prefecture-directory-card__place-count">
+                                                {{ prefecture.published_place_count }} published place{{ prefecture.published_place_count|pluralize }}
+                                            </p>
+                                            {% if prefecture.description %}
+                                                <p class="prefecture-directory-card__description">
+                                                    {{ prefecture.description|truncatewords:18 }}
+                                                </p>
+                                            {% endif %}
+                                            <span class="prefecture-directory-card__action">Discover</span>
+                                        </div>
+                                    </a>
+                                </article>
+                            {% endfor %}
+                        </div>
+                    </section>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="prefectures-page__empty">
+                <span class="prefectures-page__empty-mark" aria-hidden="true">検索</span>
+                <h2>No prefectures found</h2>
+                <p>Try another prefecture name, region name, or filter.</p>
+                <a class="button button--secondary" href="{% url 'travel:prefecture-list' %}">
+                    Show all prefectures
+                </a>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

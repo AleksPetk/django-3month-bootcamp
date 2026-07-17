@@ -1,0 +1,191 @@
+{% extends "base_pages/base.html" %}
+{% load static %}
+
+{% block title %}{{ profile.display_name }}{% endblock %}
+
+{% block content %}
+    <article class="profile-page">
+        <header class="profile-hero">
+            <div class="profile-hero__identity">
+                {% include "profile_pages/_avatar.html" with profile=profile account=contributor avatar_class="profile-avatar--hero" %}
+
+                <div class="profile-hero__copy">
+                    <p class="profile-hero__eyebrow">Japan 47 contributor</p>
+                    <h1 class="profile-hero__name">{{ profile.display_name }}</h1>
+                    <p class="profile-hero__joined">Joined {{ contributor.date_joined|date:"F Y" }}</p>
+
+                    {% if is_owner %}
+                        <div class="profile-hero__private">
+                            <span>Username: {{ contributor.username }}</span>
+                            <span>Email: {{ contributor.email }}</span>
+                        </div>
+                        <a class="button button--secondary" href="{% url 'travel:profile-update' %}">
+                            Edit profile
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <section class="contributor-badge" aria-labelledby="badge-name">
+                <div class="contributor-badge__art">
+                    <span class="contributor-badge__fallback" aria-hidden="true">旅</span>
+                    <img
+                        src="{% static 'images/badges/' %}{{ contributor_stats.badge.filename }}"
+                        alt=""
+                        onerror="this.style.display='none'"
+                    >
+                </div>
+                <div class="contributor-badge__content">
+                    <p class="contributor-badge__label">Contributor badge</p>
+                    <h2 id="badge-name">{{ contributor_stats.badge.name }}</h2>
+                    <p class="contributor-badge__points">
+                        <strong>{{ contributor_stats.points }}</strong> points
+                    </p>
+
+                    <div
+                        class="contributor-progress"
+                        role="progressbar"
+                        aria-valuenow="{{ contributor_stats.badge.progress_percent }}"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                    >
+                        <span style="width: {{ contributor_stats.badge.progress_percent }}%;"></span>
+                    </div>
+
+                    {% if contributor_stats.badge.next_name %}
+                        <p class="contributor-badge__next">
+                            {{ contributor_stats.badge.points_until_next }} points to
+                            {{ contributor_stats.badge.next_name }}
+                        </p>
+                    {% else %}
+                        <p class="contributor-badge__next">Highest contributor level reached</p>
+                    {% endif %}
+                </div>
+            </section>
+        </header>
+
+        <section class="profile-stats" aria-label="Contributor statistics">
+            <div class="profile-stat">
+                <strong>{{ contributor_stats.points }}</strong>
+                <span>Points</span>
+            </div>
+            <div class="profile-stat">
+                <strong>{{ contributor_stats.published_place_count }}</strong>
+                <span>Published place{{ contributor_stats.published_place_count|pluralize }}</span>
+            </div>
+            <div class="profile-stat">
+                <strong>{{ contributor_stats.review_count }}</strong>
+                <span>Review{{ contributor_stats.review_count|pluralize }}</span>
+            </div>
+        </section>
+
+        <section class="profile-contributions" aria-labelledby="profile-places-heading">
+            <header class="profile-section-header">
+                <div>
+                    <p class="profile-section-header__eyebrow">Shared discoveries</p>
+                    <h2 id="profile-places-heading">
+                        {% if is_owner %}Your places{% else %}Published places{% endif %}
+                    </h2>
+                </div>
+            </header>
+
+            {% if places %}
+                <div class="profile-place-grid">
+                    {% for place in places %}
+                        <article class="profile-place-card">
+                            <a
+                                class="profile-place-card__main"
+                                href="{% url 'travel:place-detail' place.prefecture.name place.slug %}"
+                            >
+                                <div class="profile-place-card__image-wrapper">
+                                    {% if place.image %}
+                                        <img src="{{ place.image.url }}" alt="{{ place.name }}" loading="lazy">
+                                    {% else %}
+                                        <span aria-hidden="true">旅</span>
+                                    {% endif %}
+                                </div>
+                                <div class="profile-place-card__content">
+                                    <p>{{ place.prefecture.name }}{% if place.city %} · {{ place.city }}{% endif %}</p>
+                                    <h3>{{ place.name }}</h3>
+                                    <div class="place-rating-summary">
+                                        <span class="place-rating-summary__star" aria-hidden="true">★</span>
+                                        {% if place.average_rating %}
+                                            <strong>{{ place.average_rating|floatformat:1 }}</strong>
+                                            <span>{{ place.review_count }} review{{ place.review_count|pluralize }}</span>
+                                        {% else %}
+                                            <span>Not yet rated</span>
+                                        {% endif %}
+                                    </div>
+                                    {% if is_owner %}
+                                        <span class="profile-place-card__status profile-place-card__status--{{ place.status }}">
+                                            {{ place.get_status_display }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </a>
+
+                            {% if is_owner %}
+                                <footer class="profile-place-card__actions">
+                                    <a href="{% url 'travel:place-update' place.prefecture.name place.slug %}">Edit</a>
+                                    <a href="{% url 'travel:place-delete' place.prefecture.name place.slug %}">Delete</a>
+                                </footer>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="profile-section-empty">
+                    <p>No places to show yet.</p>
+                </div>
+            {% endif %}
+        </section>
+
+        <section class="profile-contributions" aria-labelledby="profile-reviews-heading">
+            <header class="profile-section-header">
+                <div>
+                    <p class="profile-section-header__eyebrow">Traveler perspective</p>
+                    <h2 id="profile-reviews-heading">Reviews</h2>
+                </div>
+            </header>
+
+            {% if reviews %}
+                <div class="profile-review-list">
+                    {% for review in reviews %}
+                        <article class="profile-review-card">
+                            <header>
+                                <div>
+                                    <p>{{ review.place.prefecture.name }}</p>
+                                    <h3>
+                                        <a href="{% url 'travel:place-detail' review.place.prefecture.name review.place.slug %}">
+                                            {{ review.place.name }}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div class="review-card__stars" aria-label="{{ review.rating }} out of 5 stars">
+                                    {% for star in rating_stars %}
+                                        <span class="{% if star <= review.rating %}is-active{% endif %}" aria-hidden="true">★</span>
+                                    {% endfor %}
+                                </div>
+                            </header>
+                            {% if review.comment %}
+                                <div class="profile-review-card__comment">{{ review.comment|linebreaks }}</div>
+                            {% endif %}
+                            <time datetime="{{ review.created_at|date:'c' }}">{{ review.created_at|date:"F j, Y" }}</time>
+
+                            {% if is_owner %}
+                                <footer>
+                                    <a href="{% url 'travel:review-update' review.place.prefecture.name review.place.slug review.pk %}">Edit</a>
+                                    <a href="{% url 'travel:review-delete' review.place.prefecture.name review.place.slug review.pk %}">Delete</a>
+                                </footer>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="profile-section-empty">
+                    <p>No reviews to show yet.</p>
+                </div>
+            {% endif %}
+        </section>
+    </article>
+{% endblock %}

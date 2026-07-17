@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}?v=10">
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="1024x1024"
+            href="{% static 'images/logo/favicon.PNG' %}?v=2"
+        >
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="{% static 'images/logo/favicon.PNG' %}?v=2"
+        >
+        <link
+            rel="apple-touch-icon"
+            href="{% static 'images/logo/favicon.PNG' %}?v=2"
+        >
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}{% endblock %} | Japan 47
+        </title>
+    </head>
+    <body class="site-body">
+        {% include "base_pages/_header.html" %}
+        {% include "base_pages/_chatbot.html" %}
+        <main class="site-main">
+            {% block content %}
+            {% endblock %}
+        </main>
+        {% include "base_pages/_footer.html" %}
+        <script src="{% static 'js/chatbot.js' %}?v=3" defer></script>
+    </body>
+</html>

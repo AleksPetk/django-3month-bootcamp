@@ -1,0 +1,13 @@
+<span class="profile-avatar {{ avatar_class }}">
+    {% if profile and profile.profile_image %}
+        <img src="{{ profile.profile_image.url }}" alt="{{ profile.display_name }}">
+    {% else %}
+        <span class="profile-avatar__fallback" aria-hidden="true">
+            {% if profile %}
+                {{ profile.display_name|first|upper }}
+            {% else %}
+                {{ account.username|first|upper }}
+            {% endif %}
+        </span>
+    {% endif %}
+</span>
